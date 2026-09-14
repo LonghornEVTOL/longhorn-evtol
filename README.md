@@ -180,8 +180,9 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 
 ## Membership
 
-- Open to UT Austin students, faculty, and staff. **No prior experience or specific major required.**
-- **General Members** join by showing up. No application, no vote.
+- Open to UT Austin students, faculty, and staff by **application and interview**, recruited every fall and spring. **No prior experience, specific major, or fee required.** Apply at [longhorn-evtol.vercel.app/apply](https://longhorn-evtol.vercel.app/apply).
+- Applicants are scored on three published criteria (interest, commitment, contribution) with the same rubric, and every applicant gets a written decision within 14 days after interviews close. See the [interview guide](docs/recruitment/interview-guide.md).
+- **General Members** are admitted applicants. Info sessions and outreach events stay open to everyone.
 - **Active Members** complete safety onboarding and attend three meetings or work sessions. They get team assignments, shop access, and a vote.
 - General meetings are held twice a month, and each team meets weekly.
 - Every vehicle configuration goes through a Preliminary Design Review, a Critical Design Review, and a Test Readiness Review before powered testing.
