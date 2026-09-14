@@ -2,7 +2,7 @@
 
 **Status:** Preliminary. The numbers come from manufacturer data where it exists and from engineering estimates where it does not; estimates are marked. Thrust stand testing replaces them, and the baseline is frozen at the Preliminary Design Review (PDR). Changes after PDR go through configuration management.
 
-Last updated: 14 September 2026 (v1 replaces v0, which double-counted the coaxial penalty and overstated hover power by about 2×)
+Last updated: 14 September 2026 
 
 ---
 
@@ -18,7 +18,7 @@ Last updated: 14 September 2026 (v1 replaces v0, which double-counted the coaxia
 
 ### A Part 103 detail that matters
 
-[103.1(e)(1)](https://www.law.cornell.edu/cfr/text/14/103.1) sets the limit at 254 lb empty weight "excluding floats and safety devices which are intended for deployment in a potentially catastrophic situation." A ballistic parachute is a strong candidate for that exclusion (LIFT Aircraft's HEXA has been reported to take it), **but we need the FAA's reading in writing before relying on it.** This baseline shows the budget both ways.
+[103.1(e)(1)](https://www.law.cornell.edu/cfr/text/14/103.1) sets the limit at 254 lb empty weight "excluding floats and safety devices which are intended for deployment in a potentially catastrophic situation." A ballistic parachute is a strong candidate for that exclusion (LIFT Aircraft's HEXA has been reported to take it), **something that we are not entirely sure of need FAA check**
 
 ---
 
