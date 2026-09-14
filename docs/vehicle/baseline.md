@@ -132,14 +132,16 @@ The bus is above 60 V DC and treated as hazardous voltage: hardwired E-stop open
 
 ## 6. Avionics and computing (Article X, Section 10)
 
+Commercial parts below fly on the piloted vehicle. The club's own boards and every chip on them are in [`avionics-parts.md`](avionics-parts.md).
+
 | Function | Part | Mass |
 | --- | --- | --- |
 | Flight controller | [Holybro Pixhawk 6X Pro](https://docs.holybro.com/autopilot/pixhawk-6x-pro/technical-specification) (triple IMU incl. ADIS16470, STM32H753) or [Cube Orange+](https://docs.px4.io/main/en/flight_controller/cubepilot_cube_orangeplus) | ≈ 100 g |
 | GNSS | 2× [CubePilot Here4](https://www.readymaderc.com/products/details/85804-here4-multiband-rtk-gnss) (u-blox F9P) | 120 g |
 | Altitude | [LightWare LW20/C](https://www.digikey.com/en/product-highlight/l/lightware-lidar/lw20-c-microlidar-distance-sensor) LiDAR, 100 m | 19 g |
 | Telemetry | [RFD900x](https://irlock.com/products/rfd-900x-modem) | 15 g |
-| Safety monitor | Prototype: [iCEBreaker](https://1bitsquared.com/products/icebreaker) (iCE40UP5K). Flight unit: Lattice [MachXO3D](https://www.latticesemi.com/en/Products/FPGAandCPLD/MachXO3) or Microchip IGLOO2, both with AEC-Q100 versions, flash-based, instant-on. Own supply and reset domain. | ≈ 300 g with supply and enclosure |
-| Companion computer | AMD [Kria K26](https://www.crowdsupply.com/amd/amd-kria-tm-k26-som-and-kits) SOM (Zynq UltraScale+), advisory only | ≈ 500 g with carrier and heatsink |
+| Safety monitor | Prototype: [iCEBreaker](https://1bitsquared.com/products/icebreaker) (iCE40UP5K). Flight unit: Microchip IGLOO2 M2GL010-TQG144I (flash-based, instant-on, hand-solderable LQFP-144) with a Murata SCH16T IMU. Own supply and reset domain. | ≈ 300 g with supply and enclosure |
+| Companion computer | NVIDIA Jetson Orin NX 16GB on a club carrier, advisory only; AMD Kria KV260 kit for FPGA image work | ≈ 500 g with carrier and heatsink |
 | Motor-out handling | PX4 detects failure from ESC current telemetry ([docs](https://docs.px4.io/main/en/config/safety)); ArduPilot's thrust-loss check is a heuristic only | |
 
 ---

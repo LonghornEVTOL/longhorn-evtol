@@ -36,7 +36,7 @@ Last updated: 14 September 2026
 │                          │ (real-time only)  │ ──CAN──▶ 8 × ESC (DroneCAN, telemetry back)   │
 │                          └───────┬───────────┘                                               │
 │                         heartbeat│ attitude/rate          ┌──────────────────────────┐       │
-│                                  ▼                        │ Companion (Kria K26)     │       │
+│                                  ▼                        │ Companion (Jetson Orin)  │       │
 │                          ┌───────────────────┐            │ cameras · VIO/SLAM ·     │       │
 │  Independent IMU ──────▶ │ Safety monitor    │            │ logging · video          │       │
 │  E-stop (pilot, RSO) ──▶ │ (FPGA, own power) │            │ ADVISORY ONLY: no path   │       │
@@ -142,21 +142,23 @@ Two CAN buses (primary and backup) carry flight-critical traffic. Companion comp
 
 ### Custom avionics PCBs (Buy → Build)
 
+Exact parts, prices, and assembly ratings for every board: [`avionics-parts.md`](avionics-parts.md).
+
 These run first on the subscale drone and HIL rig, then on the unmanned article. Most are DroneCAN nodes, so they plug into the same bus as the commercial parts and can be swapped in one at a time.
 
 | Board | Key parts (candidates) | Purpose | Scope |
 | --- | --- | --- | --- |
-| **Flight controller** | STM32H7 MCU; 3 IMUs from different makers (e.g. TDK ICM-45686, TDK IIM-42652, ADI ADIS16470); 2 barometers (e.g. TDK ICP-20100, Bosch BMP390); magnetometer (PNI RM3100); 2 × CAN FD transceivers; FRAM and microSD logging; isolated, redundant power inputs; IMU heater | Runs PX4 or ArduPilot on a real-time OS. Largest board the club builds. | L |
-| **GNSS and compass node** | u-blox F9P or M10 module; magnetometer (RM3100 or ST IIS2MDC); STM32 MCU; CAN transceiver | Position and heading, mounted away from power wiring | M |
+| **Flight controller** | STM32H753IIT6 plus STM32F100 IO chip; IMUs TDK ICM-45686, Bosch BMI088, TDK IIM-42653; barometers Bosch BMP390 and TE MS5611; Memsic MMC5983MA magnetometer; 2 × TI TCAN1462 CAN FD; FM25V02A FRAM and microSD; TPS2121 redundant power; IMU heater | Runs PX4 or ArduPilot on a real-time OS. Largest board the club builds. | L |
+| **GNSS and compass node** | u-blox ZED-F9P-04B; ST IIS2MDC (PNI RM3100 on full scale); STM32F412; TCAN1044V CAN | Position and heading, mounted away from power wiring | M |
 | **Barometer node** | 2 barometers in a shielded, vented enclosure; STM32; CAN | Altitude away from rotor pressure noise | S |
 | **IMU breakout and vibration logger** | IMU plus logging MCU | Measure frame vibration at candidate mounting spots | S |
-| **Optical flow node** | PixArt PMW3901 flow sensor plus ST VL53L1X time-of-flight sensor; STM32; CAN | Velocity and height aiding near the ground | S |
+| **Optical flow node** | PixArt PAA3905E1-Q flow sensor plus Broadcom AFBR-S50LV85D distance sensor; STM32F412; CAN | Velocity and height aiding near the ground | S |
 | **Power monitor node** | Isolated voltage and current measurement per pack; CAN | Pack power data to the flight controller and ground | M |
 | **Pilot controls interface** | Hall-effect stick and throttle inputs, switch inputs, dual-redundant ADC; CAN | Converts pilot inputs to CAN commands | M |
 | **Cockpit display board** | MCU with display driver; CAN | Battery, time remaining, altitude, warnings | M |
 | **Lighting board** | High-brightness LED drivers; CAN | Anti-collision strobes and status lights | S |
-| **Safety monitor board** | Lattice MachXO3D or Microchip IGLOO2 FPGA; own IMU; own isolated power and reset supervisor; contactor and parachute trigger drivers; heartbeat inputs | The independent monitor, as a flight unit | L |
-| **Companion carrier board** | Carrier for the AMD Kria K26: MIPI camera inputs, Ethernet, CAN, USB, power | Hosts cameras and perception | L |
+| **Safety monitor board** | Microchip IGLOO2 M2GL010-TQG144I FPGA; Murata SCH16T IMU; RECOM REM3 isolated power; TI TPS3851 window watchdog; Infineon BTS7002 contactor drivers; parachute firing channels; ISO7741 isolated heartbeat inputs | The independent monitor, as a flight unit | L |
+| **Companion carrier board** | Carrier for the NVIDIA Jetson Orin NX 16GB (hand-reflowable SO-DIMM socket): MIPI camera inputs, Ethernet, CAN, USB, power | Hosts cameras and perception | L |
 | **CAN bus tools** | USB-to-CAN adapter, bus termination and breakout boards | Bench debugging for every team | S |
 
 ---
@@ -195,7 +197,7 @@ All of this runs on the companion computer and is **advisory only** on the pilot
 | Obstacle detection | Depth or scanning LiDAR (LightWare SF45/B class) to warn the pilot | L | SW |
 | Landing zone check | Downward camera flags slope and obstacles below | M | SW |
 | Video downlink | Live forward and pilot camera feed to the ground station | M | SW |
-| FPGA image preprocessing | Camera capture, undistortion, and feature detection on the Kria FPGA fabric | L | SW |
+| FPGA image preprocessing | Camera capture, undistortion, and feature detection on an AMD Kria KV260 kit | L | SW |
 | ROS 2 software stack | Middleware for perception, logging, and telemetry on the companion | M | SW |
 | Dataset capture | Synchronized camera, IMU, GNSS logs from subscale flights for offline development | S | SW, FT |
 

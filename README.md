@@ -51,8 +51,8 @@ Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (ve
 | HV protection | Per pack: Gigavac GX14 contactor, pre-charge, EV fuse, ADBMS1818 BMS board; hardwired E-stop opens all packs |
 | Low-voltage power | Redundant Vicor DCM3623 converters, or a team-built LTC7801 buck board |
 | Flight controller | Pixhawk 6X Pro (triple IMU, STM32H753, real-time OS), dual Here4 GNSS, LW20/C LiDAR |
-| Safety monitor | Lattice MachXO3D or Microchip IGLOO2 on its own power and reset (prototype on iCEBreaker), can cut power and fire the parachute |
-| Companion | AMD Kria K26, advisory only |
+| Safety monitor | Microchip IGLOO2 M2GL010 FPGA and Murata SCH16T IMU on their own power and reset (prototype on iCEBreaker), can cut power and fire the parachute |
+| Companion | NVIDIA Jetson Orin NX 16GB on a club carrier, advisory only |
 | Recovery | Galaxy GRS 3 270 ballistic parachute, 9.5 kg |
 | Subscale demonstrator | ≈ 1/3 scale coaxial X8, 15 in props, 6S LiPo, ≈ 5 kg |
 
@@ -139,20 +139,20 @@ Highlights by team, sized from a weekend to multiple semesters. The **complete l
 
 **Avionics PCBs**
 
-Custom boards fly first on the subscale drone and HIL rig, then the unmanned article. Commercial parts (Pixhawk 6X Pro, Here4 GNSS) stay on the piloted vehicle until a custom board passes Article X qualification.
+Designed and hand-assembled by the club. Exact chips, specs, prices, assembly difficulty, and a funding total are in [`docs/vehicle/avionics-parts.md`](docs/vehicle/avionics-parts.md). Custom boards fly first on the subscale drone and HIL rig, then the unmanned article. Commercial parts (Pixhawk 6X Pro, Here4 GNSS) stay on the piloted vehicle until a custom board passes Article X qualification.
 
 | Project | What it involves |
 | --- | --- |
-| Flight controller board | STM32H7 running PX4 or ArduPilot; three IMUs from different makers, two barometers, magnetometer, dual CAN FD, FRAM and microSD logging, redundant power |
-| GNSS and compass node | u-blox F9P or M10 module plus magnetometer on a DroneCAN node |
-| Barometer node | Two barometers in a shielded, vented enclosure on DroneCAN |
-| Optical flow node | PMW3901 flow sensor and VL53L1X time-of-flight sensor on DroneCAN |
+| Flight controller board | STM32H753 running PX4 or ArduPilot; ICM-45686, BMI088, and IIM-42653 IMUs; BMP390 and MS5611 barometers; MMC5983MA magnetometer; dual CAN FD, FRAM and microSD logging, redundant power |
+| GNSS and compass node | u-blox ZED-F9P-04B plus IIS2MDC or RM3100 magnetometer on a DroneCAN node |
+| Barometer node | Two Bosch BMP581 barometers in a shielded, vented enclosure on DroneCAN |
+| Optical flow node | PixArt PAA3905 flow sensor and Broadcom AFBR-S50LV85D distance sensor on DroneCAN |
 | IMU breakout and vibration logger | Measure frame vibration at candidate mounting spots |
 | Power monitor node | Isolated per-pack voltage and current on DroneCAN |
 | Pilot controls interface | Hall-effect stick and throttle inputs with redundant ADCs to CAN |
 | Cockpit display board | Battery, time remaining, altitude, and warnings for the pilot |
-| Safety monitor board | Flight unit on a MachXO3D or IGLOO2 FPGA with its own IMU, power, reset, contactor and parachute drivers |
-| Companion carrier board | Carrier for the AMD Kria K26 with MIPI camera inputs, Ethernet, and CAN |
+| Safety monitor board | Flight unit on an IGLOO2 M2GL010 FPGA with a Murata SCH16T IMU, isolated power, window watchdog, contactor and parachute drivers |
+| Companion carrier board | Carrier for the Jetson Orin NX with MIPI camera inputs, Ethernet, and CAN |
 | LV distribution board | 12 V and 5 V rails with eFuses and per-load monitoring |
 | CAN bus tools | USB-to-CAN adapter, termination, and breakout boards for bench work |
 
@@ -182,7 +182,7 @@ Runs on the companion computer. Advisory only on the piloted vehicle: it informs
 | SLAM and mapping | Map of the test site for position logging and site surveys (ORB-SLAM3 class) |
 | Obstacle detection | Scanning LiDAR or depth camera warnings to the pilot |
 | Video downlink | Live forward and pilot camera feeds to the ground station |
-| FPGA image preprocessing | Camera capture and feature detection on the Kria FPGA fabric |
+| FPGA image preprocessing | Camera capture and feature detection on an AMD Kria KV260 kit |
 | Dataset capture | Synchronized camera, IMU, and GNSS logs from subscale flights |
 
 **Hardware Acceleration and FPGA**
