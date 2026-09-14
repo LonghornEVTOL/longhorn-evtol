@@ -10,6 +10,25 @@ Our goal is a **single-occupant, seated multirotor** ("the Vehicle") capable of 
 
 ---
 
+## Current phase: 1/3-scale demonstrator
+
+We are building an unmanned, 1/3-scale copy of the full-scale vehicle that mirrors its architecture, so software, safety systems, and test procedures are proven before anything full size flies. **Full design: [`docs/vehicle/subscale-demonstrator.md`](docs/vehicle/subscale-demonstrator.md).**
+
+| | 1/3-scale demonstrator |
+| --- | --- |
+| Layout | Coaxial X8, 4 folding arms, ~1.1 m span, 17 in props |
+| Propulsion | 8 × T-Motor MN5008 KV340 with DroneCAN ESCs |
+| Power | 4 independent 6S Molicel P50B packs (same cell as full scale), per-pack switches, hardwired E-stop |
+| Pilot stand-in | 2.7 kg adjustable ballast (160 lb pilot scaled) |
+| Weight and thrust | ≈ 9.6 kg; thrust-to-weight 2.52, 2.20 with a motor out, 1.89 with a pack out |
+| Flight time | ≈ 16 min hover |
+| Safety | Independent FPGA safety monitor, drone parachute, written test procedures |
+| Cost | ≈ $6,750 to a flying, safety-complete demonstrator; ≈ $9,450 with the perception payload |
+
+Build order: simulation → thrust stand and power bench tests → airframe flying with dummy payload → safety systems proven → cameras and perception → club-built boards swapped in one at a time.
+
+---
+
 ## Mission and approach
 
 Development is phased. Each phase is gated on a formal design and safety review, and nothing advances until the review passes.
