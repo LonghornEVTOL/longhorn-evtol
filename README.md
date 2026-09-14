@@ -119,7 +119,7 @@ ASICs are a possible future direction, not a commitment. They may never sit in t
 
 ## Projects
 
-Year one work, sized from a weekend to a full semester. Everything here feeds the subscale demonstrator, the thrust stand, or the full-scale design.
+Highlights by team, sized from a weekend to multiple semesters. The **complete list** of everything the vehicle needs (every subsystem, custom PCB, software module, and test rig, with build-or-buy and owners) is in [`docs/vehicle/subsystems.md`](docs/vehicle/subsystems.md).
 
 **Electrical and Power**
 
@@ -137,6 +137,25 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Low-voltage buck board | 75 V to 12 V avionics supply on an ADI LTC7801, as a redundant alternative to COTS modules |
 | Custom ESC | 18S, 150 A FOC inverter on Infineon 150 V OptiMOS FETs, a 6ED2742S01Q gate driver, ACS772 current sensing, and VESC firmware. Dyno and subscale first, then the unmanned article only. |
 
+**Avionics PCBs**
+
+Custom boards fly first on the subscale drone and HIL rig, then the unmanned article. Commercial parts (Pixhawk 6X Pro, Here4 GNSS) stay on the piloted vehicle until a custom board passes Article X qualification.
+
+| Project | What it involves |
+| --- | --- |
+| Flight controller board | STM32H7 running PX4 or ArduPilot; three IMUs from different makers, two barometers, magnetometer, dual CAN FD, FRAM and microSD logging, redundant power |
+| GNSS and compass node | u-blox F9P or M10 module plus magnetometer on a DroneCAN node |
+| Barometer node | Two barometers in a shielded, vented enclosure on DroneCAN |
+| Optical flow node | PMW3901 flow sensor and VL53L1X time-of-flight sensor on DroneCAN |
+| IMU breakout and vibration logger | Measure frame vibration at candidate mounting spots |
+| Power monitor node | Isolated per-pack voltage and current on DroneCAN |
+| Pilot controls interface | Hall-effect stick and throttle inputs with redundant ADCs to CAN |
+| Cockpit display board | Battery, time remaining, altitude, and warnings for the pilot |
+| Safety monitor board | Flight unit on a MachXO3D or IGLOO2 FPGA with its own IMU, power, reset, contactor and parachute drivers |
+| Companion carrier board | Carrier for the AMD Kria K26 with MIPI camera inputs, Ethernet, and CAN |
+| LV distribution board | 12 V and 5 V rails with eFuses and per-load monitoring |
+| CAN bus tools | USB-to-CAN adapter, termination, and breakout boards for bench work |
+
 **Software and Avionics**
 
 | Project | What it involves |
@@ -146,6 +165,25 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Single-axis PID rig | Tune attitude control on a one-degree-of-freedom test bench |
 | Coaxial X8 simulation | Software-in-the-loop model of the vehicle, including motor-out and pack-out cases |
 | Failsafe logic | Geofence, loss of link, and motor-out compensation on the flight controller |
+| State estimation tuning | EKF fusing IMU, barometer, GNSS, magnetometer, LiDAR, and optical flow |
+| Pilot control mapping and envelope protection | Fly-by-wire stick mapping, altitude hold, and tilt, descent rate, and altitude limits |
+| DroneCAN node firmware | Shared firmware base for every custom CAN board |
+| Pilot training simulator | Flight simulator using the real stick and display, driven by the vehicle model |
+
+**Perception and Cameras**
+
+Runs on the companion computer. Advisory only on the piloted vehicle: it informs the pilot, ground crew, and logs, with no path to motor command.
+
+| Project | What it involves |
+| --- | --- |
+| Camera integration | Global-shutter downward, forward, and cockpit cameras, hardware-synced to the IMU |
+| Optical flow | Velocity over ground from the downward camera and flow node |
+| Visual-inertial odometry | Position and velocity from camera plus IMU (OpenVINS or VINS-Fusion) |
+| SLAM and mapping | Map of the test site for position logging and site surveys (ORB-SLAM3 class) |
+| Obstacle detection | Scanning LiDAR or depth camera warnings to the pilot |
+| Video downlink | Live forward and pilot camera feeds to the ground station |
+| FPGA image preprocessing | Camera capture and feature detection on the Kria FPGA fabric |
+| Dataset capture | Synchronized camera, IMU, and GNSS logs from subscale flights |
 
 **Hardware Acceleration and FPGA**
 
@@ -154,17 +192,22 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Heartbeat watchdog | First RTL on a small FPGA dev board: watch a heartbeat signal and trip an output when it stops |
 | Safety monitor RTL | Heartbeat, attitude, rate, and power limit checks with authority to cut power, plus testbenches |
 | Hardware-in-the-loop rig | Run flight software and the safety monitor against a simulated vehicle |
+| FPGA image preprocessing | See Perception and Cameras (companion computing workstream) |
 
 **Mechanical Design and Manufacturing**
 
 | Project | What it involves |
 | --- | --- |
 | Motor mount bracket | CAD, hand calcs, FEA, then machine it at Texas Inventionworks |
-| Thrust stand frame | Rigid stand with a load cell rated past 60 kgf for full-scale motor testing |
+| Thrust stand frame | Rigid stand with a load cell rated past 80 kgf for single and coaxial motor testing |
 | Subscale airframe | Design and build the 1/3 scale coaxial X8 frame |
 | Composite arm coupons | Lay up carbon tube samples and test them to failure to set arm design allowables |
 | Landing skid drop test | Size skids for hard landing loads and verify with a drop rig |
 | Weld coupons | Practice and test tube joints before any airframe welding |
+| Folding arm joint and lock | Hinge that locks rigid in flight, with a lock sensor the flight controller checks before arming |
+| Battery bays | Four bays with fire barriers, retention, cooling air paths, and quick removal |
+| Parachute mount | Hard points and load path sized for deployment shock |
+| Seat, restraint, and pilot controls | Carbon seat, harness mounts sized for crash loads, and stick placement |
 
 **Flight Test, Systems, and Outreach**
 
@@ -176,6 +219,9 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Mass budget tracker | Keep the 254 lb budget current as parts are weighed and selected |
 | Interface control documents | Define power, data, and mechanical interfaces between teams |
 | Test site survey | Find and document off-campus sites for subscale and tethered testing |
+| Tether test rig | Tether, load cell, anchor, and quick release for Phase 2 |
+| Hazard analysis | Functional hazard assessment and FMEA, kept current as the design changes |
+| Configuration trade study | Coaxial X8 vs flat octo vs coaxial X12, settled by thrust stand and subscale tests |
 | Sponsor packet | One-page and deck versions of the program for sponsors |
 
 ---
@@ -217,8 +263,9 @@ Interested in sponsoring? Reach out to the President.
 docs/              Vehicle baseline, constitution, design reviews, safety, regulatory, meeting notes
 manufacturing/     Welding and fab, composites, machining and CNC, assembly and QC
 mechanical/        Airframe, cockpit and ergonomics, propulsion and duct, landing gear
-electrical/        PDU and harness, ESC and motors, power architecture, safety interlocks, PCBs
-software/          Flight control, sensor fusion and telemetry, ground station, fault management
+electrical/        PDU and harness, ESC and motors, power architecture, safety interlocks, power PCBs
+avionics-pcb/      Flight controller, sensor nodes, safety monitor board, companion carrier, cockpit boards
+software/          Flight control, perception and cameras, DroneCAN firmware, ground station, simulator
 fpga/              Safety monitor, companion computing, HIL rig
 flight-test/       Test plans, range logistics, flight data
 systems/           Requirements, interfaces, configuration management
