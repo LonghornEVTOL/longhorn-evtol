@@ -4,7 +4,7 @@ A student organization at The University of Texas at Austin that designs, builds
 
 Our goal is a **single-occupant, seated multirotor** ("the Vehicle") capable of safe, low-altitude piloted flight.
 
-**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app) · **Site source:** [longhorn-evtol-website](https://github.com/pranavs41/longhorn-evtol-website)
+**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app) · **Site source:** [website](https://github.com/LonghornEVTOL/website)
 
 > **Status:** Founding. Constitution drafted; registration with the Dean of Students is pending a University Advisor.
 
