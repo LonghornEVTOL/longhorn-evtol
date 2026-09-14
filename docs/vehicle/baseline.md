@@ -207,15 +207,19 @@ Option A would add roughly $30,000 in motors and props alone.
 
 ## 10. Subscale demonstrator (Phase 1)
 
-| Parameter | Target |
+Full design: [`subscale-demonstrator.md`](subscale-demonstrator.md).
+
+| Parameter | Value |
 | --- | --- |
-| Configuration | Coaxial X8, about 1/3 scale |
-| Propellers | 15 in |
-| Battery | 6S LiPo |
-| All-up mass | ≈ 5 kg |
-| Flight controller | Same family as full scale |
-| Safety monitor | Same RTL on an iCEBreaker |
-| Low-voltage power | Team-built buck converter board (6S to 5 V) |
+| Configuration | Coaxial X8, about 1/3 scale, ~1.1 m span |
+| Propulsion | 8 × T-Motor MN5008 KV340, 17 in props, Holybro Kotleta20 DroneCAN ESCs |
+| Power | 4 × 6S1P Molicel P50B packs, each powering 2 opposite motors, with per-pack switch boards and a hardwired E-stop |
+| Pilot stand-in | 2.7 kg adjustable ballast |
+| All-up weight | ≈ 9.6 kg |
+| Thrust-to-weight | 2.52 all motors · 2.20 one motor out · 1.89 one pack out |
+| Flight controller | Pixhawk 6X, then the club flight controller |
+| Safety monitor | Same logic on an iCEBreaker, then the club board |
+| Recovery | Drone parachute with electronic trigger |
 
 ---
 
