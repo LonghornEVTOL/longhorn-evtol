@@ -34,6 +34,31 @@ We will not fly on campus. Testing happens at an off-campus site, and the pilote
 
 ---
 
+## Vehicle baseline
+
+A first-pass sizing, frozen at the Preliminary Design Review. Full derivation, requirements, and mass budget: [`docs/vehicle/baseline.md`](docs/vehicle/baseline.md).
+
+| | Baseline v0 (preliminary) |
+| --- | --- |
+| Configuration | Coaxial octocopter (X8): 4 arms, 8 counter-rotating rotors |
+| Propellers | 40 in fixed-pitch carbon fiber |
+| Empty weight | ≈ 245 lb estimated against the 254 lb limit (target ≤ 229 lb) |
+| Gross mass | ≈ 454 lb with a 209 lb pilot |
+| Thrust-to-weight | ≥ 2.0 all motors · ≥ 1.7 one motor out · ≥ 1.45 one pack out |
+| Motors | 24S heavy-lift outrunners, ≈ 40 to 60 Kv, ≥ 51 kgf peak thrust each |
+| ESCs | ≥ 120 V, ≥ 120 A continuous, FOC, DroneCAN telemetry |
+| Battery | 4 independent 24S5P Li-ion packs (21700 high-power cells), ≈ 7.8 kWh total, 86 V nominal |
+| Hover power | ≈ 55 to 65 kW, ≈ 5 to 6 min to 20% state of charge |
+| HV safety | Per-pack contactor, pre-charge, and fuse; hardwired E-stop; insulation monitoring |
+| Flight control | STM32H7-class RTOS controller, triple IMU, DroneCAN motor bus |
+| Safety monitor | Independent iCE40-class FPGA with its own power and reset, can cut power and fire the parachute |
+| Recovery | Ballistic parachute sized for gross mass |
+| Subscale demonstrator | ≈ 1/3 scale coaxial X8, 15 in props, 6S LiPo, ≈ 5 kg |
+
+**The mass budget does not close with margin yet.** Finding about 16 lb is the main design problem for year one.
+
+---
+
 ## Safety
 
 A student organization proposing to put a person on a multirotor should expect more scrutiny than a normal club. Our constitution (Article X) is built for that.
@@ -76,6 +101,67 @@ ASICs are a possible future direction, not a commitment. They may never sit in t
 
 ---
 
+## Projects
+
+Year one work, sized from a weekend to a full semester. Everything here feeds the subscale demonstrator, the thrust stand, or the full-scale design.
+
+**Electrical and Power**
+| Project | What it involves |
+| --- | --- |
+| Buck converter board | Design, lay out, and bring up a 6S (25 V) to 5 V, 3 A converter that powers the subscale avionics |
+| Current and voltage sense board | Shunt plus current-monitor IC board that logs motor current on the thrust stand |
+| Subscale power distribution board | High-current PDB with fusing and a voltage tap for the 6S demonstrator |
+| Battery pack monitor | Cell voltage and temperature logging for the pack log required by Article X |
+| Pre-charge and contactor driver | HV bus pre-charge, contactor coil driver, and interlock for the full-scale packs |
+| Hardwired E-stop loop | Contactor interlock chain that opens every pack with no software in the path |
+
+**Software and Avionics**
+| Project | What it involves |
+| --- | --- |
+| Thrust stand data logger | Python tool that records load cell, RPM, current, and voltage and plots thrust and efficiency curves |
+| Ground station dashboard | Live MAVLink telemetry display for the subscale demonstrator |
+| Single-axis PID rig | Tune attitude control on a one-degree-of-freedom test bench |
+| Coaxial X8 simulation | Software-in-the-loop model of the vehicle, including motor-out and pack-out cases |
+| Failsafe logic | Geofence, loss of link, and motor-out compensation on the flight controller |
+
+**Hardware Acceleration and FPGA**
+| Project | What it involves |
+| --- | --- |
+| Heartbeat watchdog | First RTL on a small FPGA dev board: watch a heartbeat signal and trip an output when it stops |
+| Safety monitor RTL | Heartbeat, attitude, rate, and power limit checks with authority to cut power, plus testbenches |
+| Hardware-in-the-loop rig | Run flight software and the safety monitor against a simulated vehicle |
+
+**Mechanical Design and Manufacturing**
+| Project | What it involves |
+| --- | --- |
+| Motor mount bracket | CAD, hand calcs, FEA, then machine it at Texas Inventionworks |
+| Thrust stand frame | Rigid stand with a load cell rated past 60 kgf for full-scale motor testing |
+| Subscale airframe | Design and build the 1/3 scale coaxial X8 frame |
+| Composite arm coupons | Lay up carbon tube samples and test them to failure to set arm design allowables |
+| Landing skid drop test | Size skids for hard landing loads and verify with a drop rig |
+| Weld coupons | Practice and test tube joints before any airframe welding |
+
+**Flight Test, Systems, and Outreach**
+| Project | What it involves |
+| --- | --- |
+| Motor and propeller characterization | Written test procedure, then thrust stand runs that replace the catalog numbers in the baseline |
+| Mass budget tracker | Keep the 254 lb budget current as parts are weighed and selected |
+| Interface control documents | Define power, data, and mechanical interfaces between teams |
+| Test site survey | Find and document off-campus sites for subscale and tethered testing |
+| Sponsor packet | One-page and deck versions of the program for sponsors |
+
+---
+
+## Membership
+
+- Open to UT Austin students, faculty, and staff. **No prior experience or specific major required.**
+- **General Members** join by showing up. No application, no vote.
+- **Active Members** complete safety onboarding and attend three meetings or work sessions. They get team assignments, shop access, and a vote.
+- General meetings are held twice a month, and each team meets weekly.
+- Every vehicle configuration goes through a Preliminary Design Review, a Critical Design Review, and a Test Readiness Review before powered testing.
+
+---
+
 ## Leadership
 
 | Role | Name |
@@ -99,7 +185,7 @@ Interested in sponsoring? Reach out to the President.
 ## Repository layout
 
 ```
-docs/              Constitution, design reviews, safety procedures, regulatory, meeting notes
+docs/              Vehicle baseline, constitution, design reviews, safety, regulatory, meeting notes
 manufacturing/     Welding and fab, composites, machining and CNC, assembly and QC
 mechanical/        Airframe, cockpit and ergonomics, propulsion and duct, landing gear
 electrical/        PDU and harness, ESC and motors, power architecture, safety interlocks, PCBs
