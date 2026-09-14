@@ -26,6 +26,8 @@ Last updated: 14 September 2026
 
 **Coaxial octocopter (X8).** Four folding arms, each with an upper and lower counter-rotating rotor.
 
+Alternatives (flat octocopter, coaxial X12, flat hexacopter) are sized on the same assumptions, with pivot triggers, in [`configuration-trade-study.md`](configuration-trade-study.md).
+
 - A single motor failure leaves its partner on the same arm, so thrust stays roughly symmetric.
 - Folding arms solve transport: agricultural drone arms are built to fold.
 - Jetson ONE, the closest flying reference, uses the same layout at 115 kg with batteries ([source](https://evtol.news/jetson-one-production-model)).
