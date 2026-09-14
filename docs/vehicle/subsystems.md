@@ -262,9 +262,9 @@ All of this runs on the companion computer and is **advisory only** on the pilot
 
 | Item | What it involves | Scope | Owner |
 | --- | --- | --- | --- |
-| Subscale airframe | 1/3 scale coaxial X8, 17 in props, ~1.1 m span, folding arms, 2.7 kg ballast tray ([design](subscale-demonstrator.md)) | M | MECH, MFG |
+| Subscale airframe | 1/3 scale coaxial X8, 18 in props, ~1.17 m span, folding arms, 2.7 kg ballast tray ([design](subscale-demonstrator.md)) | M | MECH, MFG |
 | Subscale power | 4 × 6S1P P50B packs, club-built pack switch boards, hardwired E-stop, team-built buck converter | M | ELEC |
-| Subscale recovery | Drone parachute with electronic trigger | S | MECH, ELEC |
+| Subscale recovery | Fruity Chutes Skycat 10 kg parachute with electronic trigger | S | MECH, ELEC |
 | Avionics testbed | Commercial flight controller first, then custom boards one at a time | M | SW, ELEC |
 | Configuration comparison | Fly as coaxial X8 and flat octo to compare efficiency and motor-out | M | FT |
 

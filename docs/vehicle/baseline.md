@@ -211,15 +211,15 @@ Full design: [`subscale-demonstrator.md`](subscale-demonstrator.md).
 
 | Parameter | Value |
 | --- | --- |
-| Configuration | Coaxial X8, about 1/3 scale, ~1.1 m span |
-| Propulsion | 8 × T-Motor MN5008 KV340, 17 in props, Holybro Kotleta20 DroneCAN ESCs |
+| Configuration | Coaxial X8, about 1/3 scale, ~1.17 m span, same 1.1 D rotor spacing |
+| Propulsion | 8 × T-Motor MN5008 KV340, 18 in props, Zubax Myxa DroneCAN ESCs |
 | Power | 4 × 6S1P Molicel P50B packs, each powering 2 opposite motors, with per-pack switch boards and a hardwired E-stop |
 | Pilot stand-in | 2.7 kg adjustable ballast |
-| All-up weight | ≈ 9.6 kg |
-| Thrust-to-weight | 2.52 all motors · 2.20 one motor out · 1.89 one pack out |
+| All-up weight | ≈ 9.4 kg |
+| Thrust-to-weight | 3.06 all motors · 2.68 one motor out · 2.29 one pack out |
 | Flight controller | Pixhawk 6X, then the club flight controller |
 | Safety monitor | Same logic on an iCEBreaker, then the club board |
-| Recovery | Drone parachute with electronic trigger |
+| Recovery | Fruity Chutes Skycat 10 kg parachute with electronic trigger |
 
 ---
 

@@ -16,14 +16,14 @@ We are building an unmanned, 1/3-scale copy of the full-scale vehicle that mirro
 
 | | 1/3-scale demonstrator |
 | --- | --- |
-| Layout | Coaxial X8, 4 folding arms, ~1.1 m span, 17 in props |
-| Propulsion | 8 × T-Motor MN5008 KV340 with DroneCAN ESCs |
+| Layout | Coaxial X8, 4 folding arms, ~1.17 m span, 18 in props at full-scale rotor spacing |
+| Propulsion | 8 × T-Motor MN5008 KV340 with Zubax Myxa DroneCAN ESCs |
 | Power | 4 independent 6S Molicel P50B packs (same cell as full scale), per-pack switches, hardwired E-stop |
 | Pilot stand-in | 2.7 kg adjustable ballast (160 lb pilot scaled) |
-| Weight and thrust | ≈ 9.6 kg; thrust-to-weight 2.52, 2.20 with a motor out, 1.89 with a pack out |
-| Flight time | ≈ 16 min hover |
-| Safety | Independent FPGA safety monitor, drone parachute, written test procedures |
-| Cost | ≈ $6,750 to a flying, safety-complete demonstrator; ≈ $9,450 with the perception payload |
+| Weight and thrust | ≈ 9.4 kg; thrust-to-weight 3.06, 2.68 with a motor out, 2.29 with a pack out |
+| Flight time | ≈ 15.5 min hover |
+| Safety | Independent FPGA safety monitor, Fruity Chutes Skycat parachute, written test procedures |
+| Cost | ≈ $8,000 to a flying, safety-complete demonstrator including a thrust stand; ≈ $10,700 with the perception payload |
 
 Build order: simulation → thrust stand and power bench tests → airframe flying with dummy payload → safety systems proven → cameras and perception → club-built boards swapped in one at a time.
 
