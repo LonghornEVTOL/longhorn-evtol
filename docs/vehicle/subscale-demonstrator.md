@@ -80,12 +80,12 @@ The demonstrator is **heavier than a true scale model** (9.4 kg vs 6.9 kg for ex
 | Part | Specs | Mass | Price |
 | --- | --- | --- | --- |
 | **T-Motor MN5008 KV340** | 6S with 18x6.1 prop: **4,215 g max thrust at 33.5 A (754 W)**; 1,238 g at 120 W; 1,541 g at 162 W; 35 A peak for 180 s ([T-Motor](https://store.tmotor.com/product/mn5008-kv340-motor-antigravity-type.html)) | 135 g | $89.99 |
-| **T-Motor NS18x6 carbon props** | CW/CCW pair; thrust data above was measured with the P18x6.1, treated as equivalent (unv) ([T-Motor](https://store.tmotor.com/product/ns18x6-prop-uav-carbon-fiber.html)) | ~34 g per prop (unv) | $82.99 per pair |
-| **Zubax Myxa A, 45 A** | DroneCAN and Cyphal, 1,200 W, 4–12S; covers the full 754 W peak ([Zubax](https://shop.zubax.com/products/zubax-myxa)) | 26 g | ~$165–200 (unv, EUR price) |
+| **T-Motor NS18x6 carbon props** | CW/CCW pair; thrust data above was measured with the P18x6.1, treated as equivalent (unv) ([T-Motor](https://store.tmotor.com/product/ns18x6-prop-uav-carbon-fiber.html)) | 34 g per prop (17 g per blade) | $82.99 per pair |
+| **Zubax Myxa B2Z** (45 A, enclosure, dual redundant CAN, 5 V BEC) | Order with DroneCAN (Telega v0) firmware; 13–51 V, up to 1,200 W; covers the full 754 W peak; supported by [PX4](https://docs.px4.io/main/en/dronecan/zubax_telega.html) and [ArduPilot](https://ardupilot.org/copter/docs/common-uavcan-escs.html). **Ships without cables.** In stock ([Zubax](https://shop.zubax.com/collections/electric-drives/products/zubax-myxa)) | 26 g bare (enclosure adds mass, unv) | €193 ($223.84 at 1.1598 USD/EUR) |
 
 | ESC alternatives | Rating | Mass | Interface | Price | Trade |
 | --- | --- | --- | --- | --- | --- |
-| Holybro Kotleta20 ([Holybro](https://holybro.com/products/kotleta20)) | 500 W continuous | 8.8 g | DroneCAN | $57.99 | Saves ~$1,150, but needs a ~76% throttle cap on 18 in props: all-motor T/W drops to ~2.2 and pack-out to ~1.6 |
+| Holybro Kotleta20 ([Holybro](https://holybro.com/products/kotleta20)) | 500 W continuous | 8.8 g | DroneCAN | $57.99 | Saves ~$1,300, but needs a ~76% throttle cap on 18 in props: all-motor T/W drops to ~2.2 and pack-out to ~1.6 |
 | ARK 4IN1 ([ARK](https://arkelectron.com/product/ark-4in1-esc/)) | 50 A per motor | 14.5 g | DShot with telemetry, no CAN | $218.50 | Breaks the CAN motor bus mirror |
 
 Motor alternatives: MN5008 KV400 (3,982 g on 17 in, but 17 in breaks the 1.1 D scaling); MN5006 and MN4006 lack thrust for 2:1 at this weight.
@@ -95,7 +95,7 @@ Motor alternatives: MN5008 KV400 (3,982 g on 17 in, but 17 in breaks the 1.1 D s
 | Part | Specs | Mass | Price |
 | --- | --- | --- | --- |
 | **4 × 6S1P Molicel P50B packs** | 5.0 Ah, 60 A continuous per cell; 108 Wh each, 432 Wh total; same cell as full scale ([Molicel](https://www.molicel.com/inr-21700-p50b/)) | ~450 g each built (unv) | ~$340 for 24 cells and pack build (unv) |
-| **Pack switch board** (club-built, ×4) | Back-to-back MOSFETs, gate driver, soft-start acting as pre-charge, fuse; gate enable powered through the E-stop loop; safety monitor can also disable it | ~30 g each (unv) | ~$40 each (unv) |
+| **Pack switch board** (club-built, ×4) | TI TPS48111-Q1 controller, 4 × Infineon IPT007N06N back-to-back MOSFETs, 22 Ω pre-charge, 80 A fuse, INA228 telemetry, E-stop AND safety-monitor enable with no MCU. **Full design: [`pack-switch-board.md`](../hardware/pack-switch-board.md)** | ~25–30 g each (est) | ~$65 each (unv) |
 | **Hardwired E-stop loop** | Series loop through a pull-pin loop key and a normally-closed E-stop powers every pack switch's gate enable. Opening the loop turns off all 4 packs with no software. A remote kill uses an independent receiver's PWM into a hardware comparator that breaks the same loop | in harness | in pack switch cost |
 | **Holybro UBEC 12A** + **UBEC 5A** | 12 V for the Jetson, 5 V for the flight controller, fed from all 4 packs through ideal-diode ORing ([Holybro](https://holybro.com/collections/power-modules-pdbs)) | ~140 g with E-stop parts (unv) | $36.59 + $20.99 |
 
@@ -107,11 +107,11 @@ Motor alternatives: MN5008 KV400 (3,982 g on 17 in, but 17 in breaks the 1.1 D s
 
 | Part | Specs | Mass | Price |
 | --- | --- | --- | --- |
-| **Holybro Pixhawk 6X** + mini baseboard | STM32H753, triple IMU, Ethernet to the Jetson | 58 g | $286.98 with PM02D; **sold out** at time of search; 6C ($165.99) as a stopgap ([Holybro](https://holybro.com/products/pixhawk-6x)) |
+| **Holybro Pixhawk 6X** + mini baseboard | STM32H753, triple IMU, Ethernet to the Jetson | 58 g | Module $166.99, standard set $320.98, **sold out at Holybro**; module $219.05 listed in stock at [ReadyMadeRC](https://www.readymaderc.com) (confirm). Stopgap: **Pixhawk 6C** $165.99, in stock ([Holybro](https://holybro.com/products/pixhawk-6c)) |
 | Holybro M10 GPS | GNSS and compass | 120 g listed, likely with mount | $43.99 ([Holybro](https://holybro.com/products/m10-gps)) |
 | Holybro SiK Telemetry V3 915 MHz | Telemetry | 23.5 g | $58.99 ([Holybro](https://holybro.com/products/sik-telemetry-radio-v3)) |
 | ExpressLRS receiver | RC link | ~5 g (unv) | ~$20 (unv) |
-| Remote ID broadcast module | Must have an FAA-accepted Declaration of Compliance and a serial number. **The Holybro Remote ID module does not qualify for home-built drones** ([Holybro](https://holybro.com/products/remote-id)); Dronetag-class modules (unv) | ~30 g (unv) | ~$300 (unv) |
+| **Dronetag Beacon gen.2** Remote ID | FAA-accepted Declaration of Compliance RID000001121 (current means of compliance); own battery, so it keeps broadcasting if the packs brown out. The Holybro module is not on the FAA list ([approvals doc](../regulatory/subscale-flight-approvals.md#2-remote-id)) | 16 g (30 g with mount) | $149 ([Dronetag](https://shop.dronetag.com)) |
 | ARK Flow | Optical flow and distance | ~10 g (unv) | $250 ([ARK](https://arkelectron.com/product/ark-flow/)) |
 | iCEBreaker (safety monitor prototype) | iCE40UP5K | ~30 g (unv) | $79.95 |
 
@@ -119,9 +119,11 @@ Motor alternatives: MN5008 KV400 (3,982 g on 17 in, but 17 in breaks the 1.1 D s
 
 | Part | Specs | Mass | Price |
 | --- | --- | --- | --- |
-| **Fruity Chutes Skycat Ultralight 22 lb (10 kg), 15 ft/s** | Pneumatic launcher; triggered by the FUSE servo-channel switch, which the flight controller or the FPGA safety monitor can drive ([Fruity Chutes](https://shop.fruitychutes.com/collections/skycat-launchers-2-5-kg-to-20-kg/products/skycat-bundle-ultra-light-22lbs-10kg-15fps)) | 469 g | $1,238.46; **sold out** at time of search |
+| **Fruity Chutes Skycat Ultralight 22 lb (10 kg), 15 ft/s, 6S + 5V variant** | Rated 10 kg nominal / 20 kg max; pneumatic launcher; triggered by the FUSE servo-channel switch, which the flight controller or the FPGA safety monitor can drive ([Fruity Chutes](https://shop.fruitychutes.com/collections/skycat-launchers-2-5-kg-to-20-kg)) | 469 g | $1,316.41; **sold out, available by quote** |
+| Drone Rescue Systems DRS-15R V2 (alternative) | Rated 10–15 kg; deploys within 25–30 m; 3.6 m/s descent at 10 kg; MAVLink or PWM trigger; eligible for ASTM F3322 testing ([DRS](https://dronerescue.com/products/drs-15)) | ~415 g | By quote |
+| Fruity Chutes Skycat 28.7 lb (13 kg), if mass grows | 13 kg nominal / 20 kg max | 545 g | $2,774.20 (6S + 5V), by quote |
 
-The 10 kg rating leaves little margin above the 9.4 kg AUW. Watch mass growth; the next Skycat size up is the fallback.
+**No 10 kg parachute was confirmed in stock.** Request quotes and lead times from Fruity Chutes and Drone Rescue Systems early; the 10 kg Skycat's nominal rating leaves little margin above the 9.4 kg AUW.
 
 ### Perception payload (build stage 4)
 
@@ -152,7 +154,7 @@ Same parts as the [subscale perception BOM](avionics-parts.md#perception-boms): 
 | --- | ---: | ---: | ---: |
 | MN5008 KV340 motors | 8 | 135 | 1,080 |
 | NS18x6 props (unv) | 8 | 34 | 272 |
-| Myxa A ESCs | 8 | 26 | 208 |
+| Myxa B2Z ESCs | 8 | 26 | 208 |
 | Power and CAN harness (unv) | 1 | 300 | 300 |
 | Frame: plates, arms, folding locks, coaxial mounts, gear (unv) | 1 | 1,150 | 1,150 |
 | 6S1P P50B packs (unv) | 4 | 450 | 1,800 |
@@ -169,7 +171,7 @@ Same parts as the [subscale perception BOM](avionics-parts.md#perception-boms): 
 | iCEBreaker safety monitor (unv) | 1 | 30 | 30 |
 | Club sensor boards (allowance) | 1 | 150 | 150 |
 | Payload tray and vibration isolation (unv) | 1 | 120 | 120 |
-| Remote ID module (unv) | 1 | 30 | 30 |
+| Dronetag Beacon gen.2 with mount | 1 | 30 | 30 |
 | Skycat 10 kg parachute | 1 | 469 | 469 |
 | **Pilot ballast** 2,700 g plus adjustable rail | 1 | 2,820 | 2,820 |
 | **All-up weight** | | | **9,371** |
@@ -232,63 +234,72 @@ Every powered test runs under a written procedure and a Test Readiness Review si
 
 **Test site:** open, off-campus, with written site permission, an exclusion zone, a safety observer, and fire suppression for lithium packs (Article X, Sections 6 and 7).
 
-**Thrust stand:** Tyto Robotics Series 1585 (5 kgf, 55 A, by quote; [Tyto](https://www.tytorobotics.com/pages/series-1580-1585)) covers one rotor. A coaxial pair (~7 kgf) needs a Tyto Flight Stand quote or two 1585s on a rigid fixture (unv).
+**Thrust stand:** the Tyto Robotics Series 1585 bundle ($1,075, out of stock; 5 kgf, 55 A; [Tyto](https://www.tytorobotics.com/products/series-1580-test-stand-bundle)) covers **one rotor only**. A coaxial pair (~7–8 kgf, ~70 A) needs the **Tyto Flight Stand 15** (15 kgf, 150 A, supports dual-motor setups; price by quote; [Tyto](https://www.tytorobotics.com/pages/flight-stand-15)). Contact sales@tytorobotics.com about education pricing and a true coaxial fixture.
 
 ---
 
 ## Regulatory and University checklist
 
-- [ ] **Operating rules.** [49 USC 44809](https://www.law.cornell.edu/uscode/text/49/44809) covers recreational flying, and its note extends to educational or research use at institutions of higher education; how the FAA applies that to a student club building a development article is unclear (unv). **Plan to fly under 14 CFR Part 107** with a certificated remote pilot in command.
-- [ ] **Remote pilot certificate** for every pilot in command (FAA knowledge test).
-- [ ] **Registration** on FAADroneZone (over 250 g, under 55 lb; the demonstrator is ~21 lb); number marked on the outside.
-- [ ] **Remote ID** ([14 CFR 89](https://www.ecfr.gov/current/title-14/part-89)): a broadcast module with an FAA-accepted Declaration of Compliance and its serial number on the registration, or fly only inside an FAA-recognized identification area.
-- [ ] **Airspace:** LAANC or other authorization in controlled airspace (central Austin is near Austin-Bergstrom Class C, unv); visual line of sight; at or below 400 ft AGL.
-- [ ] **UT Austin:** no drone policy was found in the Handbook of Operating Procedures (unv). Ask the University Policy Office (policyoffice@austin.utexas.edu, 512-471-0426) and Risk Management which approvals and insurance apply to a student organization, and get written approval from the University Advisor for each site.
-- [ ] **Texas law:** review Texas Government Code chapter 423 on drone imaging and restricted areas before flying cameras (unv).
-- [ ] **Lithium batteries:** charging and storage approved by UT Environmental Health and Safety (Article X, Section 7).
+Full research, sources, and contacts: **[`subscale-flight-approvals.md`](../regulatory/subscale-flight-approvals.md)**.
+
+- [ ] **Part 107** operations with at least two certificated remote pilots (knowledge test ~$175 each, unv)
+- [ ] **Register** the demonstrator on FAADroneZone under Part 107 ($5) with the Remote ID serial number; mark the airframe
+- [ ] **Remote ID:** Dronetag Beacon gen.2 ($149, FAA-accepted Declaration of Compliance)
+- [ ] **UT Austin HOP 8-1070:** submit the EHS UAV Request Form (at least 2 weeks ahead; uavflight@austin.utexas.edu) with a faculty endorsement, site map, safety plan, and insurance
+- [ ] **Risk Management and Legal Affairs:** confirm University-sponsored status, required insurance, and whether the Texas academic imaging exemption applies
+- [ ] **Airspace:** UT main campus and Pickle Research Campus are Class G at or below 400 ft (no LAANC); avoid the DKR stadium TFR on game days; check B4UFLY and NOTAMs before every flight
+- [ ] **Texas Gov. Code 423.0045:** no flights over substations, water plants, rail yards, telecom sites, or other critical infrastructure (no academic exemption)
+- [ ] **Test site:** Pickle Research Campus (UT approval) or an FAA-Recognized Identification Area club field such as Austin Radio Control Association's Lester Field (club permission)
+- [ ] **Lithium batteries:** charging and storage approved by UT Environmental Health and Safety (Article X, Section 7)
 
 ---
 
 ## Cost
 
+Prices checked 14 September 2026; EUR at 1.1598 USD.
+
 | Item | Cost |
 | --- | ---: |
 | MN5008 KV340 × 8 | $720 |
 | NS18x6 props × 6 pairs (2 spare pairs) | $498 |
-| Zubax Myxa A 45 A × 8 (unv, EUR price) | ~$1,600 |
+| Zubax Myxa B2Z × 8, plus cables (cables unv) | ~$1,840 |
 | Frame parts (unv) | $450 |
 | P50B cells and pack build, 4 packs (unv) | $340 |
 | Charger (unv) | $150 |
-| Pack switch boards and E-stop (unv) | $200 |
+| Pack switch boards × 5 plus E-stop parts (unv) | ~$380 |
 | UBECs and diode-OR (unv) | $100 |
-| Pixhawk 6X, mini baseboard, PM02D | $287 |
+| Pixhawk 6X standard set (or 6C at $166 while the 6X is sold out) | $321 |
 | M10 GPS, SiK telemetry, ELRS receiver | $123 |
-| Skycat 10 kg parachute | $1,238 |
-| Remote ID module with FAA Declaration of Compliance (unv) | $300 |
+| Skycat 10 kg parachute, 6S + 5V variant (by quote) | $1,316 |
+| Dronetag Beacon gen.2 Remote ID | $149 |
 | Ballast and rail (unv) | $60 |
 | ARK Flow | $250 |
 | iCEBreaker | $80 |
-| **Airframe, power, flight stack, safety subtotal** | **≈ $6,400** |
-| Thrust stand (Tyto 1585, by quote, est) | ≈ $1,600 |
+| **Airframe, power, flight stack, safety subtotal** | **≈ $6,780** |
+| Tyto Series 1585 thrust stand bundle (single rotor) | $1,075 |
+| Tyto Flight Stand 15 for coaxial pairs | By quote |
 | Perception payload ([subscale BOM](avionics-parts.md#perception-boms)) | ≈ $2,700 |
-| **Phase 1 total** | **≈ $10,700** |
+| Operations: 2 Part 107 tests (~$350, unv), registration ($5), liability insurance (~$500–1,500 per year, unv) | ≈ $855–1,855 |
+| **Phase 1 total, excluding Flight Stand 15** | **≈ $11,400–12,400** |
 
-- **Flying, safety-complete demonstrator including the thrust stand: ≈ $8,000.**
-- Kotleta20 ESCs instead of Myxa save ~$1,150 at the cost of the throttle cap described above.
+- **Flying, safety-complete demonstrator with a single-rotor thrust stand: ≈ $7,850**, plus operations costs.
+- Kotleta20 ESCs instead of Myxa save ~$1,300 at the cost of the throttle cap described above.
 - The perception payload is stage 4 and can be funded separately.
 
 ---
 
 ## Open items
 
-1. Confirm Myxa pricing and lead time, or accept the Kotleta20 throttle cap.
-2. Confirm Skycat stock; watch mass growth against its 10 kg rating.
-3. Design the pack switch board (MOSFETs, gate driver, soft-start pre-charge, current sense) as the club's first power board.
-4. Choose a Remote ID module with an FAA-accepted Declaration of Compliance.
-5. Confirm Pixhawk 6X stock or buy the 6C as a stopgap.
-6. Confirm UT approvals and a test site.
-7. Get a Tyto Robotics quote, including a coaxial-pair setup.
-8. Confirm NS18x6 prop mass and that its thrust matches the P18x6.1 test data.
+| # | Item | Status | Action |
+| ---: | --- | --- | --- |
+| 1 | Zubax Myxa | In stock, B2Z $223.84 | Email sales@zubax.com: education or bulk pricing, continuous current rating, cable kit |
+| 2 | Parachute | Skycat sold out (by quote); DRS-15R V2 by quote | Request quotes and lead times from Fruity Chutes and Drone Rescue Systems |
+| 3 | Pixhawk 6X | Sold out at Holybro; ReadyMadeRC lists it | Confirm ReadyMadeRC stock, or buy the 6C now |
+| 4 | Pack switch board | Preliminary design done ([doc](../hardware/pack-switch-board.md)) | Verify prices and ESC capacitance; draw in KiCad; design review |
+| 5 | Remote ID | Dronetag Beacon gen.2 selected | Buy once the registration plan is set |
+| 6 | Thrust stand | 1585 is single-rotor only | Get a Flight Stand 15 quote with a coaxial fixture |
+| 7 | UT approvals and site | Process identified (HOP 8-1070) | Contact uavflight@austin.utexas.edu; see the [approvals checklist](../regulatory/subscale-flight-approvals.md#action-checklist) |
+| 8 | Props | NS18x6 in stock, 17 g per blade | Confirm thrust matches T-Motor's P18x6.1 data on the thrust stand |
 
 ## Sources
 
@@ -297,5 +308,6 @@ Every powered test runs under a written procedure and a Test Readiness Review si
 - ESCs: [Zubax Myxa](https://shop.zubax.com/products/zubax-myxa), [Holybro Kotleta20](https://holybro.com/products/kotleta20), [ARK 4IN1](https://arkelectron.com/product/ark-4in1-esc/)
 - Flight stack and power: [Pixhawk 6X](https://holybro.com/products/pixhawk-6x), [Pixhawk 6C](https://holybro.com/products/pixhawk-6c), [M10 GPS](https://holybro.com/products/m10-gps), [SiK V3](https://holybro.com/products/sik-telemetry-radio-v3), [Holybro power modules and BECs](https://holybro.com/collections/power-modules-pdbs), [Holybro Remote ID](https://holybro.com/products/remote-id)
 - Battery: [Molicel P50B](https://www.molicel.com/inr-21700-p50b/)
-- Recovery and test: [Fruity Chutes Skycat 10 kg](https://shop.fruitychutes.com/collections/skycat-launchers-2-5-kg-to-20-kg/products/skycat-bundle-ultra-light-22lbs-10kg-15fps), [Tyto Robotics Series 1580/1585](https://www.tytorobotics.com/pages/series-1580-1585)
+- Recovery and test: [Fruity Chutes Skycat](https://shop.fruitychutes.com/collections/skycat-launchers-2-5-kg-to-20-kg), [Drone Rescue Systems DRS-15](https://dronerescue.com/products/drs-15), [Tyto Series 1585 bundle](https://www.tytorobotics.com/products/series-1580-test-stand-bundle), [Tyto Flight Stand 15](https://www.tytorobotics.com/pages/flight-stand-15)
+- Remote ID and approvals: [Dronetag](https://shop.dronetag.com), [UT HOP 8-1070](https://secure2.compliancebridge.com/utexas/public/getdoc.php?file=8-1070), [UT EHS UAV page](https://ehs.utexas.edu/working-safely/equipment-safety/unmanned-aerial-vehicles)
 - Regulatory: [49 USC 44809](https://www.law.cornell.edu/uscode/text/49/44809), [14 CFR Part 89](https://www.ecfr.gov/current/title-14/part-89), [UT University Policy Office](https://compliance.utexas.edu/university-policy-office/)
