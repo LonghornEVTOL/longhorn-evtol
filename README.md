@@ -38,7 +38,7 @@ We will not fly on campus. Testing happens at an off-campus site, and the pilote
 
 ## Vehicle baseline
 
-Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (vehicle, batteries, and pilot). Frozen at the Preliminary Design Review. Parts, sources, both propulsion options, the custom ESC design, and cost: [`docs/vehicle/baseline.md`](docs/vehicle/baseline.md).
+Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (vehicle, batteries, and pilot). Frozen at the Preliminary Design Review. Parts, sources, both propulsion options, the custom ESC design, and cost: [`docs/vehicle/baseline.md`](docs/vehicle/baseline.md). Alternative layouts we could pivot to (flat octocopter, coaxial X12, flat hexacopter), sized on the same assumptions: [`docs/vehicle/configuration-trade-study.md`](docs/vehicle/configuration-trade-study.md).
 
 | | Baseline v1 (preliminary) |
 | --- | --- |
@@ -128,10 +128,12 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Buck converter board | Design, lay out, and bring up a 6S (25 V) to 5 V, 3 A converter that powers the subscale avionics |
 | Current and voltage sense board | Shunt plus current-monitor IC board that logs motor current on the thrust stand |
 | Subscale power distribution board | High-current PDB with fusing and a voltage tap for the 6S demonstrator |
-| Battery pack monitor | Cell voltage and temperature logging for the pack log required by Article X |
+| Battery management system | Per-pack firmware on the BMS board: state of charge, cell balancing, temperature limits, fault reporting to the flight controller over CAN, and automatic pack logging for Article X |
+| Power distribution unit | Full-scale bus bars, fuses, contactors, and per-branch current sensing that route pack power to the ESCs |
+| Vehicle wiring harness | HV, low-voltage, and CAN wiring between packs, ESCs, flight controller, safety monitor, and cockpit: wire gauges, connectors, routing through folding arms, and harness drawings |
 | Pre-charge and contactor driver | HV bus pre-charge, contactor coil driver, and interlock for the full-scale packs |
 | Hardwired E-stop loop | Contactor interlock chain that opens every pack with no software in the path |
-| 18S BMS board | Per-pack cell monitoring on an ADI ADBMS1818 with isoSPI, cell balancing, and temperature sensing |
+| 18S BMS board | Per-pack cell voltage and temperature measurement hardware on an ADI ADBMS1818 with isoSPI |
 | Low-voltage buck board | 75 V to 12 V avionics supply on an ADI LTC7801, as a redundant alternative to COTS modules |
 | Custom ESC | 18S, 150 A FOC inverter on Infineon 150 V OptiMOS FETs, a 6ED2742S01Q gate driver, ACS772 current sensing, and VESC firmware. Dyno and subscale first, then the unmanned article only. |
 
