@@ -14,7 +14,7 @@ Companion to [`subsystems.md`](subsystems.md) (what boards exist) and [`baseline
 | **M** Moderate | QFN and LGA with hidden or exposed pads, 0402 passives | Stencil, paste, hot plate or reflow oven; verify by reading chip ID registers because the joints can't be seen |
 | **H** Hard | BGA, WLCSP, 0.4 mm pitch QFN | Needs X-ray inspection. **Avoided** in every pick below |
 
-Design rules for club boards: no BGA or WLCSP, 0603 passives by default (0402 only where needed), LQFP over QFN when the same chip offers both.
+Design rules for club boards: no BGA or WLCSP, 0603 passives by default (0402 only where needed), LQFP over QFN when the same chip offers both. Boards are designed in **KiCad**; library, layout, review, and release rules are in [`../hardware/pcb-design-guide.md`](../hardware/pcb-design-guide.md).
 
 ---
 

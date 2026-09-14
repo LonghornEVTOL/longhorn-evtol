@@ -139,7 +139,7 @@ Highlights by team, sized from a weekend to multiple semesters. The **complete l
 
 **Avionics PCBs**
 
-Designed and hand-assembled by the club. Exact chips, specs, prices, assembly difficulty, and a funding total are in [`docs/vehicle/avionics-parts.md`](docs/vehicle/avionics-parts.md). Custom boards fly first on the subscale drone and HIL rig, then the unmanned article. Commercial parts (Pixhawk 6X Pro, Here4 GNSS) stay on the piloted vehicle until a custom board passes Article X qualification.
+Designed in KiCad and hand-assembled by the club ([PCB design guide](docs/hardware/pcb-design-guide.md)). Exact chips, specs, prices, assembly difficulty, and a funding total are in [`docs/vehicle/avionics-parts.md`](docs/vehicle/avionics-parts.md). Custom boards fly first on the subscale drone and HIL rig, then the unmanned article. Commercial parts (Pixhawk 6X Pro, Here4 GNSS) stay on the piloted vehicle until a custom board passes Article X qualification.
 
 | Project | What it involves |
 | --- | --- |
@@ -260,7 +260,8 @@ Interested in sponsoring? Reach out to the President.
 ## Repository layout
 
 ```
-docs/              Vehicle baseline, constitution, design reviews, safety, regulatory, meeting notes
+docs/              Vehicle baseline, parts, PCB design guide, recruitment, constitution, reviews, safety
+hardware-lib/      Shared KiCad symbols, footprints, and 3D models
 manufacturing/     Welding and fab, composites, machining and CNC, assembly and QC
 mechanical/        Airframe, cockpit and ergonomics, propulsion and duct, landing gear
 electrical/        PDU and harness, ESC and motors, power architecture, safety interlocks, power PCBs
