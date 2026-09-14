@@ -16,7 +16,7 @@ Last updated: 14 September 2026
 | Gross weight | ≈ 186 kg (410 lb) |
 | Required total thrust | ≈ 372 kgf (820 lb) |
 
-### A Part 103 detail that matters
+### A Part 103 
 
 [103.1(e)(1)](https://www.law.cornell.edu/cfr/text/14/103.1) sets the limit at 254 lb empty weight "excluding floats and safety devices which are intended for deployment in a potentially catastrophic situation." A ballistic parachute is a strong candidate for that exclusion (LIFT Aircraft's HEXA has been reported to take it), **something that we are not entirely sure of need FAA check**
 
