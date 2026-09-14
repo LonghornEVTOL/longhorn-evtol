@@ -27,6 +27,8 @@ We are building an unmanned, 1/3-scale copy of the full-scale vehicle that mirro
 
 Build order: simulation → thrust stand and power bench tests → airframe flying with dummy payload → safety systems proven → cameras and perception → club-built boards swapped in one at a time.
 
+Flight approvals (FAA Part 107, Remote ID, UT HOP 8-1070, test sites): [`docs/regulatory/subscale-flight-approvals.md`](docs/regulatory/subscale-flight-approvals.md). First club power board, the per-pack switch: [`docs/hardware/pack-switch-board.md`](docs/hardware/pack-switch-board.md).
+
 ---
 
 ## Mission and approach
