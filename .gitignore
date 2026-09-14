@@ -1,3 +1,14 @@
 # Draft constitution contains member EIDs; publish a redacted copy in docs/constitution instead.
 Longhorn_eVTOL_Constitution.docx
 ~$*.docx
+
+# KiCad local, backup, and cache files
+*-backups/
+*.kicad_prl
+*.lck
+_autosave-*
+fp-info-cache
+*.bak
+*.kicad_sch-bak
+*.kicad_pcb-bak
+~*.kicad_*
