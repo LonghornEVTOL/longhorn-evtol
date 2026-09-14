@@ -36,26 +36,40 @@ We will not fly on campus. Testing happens at an off-campus site, and the pilote
 
 ## Vehicle baseline
 
-A first-pass sizing, frozen at the Preliminary Design Review. Full derivation, requirements, and mass budget: [`docs/vehicle/baseline.md`](docs/vehicle/baseline.md).
+Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (vehicle, batteries, and pilot). Frozen at the Preliminary Design Review. Parts, sources, both propulsion options, the custom ESC design, and cost: [`docs/vehicle/baseline.md`](docs/vehicle/baseline.md).
 
-| | Baseline v0 (preliminary) |
+| | Baseline v1 (preliminary) |
 | --- | --- |
-| Configuration | Coaxial octocopter (X8): 4 arms, 8 counter-rotating rotors |
-| Propellers | 40 in fixed-pitch carbon fiber |
-| Empty weight | ≈ 245 lb estimated against the 254 lb limit (target ≤ 229 lb) |
-| Gross mass | ≈ 454 lb with a 209 lb pilot |
-| Thrust-to-weight | ≥ 2.0 all motors · ≥ 1.7 one motor out · ≥ 1.45 one pack out |
-| Motors | 24S heavy-lift outrunners, ≈ 40 to 60 Kv, ≥ 51 kgf peak thrust each |
-| ESCs | ≥ 120 V, ≥ 120 A continuous, FOC, DroneCAN telemetry |
-| Battery | 4 independent 24S5P Li-ion packs (21700 high-power cells), ≈ 7.8 kWh total, 86 V nominal |
-| Hover power | ≈ 55 to 65 kW, ≈ 5 to 6 min to 20% state of charge |
-| HV safety | Per-pack contactor, pre-charge, and fuse; hardwired E-stop; insulation monitoring |
-| Flight control | STM32H7-class RTOS controller, triple IMU, DroneCAN motor bus |
-| Safety monitor | Independent iCE40-class FPGA with its own power and reset, can cut power and fire the parachute |
-| Recovery | Ballistic parachute sized for gross mass |
+| Configuration | Coaxial octocopter (X8): 4 folding arms, 8 counter-rotating rotors |
+| Propulsion | 8 × Hobbywing X13 G2 integrated units (motor, ESC, 56 in folding prop), 4.19 kg and 60 kgf max each |
+| Thrust | 408 kgf total after coaxial losses, against 372 kgf needed for 2:1 |
+| Thrust-to-weight | 2.19 all motors · 1.92 one motor out · 1.65 one pack out |
+| Battery | 4 independent 18S5P packs of Molicel P50B 21700 cells, 64.8 V nominal, 6.5 kWh total, ≈ 9.6 kg each |
+| Hover power | ≈ 24 to 27 kW; ≈ 8 min planned flight (≈ 12 min to 20% charge by energy, pending thermal test) |
+| HV protection | Per pack: Gigavac GX14 contactor, pre-charge, EV fuse, ADBMS1818 BMS board; hardwired E-stop opens all packs |
+| Low-voltage power | Redundant Vicor DCM3623 converters, or a team-built LTC7801 buck board |
+| Flight controller | Pixhawk 6X Pro (triple IMU, STM32H753, real-time OS), dual Here4 GNSS, LW20/C LiDAR |
+| Safety monitor | Lattice MachXO3D or Microchip IGLOO2 on its own power and reset (prototype on iCEBreaker), can cut power and fire the parachute |
+| Companion | AMD Kria K26, advisory only |
+| Recovery | Galaxy GRS 3 270 ballistic parachute, 9.5 kg |
 | Subscale demonstrator | ≈ 1/3 scale coaxial X8, 15 in props, 6S LiPo, ≈ 5 kg |
 
-**The mass budget does not close with margin yet.** Finding about 16 lb is the main design problem for year one.
+**Mass budget**
+
+| Item | kg |
+| --- | ---: |
+| Airframe (4130 centre cage, folding carbon arms) | 14.5 |
+| Landing gear and motor mounts | 5.0 |
+| Propulsion units (8) | 33.5 |
+| Battery packs (4) with protection | 38.6 |
+| HV distribution, avionics, LV power | 5.0 |
+| Seat, restraint, controls | 7.3 |
+| Ballistic parachute | 9.5 |
+| **Empty weight** | **113.3 kg (250 lb)** with parachute · **103.8 kg (229 lb)** if the parachute is excluded under 103.1(e)(1) |
+| Pilot | 72.6 kg (160 lb) |
+| **Gross** | **185.9 kg (410 lb)** |
+
+**Open risks.** Margin to 254 lb is only 4 lb unless the FAA confirms the parachute exclusion. The integrated ESC's rating during a motor-out landing must be verified on the thrust stand. Hardware cost is ≈ $20,000 to 22,000.
 
 ---
 
@@ -106,6 +120,7 @@ ASICs are a possible future direction, not a commitment. They may never sit in t
 Year one work, sized from a weekend to a full semester. Everything here feeds the subscale demonstrator, the thrust stand, or the full-scale design.
 
 **Electrical and Power**
+
 | Project | What it involves |
 | --- | --- |
 | Buck converter board | Design, lay out, and bring up a 6S (25 V) to 5 V, 3 A converter that powers the subscale avionics |
@@ -114,8 +129,12 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Battery pack monitor | Cell voltage and temperature logging for the pack log required by Article X |
 | Pre-charge and contactor driver | HV bus pre-charge, contactor coil driver, and interlock for the full-scale packs |
 | Hardwired E-stop loop | Contactor interlock chain that opens every pack with no software in the path |
+| 18S BMS board | Per-pack cell monitoring on an ADI ADBMS1818 with isoSPI, cell balancing, and temperature sensing |
+| Low-voltage buck board | 75 V to 12 V avionics supply on an ADI LTC7801, as a redundant alternative to COTS modules |
+| Custom ESC | 18S, 150 A FOC inverter on Infineon 150 V OptiMOS FETs, a 6ED2742S01Q gate driver, ACS772 current sensing, and VESC firmware. Dyno and subscale first, then the unmanned article only. |
 
 **Software and Avionics**
+
 | Project | What it involves |
 | --- | --- |
 | Thrust stand data logger | Python tool that records load cell, RPM, current, and voltage and plots thrust and efficiency curves |
@@ -125,6 +144,7 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Failsafe logic | Geofence, loss of link, and motor-out compensation on the flight controller |
 
 **Hardware Acceleration and FPGA**
+
 | Project | What it involves |
 | --- | --- |
 | Heartbeat watchdog | First RTL on a small FPGA dev board: watch a heartbeat signal and trip an output when it stops |
@@ -132,6 +152,7 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Hardware-in-the-loop rig | Run flight software and the safety monitor against a simulated vehicle |
 
 **Mechanical Design and Manufacturing**
+
 | Project | What it involves |
 | --- | --- |
 | Motor mount bracket | CAD, hand calcs, FEA, then machine it at Texas Inventionworks |
@@ -142,9 +163,12 @@ Year one work, sized from a weekend to a full semester. Everything here feeds th
 | Weld coupons | Practice and test tube joints before any airframe welding |
 
 **Flight Test, Systems, and Outreach**
+
 | Project | What it involves |
 | --- | --- |
 | Motor and propeller characterization | Written test procedure, then thrust stand runs that replace the catalog numbers in the baseline |
+| Motor-out thermal test | Hold one X13 G2 at 40 to 45 kgf for 120 s and log ESC and motor temperature. This is the first open risk in the baseline. |
+| Cell pulse resistance test | Measure 10 s pulse resistance of P50B, P60B, and 40PL cells to choose the pack cell |
 | Mass budget tracker | Keep the 254 lb budget current as parts are weighed and selected |
 | Interface control documents | Define power, data, and mechanical interfaces between teams |
 | Test site survey | Find and document off-campus sites for subscale and tethered testing |
