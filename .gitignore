@@ -12,3 +12,6 @@ fp-info-cache
 *.kicad_sch-bak
 *.kicad_pcb-bak
 ~*.kicad_*
+
+# Local shortcut to the private onboarding workspace (LonghornEVTOL/internal); never commit here
+/onboarding
