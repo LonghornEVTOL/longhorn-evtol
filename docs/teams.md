@@ -326,9 +326,7 @@ Requirements, mass and power budgets, and interface documents.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
-| Weigh-in log | Weigh every part as it arrives and record it against the mass budget estimate | S | Both | [`systems/mass-budget`](../systems/mass-budget) |
-| Part stock checker | Script that checks distributor stock and price for every part in the BOMs and flags shortages early | S | Both | [`systems/requirements`](../systems/requirements) |
-| Mass budget tracker | Keep the 254 lb budget (and the subscale budget) current as parts are weighed and chosen | S | Both | [`systems/mass-budget`](../systems/mass-budget) |
+| Mass budget tracker | Keep the 254 lb budget (and the subscale budget) current using measured part weights, and flag growth against the limit | S | Both | [`systems/mass-budget`](../systems/mass-budget) |
 | Requirements | Vehicle and subsystem requirements with rationale | M | Both | [`systems/requirements`](../systems/requirements) |
 | Interface control documents | Mechanical, power, data, and CAN message definitions between teams | M | Both | [`systems/interfaces`](../systems/interfaces) |
 | Power, thermal, and CAN budgets | Budgets beyond mass, kept alongside the requirements | M | Both | [`systems/requirements`](../systems/requirements) |
