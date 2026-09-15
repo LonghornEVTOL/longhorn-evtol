@@ -4,9 +4,7 @@ A student organization at The University of Texas at Austin that designs, builds
 
 Our goal is a **single-occupant, seated multirotor** ("the Vehicle") capable of safe, low-altitude piloted flight.
 
-**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app) · **Site source:** [website](https://github.com/LonghornEVTOL/website)
-
-> **Status:** Founding. Constitution drafted; registration with the Dean of Students is pending a University Advisor.
+**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app)
 
 ---
 
@@ -27,7 +25,7 @@ We are building an unmanned, 1/3-scale copy of the full-scale vehicle that mirro
 
 Build order: simulation → thrust stand and power bench tests → airframe flying with dummy payload → safety systems proven → cameras and perception → club-built boards swapped in one at a time.
 
-Flight approvals (FAA Part 107, Remote ID, UT HOP 8-1070, test sites): [`docs/regulatory/subscale-flight-approvals.md`](docs/regulatory/subscale-flight-approvals.md). First club power board, the per-pack switch: [`docs/hardware/pack-switch-board.md`](docs/hardware/pack-switch-board.md).
+First club power board, the per-pack switch: [`docs/hardware/pack-switch-board.md`](docs/hardware/pack-switch-board.md).
 
 ---
 
@@ -98,12 +96,11 @@ Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (ve
 
 ## Safety
 
-A student organization proposing to put a person on a multirotor should expect more scrutiny than a normal club. Our constitution (Article X) is built for that.
+Putting a person on a multirotor deserves more scrutiny than a normal project, so safety is designed in. Full list: [`docs/safety/vehicle-safety-requirements.md`](docs/safety/vehicle-safety-requirements.md).
 
-- **Separate safety authority.** The VP of Engineering owns the design. The VP of Safety and Operations (Chief Safety Officer) owns stop authority. One person may never hold both roles. If the safety role is vacant, all fabrication and test activity is suspended.
-- **Stop authority cannot be overridden.** The Chief Safety Officer can halt any operation. The President, the Executive Board, and a vote of the membership cannot override it.
-- **Custom hardware earns its way in.** Custom PCBs and programmable logic in a flight-critical path require a design review, current-limited bring-up, and qualification at or above expected operating conditions. Nothing custom flies piloted until it has documented run time on the unmanned article.
-- **Conditions precedent to piloted flight.** Nine conditions must be met before any piloted flight, including an established FAA basis, verified margins, demonstrated motor-out response, a functional E-stop and recovery system, insurance, and written sign-off from four people. No vote can waive any of them.
+- **Phased development.** Subscale unmanned, then full-scale unmanned and tethered, then piloted, each gated on a design review and hazard analysis.
+- **Custom hardware earns its way in.** Custom PCBs and programmable logic in a flight-critical path need a design review, current-limited bring-up, and qualification at or above expected operating conditions. Nothing custom flies piloted until it has documented run time on the unmanned article.
+- **Conditions before piloted flight.** Verified margins, demonstrated motor-out response, a tested E-stop and recovery parachute, completed unmanned tethered and free-flight campaigns, and a confirmed FAA basis.
 - **Flight-critical compute architecture.**
   - Stabilization runs on a dedicated real-time controller, never on a device running a general-purpose OS.
   - The safety monitor lives on physically separate hardware with its own power and reset domain.
@@ -122,7 +119,6 @@ A student organization proposing to put a person on a multirotor should expect m
 | **Software and Avionics** | Flight control (GNC) · Sensor fusion and telemetry · Cockpit interface and ground station · Fault management and failsafes · Hardware acceleration and FPGA |
 | **Flight Test and Range Operations** | Test planning · Range and logistics · Data and instrumentation |
 | **Systems Engineering and Integration** | Requirements and interfaces · Configuration management |
-| **Business, Outreach, and Sponsorship** | Sponsorship · Recruitment and outreach · Media and documentation |
 
 ### FPGA scope
 
@@ -149,7 +145,7 @@ Highlights by team, sized from a weekend to multiple semesters. The **complete l
 | Buck converter board | Design, lay out, and bring up a 6S (25 V) to 5 V, 3 A converter that powers the subscale avionics |
 | Current and voltage sense board | Shunt plus current-monitor IC board that logs motor current on the thrust stand |
 | Subscale power distribution board | High-current PDB with fusing and a voltage tap for the 6S demonstrator |
-| Battery management system | Per-pack firmware on the BMS board: state of charge, cell balancing, temperature limits, fault reporting to the flight controller over CAN, and automatic pack logging for Article X |
+| Battery management system | Per-pack firmware on the BMS board: state of charge, cell balancing, temperature limits, fault reporting to the flight controller over CAN, and automatic pack logging ([safety requirement S6](docs/safety/vehicle-safety-requirements.md#s6-batteries)) |
 | Power distribution unit | Full-scale bus bars, fuses, contactors, and per-branch current sensing that route pack power to the ESCs |
 | Vehicle wiring harness | HV, low-voltage, and CAN wiring between packs, ESCs, flight controller, safety monitor, and cockpit: wire gauges, connectors, routing through folding arms, and harness drawings |
 | Pre-charge and contactor driver | HV bus pre-charge, contactor coil driver, and interlock for the full-scale packs |
@@ -160,7 +156,7 @@ Highlights by team, sized from a weekend to multiple semesters. The **complete l
 
 **Avionics PCBs**
 
-Designed in KiCad and hand-assembled by the club ([PCB design guide](docs/hardware/pcb-design-guide.md)). Exact chips, specs, prices, assembly difficulty, and a funding total are in [`docs/vehicle/avionics-parts.md`](docs/vehicle/avionics-parts.md). Custom boards fly first on the subscale drone and HIL rig, then the unmanned article. Commercial parts (Pixhawk 6X Pro, Here4 GNSS) stay on the piloted vehicle until a custom board passes Article X qualification.
+Designed in KiCad and hand-assembled by the club ([PCB design guide](docs/hardware/pcb-design-guide.md)). Exact chips, specs, prices, assembly difficulty, and a funding total are in [`docs/vehicle/avionics-parts.md`](docs/vehicle/avionics-parts.md). Custom boards fly first on the subscale drone and HIL rig, then the unmanned article. Commercial parts (Pixhawk 6X Pro, Here4 GNSS) stay on the piloted vehicle until a custom board passes [qualification](docs/safety/vehicle-safety-requirements.md#s2-custom-hardware-qualification).
 
 | Project | What it involves |
 | --- | --- |
@@ -230,7 +226,7 @@ Runs on the companion computer. Advisory only on the piloted vehicle: it informs
 | Parachute mount | Hard points and load path sized for deployment shock |
 | Seat, restraint, and pilot controls | Carbon seat, harness mounts sized for crash loads, and stick placement |
 
-**Flight Test, Systems, and Outreach**
+**Flight Test and Systems**
 
 | Project | What it involves |
 | --- | --- |
@@ -243,45 +239,13 @@ Runs on the companion computer. Advisory only on the piloted vehicle: it informs
 | Tether test rig | Tether, load cell, anchor, and quick release for Phase 2 |
 | Hazard analysis | Functional hazard assessment and FMEA, kept current as the design changes |
 | Configuration trade study | Coaxial X8 vs flat octo vs coaxial X12, settled by thrust stand and subscale tests |
-| Sponsor packet | One-page and deck versions of the program for sponsors |
-
----
-
-## Membership
-
-- Open to UT Austin students, faculty, and staff by **application and interview**, recruited every fall and spring. **No prior experience, specific major, or fee required.** Applications open at the start of each fall and spring semester on [the website](https://longhorn-evtol.vercel.app/#join).
-- Applicants are scored on three published criteria (interest, commitment, contribution) with the same rubric, and every applicant gets a written decision within 14 days after interviews close. See the [interview guide](docs/recruitment/interview-guide.md).
-- **General Members** are admitted applicants. Info sessions and outreach events stay open to everyone.
-- **Active Members** complete safety onboarding and attend three meetings or work sessions. They get team assignments, shop access, and a vote.
-- General meetings are held twice a month, and each team meets weekly.
-- Every vehicle configuration goes through a Preliminary Design Review, a Critical Design Review, and a Test Readiness Review before powered testing.
-
----
-
-## Leadership
-
-| Role | Name |
-| --- | --- |
-| President | Pranav Shivashankar |
-| VP of Engineering (Chief Engineer) | Rihan Babu |
-| VP of Safety and Operations (Chief Safety Officer) | Akshay Mallireddy |
-
-Treasurer, Secretary, and Director of Outreach are open positions.
-
-## Funding
-
-- **No dues.** Funding comes from sponsorship, grants, and University sources.
-- No member is ever required to pay for anything or buy materials out of pocket. Anyone who fronts money for an approved purchase is reimbursed.
-- Spending over set thresholds requires multiple officer approvals, and flight-critical hardware purchases also require Chief Safety Officer concurrence.
-
-Interested in sponsoring? Reach out to the President.
 
 ---
 
 ## Repository layout
 
 ```
-docs/              Vehicle baseline, parts, PCB design guide, recruitment, constitution, reviews, safety
+docs/              Vehicle baseline, subscale design, parts, PCB design guide, safety requirements, reviews
 hardware-lib/      Shared KiCad symbols, footprints, and 3D models
 manufacturing/     Welding and fab, composites, machining and CNC, assembly and QC
 mechanical/        Airframe, cockpit and ergonomics, propulsion and duct, landing gear
@@ -291,7 +255,6 @@ software/          Flight control, perception and cameras, DroneCAN firmware, gr
 fpga/              Safety monitor, companion computing, HIL rig
 flight-test/       Test plans, range logistics, flight data
 systems/           Requirements, interfaces, configuration management
-outreach/          Sponsorship, recruitment, media
 ```
 
 Most folders are empty placeholders and will fill in as each team starts work.
