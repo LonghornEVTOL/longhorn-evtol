@@ -249,7 +249,7 @@ Runs on the companion computer. Advisory only on the piloted vehicle: it informs
 
 ## Membership
 
-- Open to UT Austin students, faculty, and staff by **application and interview**, recruited every fall and spring. **No prior experience, specific major, or fee required.** Apply at [longhorn-evtol.vercel.app/apply](https://longhorn-evtol.vercel.app/apply).
+- Open to UT Austin students, faculty, and staff by **application and interview**, recruited every fall and spring. **No prior experience, specific major, or fee required.** Applications open at the start of each fall and spring semester on [the website](https://longhorn-evtol.vercel.app/#join).
 - Applicants are scored on three published criteria (interest, commitment, contribution) with the same rubric, and every applicant gets a written decision within 14 days after interviews close. See the [interview guide](docs/recruitment/interview-guide.md).
 - **General Members** are admitted applicants. Info sessions and outreach events stay open to everyone.
 - **Active Members** complete safety onboarding and attend three meetings or work sessions. They get team assignments, shop access, and a vote.
