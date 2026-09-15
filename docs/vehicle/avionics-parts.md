@@ -262,7 +262,7 @@ Low-side 100 µΩ shunt: 30 mV and 9 W at 300 A; candidates Vishay WSBE8518 or I
 
 ## 3. Safety monitor board
 
-Independent of the flight controller: own IMU, own isolated power and reset, reviewed in full at design review (Article X, Section 10).
+Independent of the flight controller: own IMU, own isolated power and reset, reviewed in full at design review ([safety requirement S7](../safety/vehicle-safety-requirements.md#s7-flight-critical-computing-architecture)).
 
 ### FPGA
 
@@ -442,7 +442,7 @@ Check what Texas Inventionworks and department labs already have before buying.
 
 ### Assembly and bring-up checklist (every board)
 
-1. Design review before ordering (Article X, Section 3 for anything that may fly).
+1. Design review before ordering ([safety requirement S2](../safety/vehicle-safety-requirements.md#s2-custom-hardware-qualification) for anything that may fly).
 2. Order boards with a steel stencil; inspect bare boards.
 3. Paste, place, reflow; inspect every leaded joint under the microscope.
 4. Continuity check between power rails and ground **before** first power.

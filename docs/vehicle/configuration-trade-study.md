@@ -116,7 +116,7 @@ Six of the baseline motors, one per arm.
 | Fewest motors to buy | Each unit hovers near 30 kgf, above its sweet spot, which means more heat and less margin |
 | | 4.6 m across |
 
-**Status: not recommended for a piloted vehicle.** Article X, Section 5 requires demonstrated motor-out response, and the hexacopter makes that the hardest to show. It is kept here because of its weight margin: it becomes worth reconsidering only if the weight limit becomes the problem everything else can't solve.
+**Status: not recommended for a piloted vehicle.** [Safety requirement S4](../safety/vehicle-safety-requirements.md#s4-conditions-before-any-piloted-flight) requires demonstrated motor-out response, and the hexacopter makes that the hardest to show. It is kept here because of its weight margin: it becomes worth reconsidering only if the weight limit becomes the problem everything else can't solve.
 
 ---
 
@@ -124,7 +124,7 @@ Six of the baseline motors, one per arm.
 
 | Option | Why |
 | --- | --- |
-| **Quadcopter, including ducted** | Losing any one motor loses the vehicle. It can't meet Article X's motor-out requirement without a separate backup lift system. |
+| **Quadcopter, including ducted** | Losing any one motor loses the vehicle. It can't meet the motor-out requirement ([safety requirement S4](../safety/vehicle-safety-requirements.md#s4-conditions-before-any-piloted-flight)) without a separate backup lift system. |
 | **Coaxial hexa with small props** (Y6-style, 3 arms × 2) | Three arms make thrust after a failure very lopsided; no weight or footprint advantage over the coaxial X8 |
 
 ---

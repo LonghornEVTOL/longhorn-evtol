@@ -20,7 +20,7 @@ An unmanned, roughly 1/3-scale copy of the full-scale vehicle, built to **mirror
 
 No person ever rides it. A **2.7 kg ballast** stands in for the pilot.
 
-Entry into Phase 1 flight follows Article X, Section 2: the VP of Engineering, the Chief Safety Officer, and the University Advisor approve in writing after a design review and hazard analysis.
+Phase 1 flight starts only after a design review and hazard analysis are approved in writing ([safety requirement S1](../safety/vehicle-safety-requirements.md#s1-development-phases)).
 
 ---
 
@@ -111,7 +111,7 @@ Motor alternatives: MN5008 KV400 (3,982 g on 17 in, but 17 in breaks the 1.1 D s
 | Holybro M10 GPS | GNSS and compass | 120 g listed, likely with mount | $43.99 ([Holybro](https://holybro.com/products/m10-gps)) |
 | Holybro SiK Telemetry V3 915 MHz | Telemetry | 23.5 g | $58.99 ([Holybro](https://holybro.com/products/sik-telemetry-radio-v3)) |
 | ExpressLRS receiver | RC link | ~5 g (unv) | ~$20 (unv) |
-| **Dronetag Beacon gen.2** Remote ID | FAA-accepted Declaration of Compliance RID000001121 (current means of compliance); own battery, so it keeps broadcasting if the packs brown out. The Holybro module is not on the FAA list ([approvals doc](../regulatory/subscale-flight-approvals.md#2-remote-id)) | 16 g (30 g with mount) | $149 ([Dronetag](https://shop.dronetag.com)) |
+| **Dronetag Beacon gen.2** Remote ID | FAA-accepted Declaration of Compliance RID000001121 (current means of compliance); own battery, so it keeps broadcasting if the packs brown out. The Holybro Remote ID module is not on the FAA list | 16 g (30 g with mount) | $149 ([Dronetag](https://shop.dronetag.com)) |
 | ARK Flow | Optical flow and distance | ~10 g (unv) | $250 ([ARK](https://arkelectron.com/product/ark-flow/)) |
 | iCEBreaker (safety monitor prototype) | iCE40UP5K | ~30 g (unv) | $79.95 |
 
@@ -214,7 +214,7 @@ Full scale for comparison: 2.19 / 1.92 / 1.65. **The demonstrator exceeds full-s
 
 ## Test plan
 
-Every powered test runs under a written procedure and a Test Readiness Review signed by the Chief Safety Officer (Article X, Section 4). These are the same test types planned for the full-scale vehicle.
+Every powered test runs under a written procedure and a signed Test Readiness Review ([safety requirement S3](../safety/vehicle-safety-requirements.md#s3-test-readiness-and-procedures)). These are the same test types planned for the full-scale vehicle.
 
 | Test | What it proves | Full-scale counterpart |
 | --- | --- | --- |
@@ -225,32 +225,22 @@ Every powered test runs under a written procedure and a Test Readiness Review si
 | Pack-out on the thrust stand | Remaining packs and ESCs carry the load | Pack-out requirement |
 | Restrained and tethered hover | Control loop stability, vibration, logging | Phase 2 tether campaign |
 | Free hover and tuning | Attitude and position control, estimator health | Full-scale tuning |
-| **Motor-out in flight** | Controlled hover and landing with one motor disabled | Article X, Section 5(d) motor-out demonstration |
+| **Motor-out in flight** | Controlled hover and landing with one motor disabled | Motor-out demonstration required before piloted flight ([safety requirement S4](../safety/vehicle-safety-requirements.md#s4-conditions-before-any-piloted-flight)) |
 | **Pack-out in flight** | Controlled landing with one pack switched off (two opposite rotors) | Pack-out requirement |
 | Safety monitor trip (on tether) | Heartbeat loss and limit exceedance cut power as designed | Safety monitor qualification |
 | Parachute deployment | Trigger and deployment at a safe height | Recovery system verification |
 | Endurance and thermal | Pack, ESC, and motor temperatures; flight time | Pack thermal test |
 | Perception flights | VIO and mapping accuracy vs GNSS and flight controller | Companion computer validation |
 
-**Test site:** open, off-campus, with written site permission, an exclusion zone, a safety observer, and fire suppression for lithium packs (Article X, Sections 6 and 7).
+**Test site:** open, off-campus, with written site permission, an exclusion zone, a safety observer, and fire suppression for lithium packs ([safety requirement S5](../safety/vehicle-safety-requirements.md#s5-test-operations-rules) and [safety requirement S6](../safety/vehicle-safety-requirements.md#s6-batteries)).
 
 **Thrust stand:** the Tyto Robotics Series 1585 bundle ($1,075, out of stock; 5 kgf, 55 A; [Tyto](https://www.tytorobotics.com/products/series-1580-test-stand-bundle)) covers **one rotor only**. A coaxial pair (~7–8 kgf, ~70 A) needs the **Tyto Flight Stand 15** (15 kgf, 150 A, supports dual-motor setups; price by quote; [Tyto](https://www.tytorobotics.com/pages/flight-stand-15)). Contact sales@tytorobotics.com about education pricing and a true coaxial fixture.
 
 ---
 
-## Regulatory and University checklist
+## Flight operations
 
-Full research, sources, and contacts: **[`subscale-flight-approvals.md`](../regulatory/subscale-flight-approvals.md)**.
-
-- [ ] **Part 107** operations with at least two certificated remote pilots (knowledge test ~$175 each, unv)
-- [ ] **Register** the demonstrator on FAADroneZone under Part 107 ($5) with the Remote ID serial number; mark the airframe
-- [ ] **Remote ID:** Dronetag Beacon gen.2 ($149, FAA-accepted Declaration of Compliance)
-- [ ] **UT Austin HOP 8-1070:** submit the EHS UAV Request Form (at least 2 weeks ahead; uavflight@austin.utexas.edu) with a faculty endorsement, site map, safety plan, and insurance
-- [ ] **Risk Management and Legal Affairs:** confirm University-sponsored status, required insurance, and whether the Texas academic imaging exemption applies
-- [ ] **Airspace:** UT main campus and Pickle Research Campus are Class G at or below 400 ft (no LAANC); avoid the DKR stadium TFR on game days; check B4UFLY and NOTAMs before every flight
-- [ ] **Texas Gov. Code 423.0045:** no flights over substations, water plants, rail yards, telecom sites, or other critical infrastructure (no academic exemption)
-- [ ] **Test site:** Pickle Research Campus (UT approval) or an FAA-Recognized Identification Area club field such as Austin Radio Control Association's Lester Field (club permission)
-- [ ] **Lithium batteries:** charging and storage approved by UT Environmental Health and Safety (Article X, Section 7)
+The demonstrator flies under **FAA Part 107**: registered aircraft, a Remote ID broadcast module with an FAA-accepted Declaration of Compliance, certificated remote pilots, visual line of sight, at or below 400 ft, at approved sites away from people and critical infrastructure.
 
 ---
 
@@ -298,7 +288,7 @@ Prices checked 14 September 2026; EUR at 1.1598 USD.
 | 4 | Pack switch board | Preliminary design done ([doc](../hardware/pack-switch-board.md)) | Verify prices and ESC capacitance; draw in KiCad; design review |
 | 5 | Remote ID | Dronetag Beacon gen.2 selected | Buy once the registration plan is set |
 | 6 | Thrust stand | 1585 is single-rotor only | Get a Flight Stand 15 quote with a coaxial fixture |
-| 7 | UT approvals and site | Process identified (HOP 8-1070) | Contact uavflight@austin.utexas.edu; see the [approvals checklist](../regulatory/subscale-flight-approvals.md#action-checklist) |
+| 7 | Test site and flight approvals | In progress | Confirm a test site and complete FAA and university approvals |
 | 8 | Props | NS18x6 in stock, 17 g per blade | Confirm thrust matches T-Motor's P18x6.1 data on the thrust stand |
 
 ## Sources
@@ -309,5 +299,5 @@ Prices checked 14 September 2026; EUR at 1.1598 USD.
 - Flight stack and power: [Pixhawk 6X](https://holybro.com/products/pixhawk-6x), [Pixhawk 6C](https://holybro.com/products/pixhawk-6c), [M10 GPS](https://holybro.com/products/m10-gps), [SiK V3](https://holybro.com/products/sik-telemetry-radio-v3), [Holybro power modules and BECs](https://holybro.com/collections/power-modules-pdbs), [Holybro Remote ID](https://holybro.com/products/remote-id)
 - Battery: [Molicel P50B](https://www.molicel.com/inr-21700-p50b/)
 - Recovery and test: [Fruity Chutes Skycat](https://shop.fruitychutes.com/collections/skycat-launchers-2-5-kg-to-20-kg), [Drone Rescue Systems DRS-15](https://dronerescue.com/products/drs-15), [Tyto Series 1585 bundle](https://www.tytorobotics.com/products/series-1580-test-stand-bundle), [Tyto Flight Stand 15](https://www.tytorobotics.com/pages/flight-stand-15)
-- Remote ID and approvals: [Dronetag](https://shop.dronetag.com), [UT HOP 8-1070](https://secure2.compliancebridge.com/utexas/public/getdoc.php?file=8-1070), [UT EHS UAV page](https://ehs.utexas.edu/working-safely/equipment-safety/unmanned-aerial-vehicles)
-- Regulatory: [49 USC 44809](https://www.law.cornell.edu/uscode/text/49/44809), [14 CFR Part 89](https://www.ecfr.gov/current/title-14/part-89), [UT University Policy Office](https://compliance.utexas.edu/university-policy-office/)
+- Remote ID: [Dronetag](https://shop.dronetag.com)
+- Regulatory: [14 CFR Part 107](https://www.ecfr.gov/current/title-14/part-107), [14 CFR Part 89](https://www.ecfr.gov/current/title-14/part-89)

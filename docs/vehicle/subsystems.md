@@ -8,7 +8,7 @@ Last updated: 14 September 2026
 
 ## How to read this
 
-**Build vs buy.** Article X, Section 3 decides this for anything flight-critical:
+**Build vs buy.** [Safety requirement S2](../safety/vehicle-safety-requirements.md#s2-custom-hardware-qualification) decides this for anything flight-critical:
 
 | Tag | Meaning |
 | --- | --- |
@@ -18,7 +18,7 @@ Last updated: 14 September 2026
 
 **Scope** is a rough size for a project: **S** is a few weeks for a small group, **M** is about a semester, **L** is multiple semesters.
 
-**Owner** abbreviations: MECH Mechanical Design, MFG Manufacturing and Operations, ELEC Electrical and Power, SW Software and Avionics, FT Flight Test and Range, SYS Systems Engineering, BIZ Business and Outreach.
+**Owner** abbreviations: MECH Mechanical Design, MFG Manufacturing and Operations, ELEC Electrical and Power, SW Software and Avionics, FT Flight Test and Range, SYS Systems Engineering.
 
 ---
 
@@ -49,7 +49,7 @@ Last updated: 14 September 2026
 └──────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-Two CAN buses (primary and backup) carry flight-critical traffic. Companion computing gets telemetry but never sits between the flight controller and the motors (Article X, Section 10).
+Two CAN buses (primary and backup) carry flight-critical traffic. Companion computing gets telemetry but never sits between the flight controller and the motors ([safety requirement S7](../safety/vehicle-safety-requirements.md#s7-flight-critical-computing-architecture)).
 
 ---
 
@@ -102,7 +102,7 @@ Two CAN buses (primary and backup) carry flight-critical traffic. Companion comp
 | BMS firmware | State of charge, balancing, temperature limits, fault reporting over CAN | Build | M | ELEC, SW |
 | Pack thermal | Temperature sensors, downwash cooling ducts, thermal test at hover current | Build | M | ELEC, MECH |
 | Charger and charging station | Balance charging to UT EHS rules, fire-safe storage | Buy | S | ELEC |
-| Pack log | Cycle counts, capacity checks, incidents (Article X, Section 7) | Build | S | SW |
+| Pack log | Cycle counts, capacity checks, incidents ([safety requirement S6](../safety/vehicle-safety-requirements.md#s6-batteries)) | Build | S | SW |
 | Battery test bench | Programmable load or cycler for capacity and thermal tests | Buy/Build | M | ELEC, FT |
 
 ---
@@ -185,7 +185,7 @@ These run first on the subscale drone and HIL rig, then on the unmanned article.
 
 ## 7. Perception and cameras
 
-All of this runs on the companion computer and is **advisory only** on the piloted vehicle: it can inform the pilot, the ground crew, and the logs, but it has no path to motor command (Article X, Section 10). On the unmanned test articles, it may be tested as an aiding input to navigation under a test procedure.
+All of this runs on the companion computer and is **advisory only** on the piloted vehicle: it can inform the pilot, the ground crew, and the logs, but it has no path to motor command ([safety requirement S7](../safety/vehicle-safety-requirements.md#s7-flight-critical-computing-architecture)). On the unmanned test articles, it may be tested as an aiding input to navigation under a test procedure.
 
 | Item | What it involves | Scope | Owner |
 | --- | --- | --- | --- |
@@ -229,7 +229,7 @@ All of this runs on the companion computer and is **advisory only** on the pilot
 | Pilot communications | Helmet intercom with the ground crew | S | FT |
 | Ingress and egress | Getting in and out quickly, including emergency exit | S | MECH |
 | Pilot training simulator | Flight simulator with the real stick and display, driven by the vehicle model | M | SW |
-| Pilot training and currency program | Required by Article X, Section 5(f) | M | FT |
+| Pilot training and currency program | Required by [safety requirement S4](../safety/vehicle-safety-requirements.md#s4-conditions-before-any-piloted-flight) | M | FT |
 
 ---
 
@@ -282,8 +282,7 @@ All of this runs on the companion computer and is **advisory only** on the pilot
 | Configuration trade study | See [configuration-trade-study.md](configuration-trade-study.md) | M | SYS |
 | Part 103 conformance | Weight, speed, and operations evidence; FAA question on parachute exclusion | M | SYS |
 | Design reviews | PDR, CDR, and Test Readiness Reviews | L | SYS |
-| Insurance and site permissions | Coverage and written site permissions (Article X, Section 5) | M | BIZ, FT |
-| Sponsorship and budget | Funding for the roughly $20,000 to $22,000 hardware estimate | L | BIZ |
+| Test site permissions | Written permission for each test site | M | FT |
 
 ---
 
@@ -314,4 +313,4 @@ Every board the club plans to design, in rough order of when it's needed:
 | Companion carrier board | 5 | L | Advisory only |
 | Custom ESC | 2 | L | Not this program cycle |
 
-"After qualification" means the board is allowed to replace its commercial counterpart only after it clears Article X, Section 3 and logs run time on the unmanned article.
+"After qualification" means the board is allowed to replace its commercial counterpart only after it clears [safety requirement S2](../safety/vehicle-safety-requirements.md#s2-custom-hardware-qualification) and logs run time on the unmanned article.

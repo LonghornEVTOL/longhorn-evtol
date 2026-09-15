@@ -71,7 +71,7 @@ Many "200 A" 24S ESCs are only 85 to 100 A continuous (T-Motor V200A, Hobbywing 
 
 ## 4. Custom ESC: designing our own on existing chips
 
-We can build our own ESC PCB. It does **not** save mass (≈ 350 to 500 g, same as COTS), and it puts the highest-energy failure mode on student hardware, so it follows Article X, Section 3: design review, current-limited bring-up, qualification at or above operating conditions, and logged run time on the unmanned article. Path: **dyno → subscale → full-scale unmanned.** Not in the piloted flight path this program cycle.
+We can build our own ESC PCB. It does **not** save mass (≈ 350 to 500 g, same as COTS), and it puts the highest-energy failure mode on student hardware, so it follows [safety requirement S2](../safety/vehicle-safety-requirements.md#s2-custom-hardware-qualification): design review, current-limited bring-up, qualification at or above operating conditions, and logged run time on the unmanned article. Path: **dyno → subscale → full-scale unmanned.** Not in the piloted flight path this program cycle.
 
 Reference design for an 18S, 150 A continuous / 250 A peak FOC inverter:
 
@@ -130,7 +130,7 @@ The bus is above 60 V DC and treated as hazardous voltage: hardwired E-stop open
 
 ---
 
-## 6. Avionics and computing (Article X, Section 10)
+## 6. Avionics and computing (safety requirement S7)
 
 Commercial parts below fly on the piloted vehicle. The club's own boards and every chip on them are in [`avionics-parts.md`](avionics-parts.md).
 

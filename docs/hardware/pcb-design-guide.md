@@ -78,7 +78,7 @@ These follow from the assembly ratings in the parts doc.
 
 ## Design review checklist
 
-Every board gets a review before ordering. Flight-critical boards follow Article X, Section 3.
+Every board gets a review before ordering. Flight-critical boards follow [safety requirement S2](../safety/vehicle-safety-requirements.md#s2-custom-hardware-qualification).
 
 **Schematic**
 - [ ] Electrical rules check (ERC) passes with no unexplained exceptions
