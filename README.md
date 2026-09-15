@@ -4,7 +4,7 @@ A student organization at The University of Texas at Austin that designs, builds
 
 Our goal is a **single-occupant, seated multirotor** ("the Vehicle") capable of safe, low-altitude piloted flight.
 
-**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app)
+**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app) · **[Teams and projects](docs/teams.md)** · **[1/3-scale design](docs/vehicle/subscale-demonstrator.md)** · **[Safety requirements](docs/safety/vehicle-safety-requirements.md)**
 
 ---
 
@@ -109,143 +109,27 @@ Putting a person on a multirotor deserves more scrutiny than a normal project, s
 
 ---
 
-## Team structure
+## Teams and projects
+
+**Every team, sub-team, and project, with sizes and folders: [`docs/teams.md`](docs/teams.md).**
 
 | Team | Sub-teams |
 | --- | --- |
-| **Manufacturing and Operations** | Welding and metal fab · Composites and layup · Machining and CNC (Texas Inventionworks) · Assembly and QC |
-| **Mechanical Design** | Airframe and chassis · Seating, ergonomics, and cockpit · Propulsion and duct · Landing gear and suspension |
-| **Electrical and Power** | PDU and wiring harness · ESC and motor integration · Avionics and power architecture · Safety interlocks and E-stop · Custom PCB and hardware design |
-| **Software and Avionics** | Flight control (GNC) · Sensor fusion and telemetry · Cockpit interface and ground station · Fault management and failsafes · Hardware acceleration and FPGA |
-| **Flight Test and Range Operations** | Test planning · Range and logistics · Data and instrumentation |
-| **Systems Engineering and Integration** | Requirements and interfaces · Configuration management |
+| [Mechanical Design](docs/teams.md#mechanical-design) | Airframe and Chassis · Seating, Ergonomics, and Cockpit · Propulsion and Duct · Landing Gear and Suspension |
+| [Electrical and Power](docs/teams.md#electrical-and-power) | Power Distribution and Wiring Harness · ESC and Motor Integration · Avionics and Power Architecture · Safety Interlocks and E-Stop · Custom PCB and Hardware Design |
+| [Software and Avionics](docs/teams.md#software-and-avionics) | Flight Control · Sensor Fusion and Telemetry · Cockpit Interface and Ground Station · Fault Management and Failsafes · Hardware Acceleration and FPGA |
+| [Manufacturing and Operations](docs/teams.md#manufacturing-and-operations) | Welding and Metal Fabrication · Composites and Layup · Machining and CNC · Assembly and Quality Control |
+| [Flight Test and Range Operations](docs/teams.md#flight-test-and-range-operations) | Test Planning · Range and Logistics · Data and Instrumentation |
+| [Systems Engineering and Integration](docs/teams.md#systems-engineering-and-integration) | Requirements and Interfaces · Configuration Management |
 
-### FPGA scope
-
-FPGA work is deliberately narrow. Three workstreams only:
-
-1. Independent safety monitor
-2. Companion computing
-3. Hardware-in-the-loop (HIL) rig
-
-Sensor fusion acceleration and motor command generation are out of scope. A microcontroller handles those, and control-loop latency is dominated by IMU group delay, ESC update rate, and propeller inertia, not mixer compute.
-
-ASICs are a possible future direction, not a commitment. They may never sit in the stabilization, motor command, safety monitor, or recovery path of a piloted vehicle.
-
----
-
-## Projects
-
-Highlights by team, sized from a weekend to multiple semesters. The **complete list** of everything the vehicle needs (every subsystem, custom PCB, software module, and test rig, with build-or-buy and owners) is in [`docs/vehicle/subsystems.md`](docs/vehicle/subsystems.md).
-
-**Electrical and Power**
-
-| Project | What it involves |
-| --- | --- |
-| Buck converter board | Design, lay out, and bring up a 6S (25 V) to 5 V, 3 A converter that powers the subscale avionics |
-| Current and voltage sense board | Shunt plus current-monitor IC board that logs motor current on the thrust stand |
-| Subscale power distribution board | High-current PDB with fusing and a voltage tap for the 6S demonstrator |
-| Battery management system | Per-pack firmware on the BMS board: state of charge, cell balancing, temperature limits, fault reporting to the flight controller over CAN, and automatic pack logging ([safety requirement S6](docs/safety/vehicle-safety-requirements.md#s6-batteries)) |
-| Power distribution unit | Full-scale bus bars, fuses, contactors, and per-branch current sensing that route pack power to the ESCs |
-| Vehicle wiring harness | HV, low-voltage, and CAN wiring between packs, ESCs, flight controller, safety monitor, and cockpit: wire gauges, connectors, routing through folding arms, and harness drawings |
-| Pre-charge and contactor driver | HV bus pre-charge, contactor coil driver, and interlock for the full-scale packs |
-| Hardwired E-stop loop | Contactor interlock chain that opens every pack with no software in the path |
-| 18S BMS board | Per-pack cell voltage and temperature measurement hardware on an ADI ADBMS1818 with isoSPI |
-| Low-voltage buck board | 75 V to 12 V avionics supply on an ADI LTC7801, as a redundant alternative to COTS modules |
-| Custom ESC | 18S, 150 A FOC inverter on Infineon 150 V OptiMOS FETs, a 6ED2742S01Q gate driver, ACS772 current sensing, and VESC firmware. Dyno and subscale first, then the unmanned article only. |
-
-**Avionics PCBs**
-
-Designed in KiCad and hand-assembled by the club ([PCB design guide](docs/hardware/pcb-design-guide.md)). Exact chips, specs, prices, assembly difficulty, and a funding total are in [`docs/vehicle/avionics-parts.md`](docs/vehicle/avionics-parts.md). Custom boards fly first on the subscale drone and HIL rig, then the unmanned article. Commercial parts (Pixhawk 6X Pro, Here4 GNSS) stay on the piloted vehicle until a custom board passes [qualification](docs/safety/vehicle-safety-requirements.md#s2-custom-hardware-qualification).
-
-| Project | What it involves |
-| --- | --- |
-| Flight controller board | STM32H753 running PX4 or ArduPilot; ICM-45686, BMI088, and IIM-42653 IMUs; BMP390 and MS5611 barometers; MMC5983MA magnetometer; dual CAN FD, FRAM and microSD logging, redundant power |
-| GNSS and compass node | u-blox ZED-F9P-04B plus IIS2MDC or RM3100 magnetometer on a DroneCAN node |
-| Barometer node | Two Bosch BMP581 barometers in a shielded, vented enclosure on DroneCAN |
-| Optical flow node | PixArt PAA3905 flow sensor and Broadcom AFBR-S50LV85D distance sensor on DroneCAN |
-| IMU breakout and vibration logger | Measure frame vibration at candidate mounting spots |
-| Power monitor node | Isolated per-pack voltage and current on DroneCAN |
-| Pilot controls interface | Hall-effect stick and throttle inputs with redundant ADCs to CAN |
-| Cockpit display board | Battery, time remaining, altitude, and warnings for the pilot |
-| Safety monitor board | Flight unit on an IGLOO2 M2GL010 FPGA with a Murata SCH16T IMU, isolated power, window watchdog, contactor and parachute drivers |
-| Companion carrier board | Carrier for the Jetson Orin NX with MIPI camera inputs, Ethernet, and CAN |
-| LV distribution board | 12 V and 5 V rails with eFuses and per-load monitoring |
-| CAN bus tools | USB-to-CAN adapter, termination, and breakout boards for bench work |
-
-**Software and Avionics**
-
-| Project | What it involves |
-| --- | --- |
-| Thrust stand data logger | Python tool that records load cell, RPM, current, and voltage and plots thrust and efficiency curves |
-| Ground station dashboard | Live MAVLink telemetry display for the subscale demonstrator |
-| Single-axis PID rig | Tune attitude control on a one-degree-of-freedom test bench |
-| Coaxial X8 simulation | Software-in-the-loop model of the vehicle, including motor-out and pack-out cases |
-| Failsafe logic | Geofence, loss of link, and motor-out compensation on the flight controller |
-| State estimation tuning | EKF fusing IMU, barometer, GNSS, magnetometer, LiDAR, and optical flow |
-| Pilot control mapping and envelope protection | Fly-by-wire stick mapping, altitude hold, and tilt, descent rate, and altitude limits |
-| DroneCAN node firmware | Shared firmware base for every custom CAN board |
-| Pilot training simulator | Flight simulator using the real stick and display, driven by the vehicle model |
-
-**Perception and Cameras**
-
-Runs on the companion computer. Advisory only on the piloted vehicle: it informs the pilot, ground crew, and logs, with no path to motor command.
-
-| Project | What it involves |
-| --- | --- |
-| Camera integration | Global-shutter downward, forward, and cockpit cameras, hardware-synced to the IMU |
-| Optical flow | Velocity over ground from the downward camera and flow node |
-| Visual-inertial odometry | Position and velocity from camera plus IMU (OpenVINS or VINS-Fusion) |
-| SLAM and mapping | Map of the test site for position logging and site surveys (ORB-SLAM3 class) |
-| Obstacle detection | Scanning LiDAR or depth camera warnings to the pilot |
-| Video downlink | Live forward and pilot camera feeds to the ground station |
-| FPGA image preprocessing | Camera capture and feature detection on an AMD Kria KV260 kit |
-| Dataset capture | Synchronized camera, IMU, and GNSS logs from subscale flights |
-
-**Hardware Acceleration and FPGA**
-
-| Project | What it involves |
-| --- | --- |
-| Heartbeat watchdog | First RTL on a small FPGA dev board: watch a heartbeat signal and trip an output when it stops |
-| Safety monitor RTL | Heartbeat, attitude, rate, and power limit checks with authority to cut power, plus testbenches |
-| Hardware-in-the-loop rig | Run flight software and the safety monitor against a simulated vehicle |
-| FPGA image preprocessing | See Perception and Cameras (companion computing workstream) |
-
-**Mechanical Design and Manufacturing**
-
-| Project | What it involves |
-| --- | --- |
-| Motor mount bracket | CAD, hand calcs, FEA, then machine it at Texas Inventionworks |
-| Thrust stand frame | Rigid stand with a load cell rated past 80 kgf for single and coaxial motor testing |
-| Subscale airframe | Design and build the 1/3 scale coaxial X8 frame |
-| Composite arm coupons | Lay up carbon tube samples and test them to failure to set arm design allowables |
-| Landing skid drop test | Size skids for hard landing loads and verify with a drop rig |
-| Weld coupons | Practice and test tube joints before any airframe welding |
-| Folding arm joint and lock | Hinge that locks rigid in flight, with a lock sensor the flight controller checks before arming |
-| Battery bays | Four bays with fire barriers, retention, cooling air paths, and quick removal |
-| Parachute mount | Hard points and load path sized for deployment shock |
-| Seat, restraint, and pilot controls | Carbon seat, harness mounts sized for crash loads, and stick placement |
-
-**Flight Test and Systems**
-
-| Project | What it involves |
-| --- | --- |
-| Motor and propeller characterization | Written test procedure, then thrust stand runs that replace the catalog numbers in the baseline |
-| Motor-out thermal test | Hold one X13 G2 at 40 to 45 kgf for 120 s and log ESC and motor temperature. This is the first open risk in the baseline. |
-| Cell pulse resistance test | Measure 10 s pulse resistance of P50B, P60B, and 40PL cells to choose the pack cell |
-| Mass budget tracker | Keep the 254 lb budget current as parts are weighed and selected |
-| Interface control documents | Define power, data, and mechanical interfaces between teams |
-| Test site survey | Find and document off-campus sites for subscale and tethered testing |
-| Tether test rig | Tether, load cell, anchor, and quick release for Phase 2 |
-| Hazard analysis | Functional hazard assessment and FMEA, kept current as the design changes |
-| Configuration trade study | Coaxial X8 vs flat octo vs coaxial X12, settled by thrust stand and subscale tests |
+Current projects range from a 6S buck converter and a thrust stand data logger to the [pack switch board](docs/hardware/pack-switch-board.md), the club flight controller, the FPGA safety monitor, and visual-inertial odometry. Boards are designed in KiCad and hand-assembled ([PCB design guide](docs/hardware/pcb-design-guide.md), [avionics parts](docs/vehicle/avionics-parts.md)).
 
 ---
 
 ## Repository layout
 
 ```
-docs/              Vehicle baseline, subscale design, parts, PCB design guide, safety requirements, reviews
+docs/              Teams and projects, vehicle baseline, subscale design, parts, PCB guide, safety requirements
 hardware-lib/      Shared KiCad symbols, footprints, and 3D models
 manufacturing/     Welding and fab, composites, machining and CNC, assembly and QC
 mechanical/        Airframe, cockpit and ergonomics, propulsion and duct, landing gear
