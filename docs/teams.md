@@ -1,6 +1,6 @@
 # Teams and Projects
 
-Every Longhorn eVTOL engineering team, its sub-teams, and the projects each sub-team owns. Projects are sized **S** (a few weeks for a small group), **M** (about a semester), or **L** (multiple semesters), and tagged by the vehicle they serve:
+Every Longhorn eVTOL engineering team, its sub-teams, and the projects each sub-team owns. Every sub-team has smaller projects that are good ways to learn the tools and the vehicle, alongside the larger design work. Projects are sized **S** (a few weeks for a small group), **M** (about a semester), or **L** (multiple semesters), and tagged by the vehicle they serve:
 
 | Tag | Meaning |
 | --- | --- |
@@ -76,6 +76,8 @@ Battery packs, bus bars, contactors, and wiring between systems.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| Connector and crimp standard | Crimp, solder, and heat-shrink AS150U, XT60, and JST-GH connections; pull-test samples and write the standard the harness builds follow | S | Both | [`electrical/pdu-harness/wiring-harness`](../electrical/pdu-harness/wiring-harness) |
+| Harness continuity tester | Simple board or jig that checks every pin of a harness for opens, shorts, and swapped wires before it goes on the vehicle | S | Both | [`electrical/pdu-harness/wiring-harness`](../electrical/pdu-harness/wiring-harness) |
 | **Pack switch board** | Club's first power board: back-to-back MOSFET switch, pre-charge, 80 A fuse, telemetry, E-stop and safety monitor enable ([design](hardware/pack-switch-board.md)) | M | Subscale | [`electrical/pcb/pack-switch-board`](../electrical/pcb/pack-switch-board) |
 | Subscale power distribution board | Fused 6S distribution with a voltage tap | S | Subscale | [`electrical/pcb/subscale-pdb`](../electrical/pcb/subscale-pdb) |
 | Battery pack design | Cell holders, nickel-copper bus strips, compression, and enclosure for Molicel P50B packs | L | Both | [`electrical/pdu-harness`](../electrical/pdu-harness) |
@@ -91,6 +93,8 @@ Motor controllers, signal wiring, and motor telemetry.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| ESC bench test setup | Current-limited supply, servo tester, and a small motor for checking ESC direction, calibration, and DroneCAN telemetry before installation | S | Subscale | [`electrical/esc-motor`](../electrical/esc-motor) |
+| Motor constant measurement | Measure Kv, winding resistance, and no-load current of each MN5008 and record them against the datasheet | S | Subscale | [`electrical/esc-motor`](../electrical/esc-motor) |
 | Subscale propulsion integration | MN5008 motors with Zubax Myxa ESCs on DroneCAN, pack current caps, CW/CCW mapping | M | Subscale | [`electrical/esc-motor`](../electrical/esc-motor) |
 | Full-scale propulsion integration | Hobbywing X13 G2 units on DroneCAN, telemetry, thermal limits | M | Full scale | [`electrical/esc-motor`](../electrical/esc-motor) |
 | Current and voltage sense board | Motor current and voltage logging on the thrust stand | S | Both | [`electrical/pcb/current-sense`](../electrical/pcb/current-sense) |
@@ -102,6 +106,7 @@ Low-voltage power for flight computers, sensors, and the cockpit.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| Avionics power measurement | Measure the real current draw of every avionics part (flight controller, GNSS, radios, Jetson, cameras) with a current monitor and feed the numbers into the power budget | S | Subscale | [`electrical/power-architecture`](../electrical/power-architecture) |
 | Buck converter board | Design, lay out, and bring up a 6S to 5 V, 3 A converter for the subscale avionics | S | Subscale | [`electrical/pcb/buck-converter`](../electrical/pcb/buck-converter) |
 | Low-voltage buck board | 75 V to 12 V avionics supply on an LTC7801, redundant with commercial modules | M | Full scale | [`electrical/pcb/lv-buck`](../electrical/pcb/lv-buck) |
 | Redundant avionics power | Two converters fed from different packs, ORed with ideal diodes | M | Both | [`electrical/power-architecture`](../electrical/power-architecture) |
@@ -114,6 +119,8 @@ Kill switches, emergency disconnects, and parachute triggers.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| E-stop test box | Handheld box with a mushroom E-stop, loop connector, and indicator LED used on every bench and thrust stand test | S | Both | [`electrical/safety-interlocks`](../electrical/safety-interlocks) |
+| Arming status light | Bright LED indicator on the vehicle showing disarmed, armed, and fault states from the E-stop loop and flight controller | S | Subscale | [`electrical/safety-interlocks`](../electrical/safety-interlocks) |
 | Hardwired E-stop loop | Pilot and ground E-stops open every pack with no software in the path | M | Both | [`electrical/safety-interlocks`](../electrical/safety-interlocks) |
 | Pre-charge and contactor driver | Pre-charge sequencing, coil drivers, and weld detection for each full-scale pack | M | Full scale | [`electrical/safety-interlocks`](../electrical/safety-interlocks) |
 | Parachute trigger circuit | Arm/safe switch, dual firing channels, continuity check | M | Both | [`electrical/safety-interlocks`](../electrical/safety-interlocks) |
@@ -126,6 +133,8 @@ Schematics, KiCad layout, assembly, and bring-up of club boards. Commercial part
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| Footprint verification | Print new KiCad footprints at 1:1, check every part against its land pattern, and sign off entries in the club library | S | Both | [`hardware-lib`](../hardware-lib) |
+| Sensor breakout boards | Small breakouts for the BMP581 barometer and ICM-42688-P IMU to prove footprints, assembly, and driver code before the real boards | S | Both | [`avionics-pcb/barometer-node`](../avionics-pcb/barometer-node) |
 | Shared KiCad library | Club symbols, footprints, and 3D models with manufacturer part numbers | S | Both | [`hardware-lib`](../hardware-lib) |
 | IMU vibration logger | Measure frame vibration at candidate mounting spots | S | Both | [`avionics-pcb/imu-vibration-logger`](../avionics-pcb/imu-vibration-logger) |
 | CAN bus tools | USB-to-CAN adapter, termination, and breakout boards for bench work | S | Both | [`avionics-pcb/can-tools`](../avionics-pcb/can-tools) |
@@ -151,6 +160,8 @@ Guidance, navigation, control loops, and tuning.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| Simulation setup guide | Get PX4 or ArduPilot software-in-the-loop running with the coaxial X8 frame and write the setup guide the whole team uses | S | Both | [`software/flight-control`](../software/flight-control) |
+| PID tuning notebook | Python simulation of a single-axis PID loop with motor lag and sensor noise, showing how gains change overshoot and settling | S | Both | [`software/flight-control`](../software/flight-control) |
 | Coaxial X8 simulation | Software-in-the-loop model covering motor-out and pack-out cases | M | Both | [`software/flight-control`](../software/flight-control) |
 | Autopilot setup | PX4 vs ArduPilot choice, coaxial X8 mixer, frame parameters | M | Both | [`software/flight-control`](../software/flight-control) |
 | Single-axis PID rig | Tune attitude control on a one-degree-of-freedom bench | S | Subscale | [`software/flight-control`](../software/flight-control) |
@@ -164,6 +175,9 @@ State estimation from IMU, GNSS, barometer, and cameras, plus telemetry.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| IMU vibration plots | Script that reads vibration logger files and produces spectrum plots so Mechanical can compare mounting spots | S | Both | [`software/sensor-fusion-telemetry`](../software/sensor-fusion-telemetry) |
+| Barometer noise study | Log both barometers on the bench and in prop wash, then quantify noise and drift to set estimator parameters | S | Subscale | [`software/sensor-fusion-telemetry`](../software/sensor-fusion-telemetry) |
+| Complementary filter demo | Estimate attitude from logged IMU data with a complementary filter and compare it with the flight controller estimate | S | Both | [`software/sensor-fusion-telemetry`](../software/sensor-fusion-telemetry) |
 | Thrust stand data logger | Record load cell, RPM, current, and voltage, then plot thrust and efficiency curves | S | Both | [`software/thrust-stand-logger`](../software/thrust-stand-logger) |
 | State estimation tuning | EKF fusing IMU, barometer, GNSS, magnetometer, LiDAR, and optical flow | M | Both | [`software/flight-control/state-estimation`](../software/flight-control/state-estimation) |
 | Vibration analysis | IMU spectrum logs to tune filters and mounts | S | Both | [`software/sensor-fusion-telemetry`](../software/sensor-fusion-telemetry) |
@@ -180,6 +194,8 @@ Pilot display and ground station software.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| Flight time remaining estimator | Predict remaining hover time from pack voltage and current logs, validated against thrust stand and flight data | S | Both | [`software/ground-station`](../software/ground-station) |
+| Digital pre-flight checklist | Small app for running and recording pre-flight and arming checklists, saved with each test log | S | Both | [`software/ground-station`](../software/ground-station) |
 | Ground station dashboard | Live MAVLink telemetry with pack, motor, and temperature limits | M | Both | [`software/ground-station`](../software/ground-station) |
 | Video downlink | Live forward and pilot camera feeds to the ground station | M | Both | [`software/perception/video-downlink`](../software/perception/video-downlink) |
 | Obstacle warnings | Scanning LiDAR or depth camera warnings to the pilot, advisory only | L | Both | [`software/perception/obstacle-detection`](../software/perception/obstacle-detection) |
@@ -192,6 +208,8 @@ Motor-out handling, recovery logic, and geofencing.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| Flight log parser | Script that pulls motor outputs, battery data, and warnings out of PX4 or ArduPilot logs into tables and plots; the first piece of the log pipeline | S | Both | [`software/fault-management`](../software/fault-management) |
+| Failsafe simulation tests | Scripts that trigger link loss, GNSS loss, and low battery in simulation and record how the vehicle responds | S | Both | [`software/fault-management`](../software/fault-management) |
 | Failsafe logic | Motor out, pack out, link loss, GNSS loss, and low battery, each ending in a controlled landing | L | Both | [`software/fault-management`](../software/fault-management) |
 | Motor failure detection | Detect a failed motor from ESC current and RPM telemetry | M | Both | [`software/fault-management`](../software/fault-management) |
 | Arming logic | Arm locks, key switch, and health checks required before arming | M | Both | [`software/fault-management`](../software/fault-management) |
@@ -203,6 +221,8 @@ Safety monitor, hardware-in-the-loop rig, and camera processing on FPGAs. Delibe
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| FPGA bring-up tutorials | Blink, UART, and a simple state machine on the iCEBreaker with open-source tools, written up as the path into safety monitor work | S | Subscale | [`fpga/heartbeat-watchdog`](../fpga/heartbeat-watchdog) |
+| PWM pulse decoder | Verilog module and testbench that measures RC and servo pulse widths, reused as a safety monitor input | S | Both | [`fpga/safety-monitor`](../fpga/safety-monitor) |
 | Heartbeat watchdog | First RTL on a small FPGA board: trip an output when a heartbeat stops | S | Subscale | [`fpga/heartbeat-watchdog`](../fpga/heartbeat-watchdog) |
 | Safety monitor RTL | Heartbeat, attitude, rate, and power limit checks with authority to cut power and fire the parachute, plus testbenches | L | Both | [`fpga/safety-monitor`](../fpga/safety-monitor) |
 | Hardware-in-the-loop rig | Run flight software and the safety monitor against a simulated vehicle | L | Both | [`fpga/hil-rig`](../fpga/hil-rig) |
@@ -238,6 +258,7 @@ Mills, lathes, and CNC at Texas Inventionworks.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| 3D-printed mounts and clips | Printed camera mounts, cable clips, and sensor brackets for the demonstrator, iterated from fit checks | S | Subscale | [`manufacturing/machining-cnc`](../manufacturing/machining-cnc) |
 | Subscale frame parts | Cut carbon plates, arm clamps, and motor mounts for the demonstrator | S | Subscale | [`manufacturing/machining-cnc`](../manufacturing/machining-cnc) |
 | Thrust stand frame | Rigid stand with a load cell rated past 80 kgf for single and coaxial testing | M | Both | [`mechanical/thrust-stand`](../mechanical/thrust-stand) |
 
@@ -286,6 +307,7 @@ Sensors on test stands and vehicles, data recording, and analysis.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| Thrust stand calibration | Calibrate the load cell and current sensors with known weights and a reference meter, and document the procedure | S | Both | [`flight-test/data`](../flight-test/data) |
 | Motor and prop characterization | Replace catalog numbers with thrust stand data, single and coaxial | S | Both | [`flight-test/data`](../flight-test/data) |
 | Cell pulse resistance test | Compare candidate 21700 cells under 10 s pulses to pick the pack cell | S | Both | [`flight-test/data`](../flight-test/data) |
 | Parachute deployment study | Minimum safe deployment height from a hover, which sets the flight envelope | M | Both | [`flight-test/data`](../flight-test/data) |
@@ -304,6 +326,8 @@ Requirements, mass and power budgets, and interface documents.
 
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
+| Weigh-in log | Weigh every part as it arrives and record it against the mass budget estimate | S | Both | [`systems/mass-budget`](../systems/mass-budget) |
+| Part stock checker | Script that checks distributor stock and price for every part in the BOMs and flags shortages early | S | Both | [`systems/requirements`](../systems/requirements) |
 | Mass budget tracker | Keep the 254 lb budget (and the subscale budget) current as parts are weighed and chosen | S | Both | [`systems/mass-budget`](../systems/mass-budget) |
 | Requirements | Vehicle and subsystem requirements with rationale | M | Both | [`systems/requirements`](../systems/requirements) |
 | Interface control documents | Mechanical, power, data, and CAN message definitions between teams | M | Both | [`systems/interfaces`](../systems/interfaces) |
