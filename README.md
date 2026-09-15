@@ -94,6 +94,84 @@ Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (ve
 
 ---
 
+## Mechanical, materials, and manufacturing
+
+The preliminary structure uses a **welded 4130 steel center cage, carbon-fiber folding arms, coaxial motor mounts, and landing skids**. Material selections, dimensions, and structural mass estimates remain provisional until supported by analysis and representative testing.
+
+### Mechanical design
+
+- **Loads and strength:** Define flight, maximum-thrust, motor-out, pack-out, landing, tether, transport, and parachute-deployment loads. Document load combinations, safety factors, and acceptance criteria.
+- **Folding arms and joints:** Verify hinge, pin, clamp, and locking-mechanism strength, stiffness, wear, and resistance to accidental unlocking. Arm-lock sensors confirm engagement; the mechanical lock carries the load.
+- **Rotor clearance and vibration:** Account for blade flex, arm deflection, joint play, and manufacturing tolerances. Compare structural vibration modes with rotor operating speeds and blade-passing frequencies.
+- **Landing gear and occupant protection:** Define touchdown conditions, energy absorption, seat and harness load paths, equipped pilot mass limits, center-of-gravity limits, and emergency exit clearance.
+- **Battery and recovery integration:** Provide battery retention, electrical isolation, cooling, and defined fire-barrier performance. Size parachute attachments for deployment loads and maintain deployment-path clearance.
+
+### Materials and fabrication
+
+- **4130 cage:** Specify tube dimensions, material condition, properties applicable after welding, joint preparation, welding procedures, distortion limits, inspection criteria, and corrosion protection.
+- **Carbon-fiber arms:** Specify laminate construction, resin system, strength and stiffness data, environmental limits, and clamp or insert details. Evaluate local crushing, joint slip, and damage at attachment points.
+- **Material qualification:** Use representative weld and composite specimens, followed by joint and assembly tests. Specimens must reflect the materials and fabrication processes used in the vehicle.
+- **Manufacturing records:** Track drawing revisions, material batches, fabrication steps, inspections, fastener torque, repairs, and final measured mass for critical assemblies.
+
+### Verification and mass control
+
+Verification progresses from **material specimens → joints → complete arm assemblies → integrated airframe**. Each test has documented loads, instrumentation, and pass/fail criteria established before testing.
+
+Maintain an assembly-level mass budget that includes joints, fasteners, adhesives, coatings, battery retention, and wiring supports. Replace estimates with measured masses as parts are built.
+
+The subscale demonstrator informs architecture, integration, and test procedures. Full-scale structural strength, fatigue life, vibration behavior, and landing performance require separate analysis and verification.
+
+---
+
+### Build-versus-buy and tooling
+
+Evaluate purchased and team-manufactured options for carbon tubes, folding joints, motor mounts, seats, and landing gear. Compare complete assembly mass, cost, lead time, available equipment, inspection needs, and qualification effort.
+
+Identify required welding fixtures, machining fixtures, composite tooling, inspection gauges, and structural test rigs before releasing parts for fabrication. Include tooling, consumables, test specimens, and fabrication rework in the budget.
+
+### Mechanical interfaces
+
+Maintain interface drawings for motor mounts, arm attachments, battery bays, seat and harness mounts, avionics mounts, and parachute attachments. Drawings define:
+
+- Mounting geometry, tolerances, and alignment.
+- Loads transferred between assemblies.
+- Installation, inspection, and removal clearances.
+- Cable routing, strain relief, and clearance through folding joints.
+- An owner responsible for coordinating interface changes.
+
+### Inspection and service life
+
+Define preflight, postflight, and periodic inspections for structural joints, arm locks, fasteners, composite parts, and landing gear.
+
+Record flight hours, folding cycles, damage, repairs, and component replacements for critical assemblies. Establish inspection and return-to-service criteria following hard landings, rotor strikes, or transport damage. Inspection intervals and retirement limits must be supported by supplier guidance, engineering analysis, or test evidence.
+
+### Engineering deliverables
+
+| Work package | Required output |
+| --- | --- |
+| Airframe | CAD assembly, fabrication drawings, load paths, and detailed mass budget |
+| Folding joints | Prototype, strength and stiffness results, wear testing, and lock inspection criteria |
+| Materials | Material specifications, selection rationale, and representative test results |
+| Manufacturing | Tooling plan, fabrication instructions, build records, and inspection criteria |
+| Structural verification | Load cases, calculations, simulation results, and comparison with physical tests |
+| Integration | Assembly procedure, measured mass, center-of-gravity report, and clearance checks |
+| Maintenance | Inspection checklist, damage assessment criteria, and component service records |
+
+Each work package has a named owner, reviewer, dependencies, and completion criteria.
+
+### Open mechanical decisions
+
+Resolve and record the following before the relevant design is released for fabrication:
+
+- Whether folding arms are necessary for the first demonstrator.
+- Which structural components will be purchased or manufactured in-house.
+- The full-scale equipped pilot mass range and allowable center-of-gravity envelope.
+- Landing conditions and energy absorption requirements.
+- Acceptable arm-joint deflection, free play, and wear.
+- Mass allowances for assemblies with the greatest uncertainty.
+
+---
+
 ## Safety
 
 Putting a person on a multirotor deserves more scrutiny than a normal project, so safety is designed in. Full list: [`docs/safety/vehicle-safety-requirements.md`](docs/safety/vehicle-safety-requirements.md).
