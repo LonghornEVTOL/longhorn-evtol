@@ -26,7 +26,9 @@ The structural skeleton, load paths, and FEA in CAD.
 | --- | --- | :---: | --- | --- |
 | Subscale airframe | Carbon plates and 25 mm folding arms at a 711 mm motor diagonal, pack bays and parachute mount in full-scale positions | M | Subscale | [`mechanical/subscale-airframe`](../mechanical/subscale-airframe) |
 | Folding arm joint and lock | Hinge that locks rigid in flight and folds for transport, with a lock sensor the flight controller checks before arming | M | Both | [`mechanical/airframe/folding-arm-joint`](../mechanical/airframe/folding-arm-joint) |
+| Fold-cycle fatigue rig | Cycle the fold joint beyond expected ground and transport life, then measure wear and free play against the arm-joint acceptance limits | M | Both | [`mechanical/airframe/folding-arm-joint`](../mechanical/airframe/folding-arm-joint) |
 | Battery bays | Four bays with fire barriers, retention, cooling air paths, and quick removal | M | Both | [`mechanical/airframe/battery-bays`](../mechanical/airframe/battery-bays) |
+| Fire-barrier panel test | Contain and route a single-cell thermal-runaway event for a stated duration, measure temperatures, and confirm the vent path is directed away from the occupant | M | Both | [`mechanical/airframe/battery-bays`](../mechanical/airframe/battery-bays) |
 | Parachute mount | Hard points and a load path sized for deployment shock | M | Both | [`mechanical/airframe/parachute-mount`](../mechanical/airframe/parachute-mount) |
 | Centre cage | 4130 chromoly tube frame carrying seat, packs, parachute, and avionics | L | Full scale | [`mechanical/airframe`](../mechanical/airframe) |
 | Avionics bay | Vibration-isolated mounting for the flight controller and safety monitor | S | Both | [`mechanical/airframe`](../mechanical/airframe) |
@@ -53,6 +55,7 @@ Motor mounts, rotor spacing, guards, and ducts.
 | Motor mount bracket | CAD, hand calcs, and FEA, then machine it at Texas Inventionworks | S | Subscale | [`mechanical/propulsion-duct`](../mechanical/propulsion-duct) |
 | Coaxial motor mounts | Upper motor on top, lower motor inverted underneath, tuned for vibration, rotor gap matched between scales | M | Both | [`mechanical/propulsion-duct`](../mechanical/propulsion-duct) |
 | Coaxial spacing study | Rotor gap vs efficiency on the thrust stand, with Flight Test | M | Both | [`mechanical/propulsion-duct`](../mechanical/propulsion-duct) |
+| Rotor clearance envelope | Worst-case deflected tip-gap analysis across thrust, joint play, hinge wear, and thermal growth, for single-rotor and coaxial pairs | M | Both | [`mechanical/propulsion-duct`](../mechanical/propulsion-duct) |
 | Rotor guards or ducts | Trade study: guards vs ducts vs open rotors, mass vs protection | M | Full scale | [`mechanical/propulsion-duct`](../mechanical/propulsion-duct) |
 
 ### Landing Gear and Suspension
@@ -242,6 +245,7 @@ TIG welding and tube frame fabrication.
 | --- | --- | :---: | --- | --- |
 | Weld coupons | Practice and test tube joints before any airframe welding | S | Full scale | [`manufacturing/welding-fab`](../manufacturing/welding-fab) |
 | Centre cage fabrication | Weld the 4130 chromoly frame | L | Full scale | [`manufacturing/welding-fab`](../manufacturing/welding-fab) |
+| Weld distortion control plan | Weld sequence and tack plan, fixture design, post-weld straightness check, and a rework-or-scrap tolerance band for the cage | M | Full scale | [`manufacturing/welding-fab`](../manufacturing/welding-fab) |
 
 ### Composites and Layup
 
@@ -250,6 +254,7 @@ Carbon fiber layup, vacuum bagging, and curing.
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
 | Composite arm coupons | Lay up carbon tube samples and test them to failure to set arm design allowables | M | Full scale | [`manufacturing/composites`](../manufacturing/composites) |
+| Bonded-insert qualification | Pull-out and torque-out testing of arm inserts under hot/wet conditioning, since arm attachment points are the most failure-prone feature of a composite arm | M | Both | [`manufacturing/composites`](../manufacturing/composites) |
 | Fairings and panels | Composite covers and the cockpit panel | M | Full scale | [`manufacturing/composites`](../manufacturing/composites) |
 
 ### Machining and CNC
@@ -269,6 +274,7 @@ Vehicle integration, torque specs, and inspections.
 | Project | What it involves | Size | Vehicle | Folder |
 | --- | --- | :---: | --- | --- |
 | Torque and inspection checklists | The assembly checks every rollout uses | S | Both | [`manufacturing/assembly-qc`](../manufacturing/assembly-qc) |
+| FAI and gauge plan | First-article inspection method and gauges for critical interfaces (arm clamp, motor mount, fold joint), run before each batch | S | Both | [`manufacturing/assembly-qc`](../manufacturing/assembly-qc) |
 | Propeller balancing | Static and dynamic balancing procedure | S | Both | [`manufacturing/assembly-qc`](../manufacturing/assembly-qc) |
 | Board assembly process | Stencil, reflow, and inspection workflow for club boards | M | Both | [`manufacturing/assembly-qc`](../manufacturing/assembly-qc) |
 | Pack assembly process | Cell welding, insulation, and pack inspection | M | Both | [`manufacturing/assembly-qc`](../manufacturing/assembly-qc) |

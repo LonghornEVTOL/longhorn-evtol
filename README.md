@@ -96,26 +96,36 @@ Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (ve
 
 ## Mechanical, materials, and manufacturing
 
-The preliminary structure uses a **welded 4130 steel center cage, carbon-fiber folding arms, coaxial motor mounts, and landing skids**. Material selections, dimensions, and structural mass estimates remain provisional until supported by analysis and representative testing.
+The preliminary structure uses a **welded 4130 steel center cage, carbon-fiber folding arms, coaxial motor mounts, and landing skids**. Material selections, dimensions, and structural mass estimates remain provisional until supported by analysis and representative testing. The rules, load cases, and fabrication gates below are expanded in **[`docs/vehicle/mechanical-manufacturing-plan.md`](docs/vehicle/mechanical-manufacturing-plan.md)**.
+
+### Mechanical design rules
+Four rules apply to every mechanical part, and no part is released for fabrication until it satisfies all four:
+
+1. **Mass gate.** The 254 lb Part 103 empty-weight limit is binding, and the parachute-counted margin is only ≈ 4 lb. No part is released for fabrication until its *measured* mass replaces its estimate and the margin to 254 lb is re-checked. See [`docs/vehicle/baseline.md`](docs/vehicle/baseline.md) §8.
+2. **Minimum rotor clearance.** The as-deflected rotor clearance case (below) must retain a stated minimum tip gap for every single-rotor and coaxial pair at the worst-case load combination.
+3. **Continuous occupant load path.** Pilot, seat, and harness loads follow a continuous structural path from seat → center cage → landing gear. Occupant loads must never pass through the parachute mount, battery structure, or propulsion mounts.
+4. **Battery retention under crash load.** Each pack is held against the defined crash load case by its own retention, independent of the fire barrier and of the wiring supports.
 
 ### Mechanical design
-
-- **Loads and strength:** Define flight, maximum-thrust, motor-out, pack-out, landing, tether, transport, and parachute-deployment loads. Document load combinations, safety factors, and acceptance criteria.
+- **Loads and strength:** Define flight, maximum-thrust, motor-out, pack-out, landing, tether, transport, and parachute-deployment loads as **numbered load cases**, not by name. Each case carries a value and a safety factor, for example: 2.0 g symmetric maneuver at max takeoff weight; hard-landing touchdown at a defined sink rate; single-motor-out thrust redistribution held 120 s; parachute-deployment snatch load at the hardpoints; arm-root torsion at max thrust; ground and transport reactions (cradle, tie-down, accidental drop, parked wind). Document load combinations, safety factors, and acceptance criteria for each.
 - **Folding arms and joints:** Verify hinge, pin, clamp, and locking-mechanism strength, stiffness, wear, and resistance to accidental unlocking. Arm-lock sensors confirm engagement; the mechanical lock carries the load.
-- **Rotor clearance and vibration:** Account for blade flex, arm deflection, joint play, and manufacturing tolerances. Compare structural vibration modes with rotor operating speeds and blade-passing frequencies.
-- **Landing gear and occupant protection:** Define touchdown conditions, energy absorption, seat and harness load paths, equipped pilot mass limits, center-of-gravity limits, and emergency exit clearance.
-- **Battery and recovery integration:** Provide battery retention, electrical isolation, cooling, and defined fire-barrier performance. Size parachute attachments for deployment loads and maintain deployment-path clearance.
+- **Rotor clearance and vibration:** Account for blade flex, arm deflection, joint play, and manufacturing tolerances. Define an explicit **as-deflected rotor clearance case**: combine blade flex + arm bending deflection at max thrust + joint free play + hinge wear + thermal growth at the minimum rotor gap, and require a minimum tip gap for both single-rotor and coaxial pairs. Compare structural vibration modes with rotor operating speeds and blade-passing frequencies.
+- **Landing gear and occupant protection:** Define touchdown conditions, energy absorption, seat and harness load paths, equipped pilot mass limits, center-of-gravity limits, and emergency exit clearance. Demonstrate the occupant load path is continuous and free of energy-storage or recovery hardware (design rule 3).
+- **Battery and recovery integration:** Provide battery retention, electrical isolation, cooling, and a **measurable fire-barrier specification**: the barrier contains and routes a single-cell thermal-runaway event for a stated duration, with a vent path directed away from the occupant and an isolation gap to the center cage. Size parachute attachments for deployment loads and maintain deployment-path clearance.
 
 ### Materials and fabrication
 
-- **4130 cage:** Specify tube dimensions, material condition, properties applicable after welding, joint preparation, welding procedures, distortion limits, inspection criteria, and corrosion protection.
-- **Carbon-fiber arms:** Specify laminate construction, resin system, strength and stiffness data, environmental limits, and clamp or insert details. Evaluate local crushing, joint slip, and damage at attachment points.
-- **Material qualification:** Use representative weld and composite specimens, followed by joint and assembly tests. Specimens must reflect the materials and fabrication processes used in the vehicle.
-- **Manufacturing records:** Track drawing revisions, material batches, fabrication steps, inspections, fastener torque, repairs, and final measured mass for critical assemblies.
+- **4130 cage:** Specify tube dimensions, material condition, properties applicable after welding, joint preparation, welding procedures, distortion limits, inspection criteria, and corrosion protection. Distortion is controlled by a **weld distortion control plan**: weld sequence and tack plan, fixturing to hold joint geometry, a post-weld straightness check, and a defined rework-or-scrap tolerance band — held to because weld distortion, not strength, usually drives welded-tube-frame interface geometry.
+- **Fabrication release gate:** No part is released for fabrication until the required fixtures, gauges, and the inspection method exist and are validated, and the first article of each critical part (arm clamp, motor mount, fold joint) passes a dimensional **first-article inspection** before the rest of the batch runs.
+- **Carbon-fiber arms:** Specify laminate construction, resin system, strength and stiffness data, environmental limits, and clamp or insert details. Evaluate local crushing, joint slip, and damage at attachment points. Qualify bonded inserts by pull-out and torque-out testing under hot/wet conditioning, since arm attachment points are the most failure-prone feature of a composite arm.
+- **Material qualification:** Use representative weld and composite specimens, followed by joint and assembly tests. Specimens must reflect the materials and fabrication processes used in the vehicle. Production parts must be made by the **same documented process** (layup, resin, cure schedule, vacuum) that produced the qualified coupons; otherwise the allowables do not validate the flight part.
+- **Manufacturing records:** Track drawing revisions, material batches, fabrication steps, inspections, fastener torque, repairs, and final measured mass for critical assemblies. Tie each structural test article to the exact material batch, fabrication record, and drawing revision of the flight part it validates, so qualification evidence is traceable in a design review.
 
 ### Verification and mass control
 
-Verification progresses from **material specimens → joints → complete arm assemblies → integrated airframe**. Each test has documented loads, instrumentation, and pass/fail criteria established before testing.
+Verification progresses from **material specimens → joints → complete arm assemblies → integrated airframe**. Each test has documented loads, instrumentation, and pass/fail criteria established before testing. Instrumentation is defined **before** the test, not after: each structural test specifies sensor type, location, range, and sample rate up front (strain gauges on arm roots, accelerometers on the cage, a load cell at the parachute hardpoint) so post-test anomalies are diagnosable.
+
+Ground and transport load cycles, not flight, are expected to dominate arm-joint wear for a folding-arm vehicle, so the fold/transport cycle gets its own fatigue budget alongside the flight cases.
 
 Maintain an assembly-level mass budget that includes joints, fasteners, adhesives, coatings, battery retention, and wiring supports. Replace estimates with measured masses as parts are built.
 
@@ -127,7 +137,7 @@ The subscale demonstrator informs architecture, integration, and test procedures
 
 Evaluate purchased and team-manufactured options for carbon tubes, folding joints, motor mounts, seats, and landing gear. Compare complete assembly mass, cost, lead time, available equipment, inspection needs, and qualification effort.
 
-Identify required welding fixtures, machining fixtures, composite tooling, inspection gauges, and structural test rigs before releasing parts for fabrication. Include tooling, consumables, test specimens, and fabrication rework in the budget.
+Identify required welding fixtures, machining fixtures, composite tooling, inspection gauges, and structural test rigs before releasing parts for fabrication, and treat their readiness as a **gate**: no fabrication release until tooling and gauges exist and are validated (see the fabrication release gate above). Include tooling, consumables, test specimens, and fabrication rework in the budget.
 
 ### Mechanical interfaces
 
@@ -145,6 +155,8 @@ Define preflight, postflight, and periodic inspections for structural joints, ar
 
 Record flight hours, folding cycles, damage, repairs, and component replacements for critical assemblies. Establish inspection and return-to-service criteria following hard landings, rotor strikes, or transport damage. Inspection intervals and retirement limits must be supported by supplier guidance, engineering analysis, or test evidence.
 
+A written **repair and rework specification** distinguishes what is repairable (and how) from what is retire-only. Welded steel repairs follow a defined weld-repair procedure; bonded composite repairs follow a written method or the part is scrapped.
+
 ### Engineering deliverables
 
 | Work package | Required output |
@@ -153,6 +165,8 @@ Record flight hours, folding cycles, damage, repairs, and component replacements
 | Folding joints | Prototype, strength and stiffness results, wear testing, and lock inspection criteria |
 | Materials | Material specifications, selection rationale, and representative test results |
 | Manufacturing | Tooling plan, fabrication instructions, build records, and inspection criteria |
+| Tooling and inspection plan | Fixtures, gauges, first-article inspection method, and acceptance criteria per critical part |
+| Repair and rework specification | Repairable vs retire-only parts, weld-repair procedure, and composite repair method |
 | Structural verification | Load cases, calculations, simulation results, and comparison with physical tests |
 | Integration | Assembly procedure, measured mass, center-of-gravity report, and clearance checks |
 | Maintenance | Inspection checklist, damage assessment criteria, and component service records |
@@ -167,6 +181,9 @@ Resolve and record the following before the relevant design is released for fabr
 - Which structural components will be purchased or manufactured in-house.
 - The full-scale equipped pilot mass range and allowable center-of-gravity envelope.
 - Landing conditions and energy absorption requirements.
+- The numbered load cases and their safety factors (flight, ground, transport, parachute).
+- The fire-barrier and vent-path performance target for the battery bays.
+- The minimum rotor tip gap for the as-deflected clearance case.
 - Acceptable arm-joint deflection, free play, and wear.
 - Mass allowances for assemblies with the greatest uncertainty.
 
