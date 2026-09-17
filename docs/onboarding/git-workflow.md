@@ -4,13 +4,13 @@ Onboarding runs through Git, so you finish it knowing the tool the club uses eve
 
 If you have never used Git, work through this page once with your mentor, or on your own. After that, six commands cover everything.
 
-There are two ways to do this, and you can start today either way:
+Two setups, depending on whether you are in the club's GitHub organization yet. Your officer will tell you which one applies to you.
 
-| | **Not a member yet** | **Member, in the GitHub organization** |
+| | **Invited, not in the organization yet** | **In the GitHub organization** |
 | --- | --- | --- |
 | Instructions and template | This public repository | Same |
 | Where your work lives | Your own fork, or just your laptop | `onboarding/members/<username>/` in the private `internal` repository |
-| Reviews | None, but keep your work; bring it to your interview | Pull request at every gate, reviewed by your mentor |
+| Reviews | Your mentor reviews from a link you send | Pull request at every gate |
 
 ---
 
@@ -32,9 +32,9 @@ That is all you need to read every instruction, open the template, and start Lev
 
 ---
 
-## If you are not a member yet
+## If you are not in the organization yet
 
-Work in your own copy. Nothing is lost when you join: you bring the folder with you.
+Work in your own copy. Nothing is lost when you are added: you bring the folder with you.
 
 ```bash
 # Fork this repository on github.com (the Fork button), then:
@@ -56,7 +56,7 @@ git commit -m "Add feedback divider and inductor calculations"
 git push -u origin onboarding
 ```
 
-Keeping it in Git is the point: your commit history shows how you worked through the problem, and it is a good thing to show at an interview. You can also skip Git entirely and keep the folder on your laptop; just do not lose it.
+Keeping it in Git is the point: your commit history shows how you worked through the problem, and it is what your mentor reviews. You can also skip Git and keep the folder on your laptop; just do not lose it.
 
 To get new instructions later:
 
@@ -68,7 +68,7 @@ git merge upstream/main
 
 ---
 
-## If you are a member
+## If you are in the organization
 
 Your workspace lives in the club's private repository, `LonghornEVTOL/internal`, which needs organization access. Ask an officer if the clone fails.
 

@@ -1,6 +1,6 @@
 # Electrical Onboarding: the Power Board Ladder
 
-Part of [Longhorn eVTOL onboarding](README.md). Anyone can work through this, member or not: everything you need is in this repository, and the first three weeks need nothing but a laptop.
+Part of [Longhorn eVTOL onboarding](README.md), which runs by invitation. Everything you need is in this repository, and the first three weeks need nothing but a laptop.
 
 Every new Electrical member builds the same board first, then redesigns it. Level 1 teaches the design-to-bring-up flow on a proven circuit. Level 2 forces the fundamentals the club's complex boards depend on: each required change maps to a concept used later in the pack switch board, BMS, custom ESC, and flight controller.
 
@@ -129,6 +129,6 @@ Every required feature is simulated before it enters the schematic; the per-opti
 
 ## After the ladder
 
-Anyone who finishes Level 2 is ready for the real boards on the [teams page](../teams.md): pack switch board, BMS, power monitor node, sensor nodes, and eventually the flight controller and custom ESC. Experienced builders can skip straight to Level 2 or to a real board after a quick Level 1 design review.
+Members who finish Level 2 are ready for the real boards on the [teams page](../teams.md): pack switch board, BMS, power monitor node, sensor nodes, and eventually the flight controller and custom ESC. Experienced builders can skip straight to Level 2 or to a real board after a quick Level 1 design review.
 
 Other small boards from the teams page (PWM servo tester, harness continuity tester, E-stop test box, arming status light, sensor breakouts) remain good extra practice and pair well with Software projects.

@@ -1,8 +1,10 @@
 # Onboarding
 
-How someone new becomes useful on this vehicle. Everything here is public and self-serve: **you do not need to be a club member, or have any access we have to grant you, to start.** Clone the repository and begin.
+How someone new becomes useful on this vehicle.
 
-New members work the same ladder. It is deliberately not a tutorial with an answer key: you calculate, you simulate, you design, you build, and you measure, and only then do you compare against the reference design.
+**Onboarding runs by invitation.** An officer decides who starts a ladder and when. If you were pointed here, work through it; if you found it while reading the repo, it is here so the people we invite can clone it without waiting on access, and so anyone can see how we train.
+
+It is deliberately not a tutorial with an answer key: you calculate, you simulate, you design, you build, and you measure, and only then do you compare against the reference design.
 
 | Track | Status | Start here |
 | --- | --- | --- |
@@ -35,19 +37,15 @@ Related: [PCB design guide](../hardware/pcb-design-guide.md) · [teams and proje
 
 ---
 
-## Start on your own, right now
+## If an officer has started you on this
 
 ```bash
 git clone https://github.com/LonghornEVTOL/longhorn-evtol.git
 cd longhorn-evtol/docs/onboarding
 ```
 
-Read [`electrical.md`](electrical.md), copy [`template/level-1-buck/`](template/level-1-buck/) somewhere you can work, install [LTspice](tools/ltspice.md) and KiCad, and start on the worksheet. `git pull` whenever you want the newest instructions and, later, the reference design.
+Read [`electrical.md`](electrical.md), copy [`template/level-1-buck/`](template/level-1-buck/) into your workspace, install [LTspice](tools/ltspice.md) and KiCad, and start on the worksheet. `git pull` whenever you want the newest instructions and, later, the reference design. The [git workflow](git-workflow.md) covers where your work goes and how each gate is reviewed.
 
-Doing this before you apply is a good use of your time and we will ask you about it. Nothing here is graded and nothing is due; work as far as you get.
+You also get an onboarding issue listing your gates, a mentor who reviews your pull requests, lab and bench access, and your board on the group fab order. Ask your officer for anything on that list you do not have.
 
-## Once you are a member
-
-You get a workspace in the club's private repository, an onboarding issue with your gates, a mentor who reviews your pull requests, lab and bench access, and your board on the group fab order. Ask an officer to add you to the GitHub organization; the [git workflow](git-workflow.md) covers the rest.
-
-Applications and dates: [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app)
+Club and contact details: [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app)
