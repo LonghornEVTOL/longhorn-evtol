@@ -8,6 +8,8 @@ Every Longhorn eVTOL engineering team, its sub-teams, and the projects each sub-
 | **Full scale** | The [piloted vehicle](vehicle/baseline.md) |
 | **Both** | Built once, used on both |
 
+New to this? Start with the [onboarding ladder](onboarding/), which is open to anyone, member or not.
+
 Many projects span teams; each is listed under the sub-team that leads it. Every custom board and flight-critical design follows the [safety requirements](safety/vehicle-safety-requirements.md). The full parts and interface picture is in [`subsystems.md`](vehicle/subsystems.md).
 
 **Jump to:** [Mechanical Design](#mechanical-design) · [Electrical and Power](#electrical-and-power) · [Software and Avionics](#software-and-avionics) · [Manufacturing and Operations](#manufacturing-and-operations) · [Flight Test and Range Operations](#flight-test-and-range-operations) · [Systems Engineering and Integration](#systems-engineering-and-integration)

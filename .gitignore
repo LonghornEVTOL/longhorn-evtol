@@ -15,3 +15,10 @@ fp-info-cache
 
 # Local shortcut to the private onboarding workspace (LonghornEVTOL/internal); never commit here
 /onboarding
+
+# LTspice output (keep .asc, .plt, and plot images)
+*.raw
+*.op.raw
+*.fft
+**/sim/*.net
+**/sim/*.log

@@ -4,7 +4,7 @@ A student organization at The University of Texas at Austin that designs, builds
 
 Our goal is a **single-occupant, seated multirotor** ("the Vehicle") capable of safe, low-altitude piloted flight.
 
-**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app) · **[Teams and projects](docs/teams.md)** · **[1/3-scale design](docs/vehicle/subscale-demonstrator.md)** · **[Safety requirements](docs/safety/vehicle-safety-requirements.md)**
+**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app) · **[Teams and projects](docs/teams.md)** · **[Onboarding](docs/onboarding/)** · **[1/3-scale design](docs/vehicle/subscale-demonstrator.md)** · **[Safety requirements](docs/safety/vehicle-safety-requirements.md)**
 
 ---
 
@@ -225,6 +225,7 @@ Current projects range from a 6S buck converter and a thrust stand data logger t
 
 ```
 docs/              Teams and projects, vehicle baseline, subscale design, parts, PCB guide, safety requirements
+docs/onboarding/   The new-member ladder: instructions, LTspice and KiCad setup, worksheet template
 hardware-lib/      Shared KiCad symbols, footprints, and 3D models
 manufacturing/     Welding and fab, composites, machining and CNC, assembly and QC
 mechanical/        Airframe, cockpit and ergonomics, propulsion and duct, landing gear
