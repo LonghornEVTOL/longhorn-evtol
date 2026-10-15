@@ -134,7 +134,7 @@ Four semesters. The deadline that actually matters is the **flight readiness vid
 | **Two people pass TRUST; at least one starts Part 107** | Flight Test |
 | 2026 handbook read end to end; compliance matrix drafted | Systems |
 | Sponsorship packet out; HornRaiser live; department ask made | Business |
-| **Procurement wave 1 ordered** (trainer, flight controller, bench kit) | Business |
+| **Wave 1 priced, not ordered**: vendor list, stock checks, live quotes, lead times | Business |
 | Trainer airframe built, maiden flight in manual modes | Flight Test + Mechanical |
 | ArduPilot QuadPlane parameters studied; SITL running missions | Software |
 | Pack module schematic started (4 × ~97 Wh) | Electrical |
@@ -254,6 +254,16 @@ Projects: sponsorship packet and corporate outreach (L) · HornRaiser campaign (
 ---
 
 ## 8. Procurement
+
+**Nothing is ordered until the gate it hangs off has passed.** Each wave below is a priced shopping list, not a purchase order. Prices are estimates from September and October 2026 and must be re-quoted before any order; stock moves, and at least two items (the Pixhawk 6X and the Orin Nano Super) have already been out of stock once.
+
+| Wave | Released by | Depends on |
+| --- | --- | --- |
+| 1 | Program kickoff review | Requirements baselined, budget approved, funding identified |
+| 2 | Conceptual Design Review | Configuration frozen, trainer flying |
+| 3 | Critical Design Review | 2028 rules published, design frozen, money in hand |
+| 4 | Registration decision | Entry year confirmed, travel plan approved |
+
 
 ### Wave 1 — now through December 2026 (~$3,500–4,500)
 
