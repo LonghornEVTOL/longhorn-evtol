@@ -226,7 +226,7 @@ Current projects range from a 6S buck converter and a thrust stand data logger t
 ```
 docs/              Teams and projects, vehicle baseline, subscale design, parts, PCB guide, safety requirements
 docs/onboarding/   Training ladder for new members, run by invitation
-docs/competition/  Competition program: SUAS 2028 aircraft design and plan
+docs/competition/  Competition program: SUAS 2028 aircraft design and program plan
 hardware-lib/      Shared KiCad symbols, footprints, and 3D models
 manufacturing/     Welding and fab, composites, machining and CNC, assembly and QC
 mechanical/        Airframe, cockpit and ergonomics, propulsion and duct, landing gear
