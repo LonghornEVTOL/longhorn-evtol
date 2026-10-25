@@ -98,12 +98,105 @@ The TDR then draws on the same corpus rather than being written from scratch in 
 
 ---
 
-## 6. Outstanding
+## 6. The rubric, recovered from RoboNation's other competitions
+
+**RoboNation runs one house rubric across RoboSub, RoboBoat and RobotX — identical section list, identical weights, identical score-band wording. Only the page limit differs: RoboSub and RoboBoat 6 pages, RobotX 10.** SUAS is a RoboNation program, and the RoboSub handbook even hyperlinks the SUAS competition site.
+
+**So the RobotX 10-page variant is the closest published analogue to the SUAS 150-point, 10-page TDR, and it almost certainly reflects the language SUAS judges are handed.** That recovers a rubric we had assumed unpublished.
+
+### It also answers our open question about the missing 25%
+
+The house rubric, weighted against a 200-point report:
+
+| Criterion | Weight |
+| --- | ---: |
+| Formatting | 5% |
+| Abstract | 10% |
+| **Competition Strategy** | **25%** |
+| **Design Strategy** | **25%** |
+| **Testing Strategy** | **25%** |
+| Acknowledgements | 5% |
+| References | 5% |
+
+**Competition, Design and Testing Strategy at 25% each is exactly what the SUAS handbook publishes.** The remaining 25% is therefore almost certainly **Formatting 5, Abstract 10, Acknowledgements 5, References 5** — not a mystery category. The website rubric matches too: **Team Information 20% / Vehicle Design and Testing 40% / Website Quality 40%**, identical to SUAS's published split.
+
+### Testing Strategy: the top band hinges on one phrase
+
+Verbatim descriptors, which are the thing to write against:
+
+| Band | Descriptor |
+| --- | --- |
+| **Outstanding** | "Testing approach is presented in great detail, to include test strategy and plans. Component testing, sensor and control systems testing done **in accordance with a test plan**." |
+| Strong | "Detailed testing approach, test strategy, and plans. Documentation shows good overview of components, sensors and control system testing." |
+| Average | "Testing approach is presented with sufficient detail, including mention of test strategy and plans." |
+| Below Average | "Testing approach is presented with little to no detail. No mention of components or sensors testing." |
+| Poor | "Testing is done to a certain degree. **No components and sensors are tested independently. There are no test plans.**" |
+| Requirements Not Met | "No mention of testing or connection with the system design." |
+
+**The only difference between Outstanding and Strong is "in accordance with a test plan."** So the report must show a named, dated plan artefact, and component- and sensor-level tests done *independently* of the integrated system. Our [test and verification](test-and-verification.md) gates already are that artefact.
+
+Competition Strategy's prompt is worth quoting too, because it frames the whole report around a trade we face directly: "teams have a limited number of working hours to prepare for the competition; this time could be spent adding additional capabilities **or testing and improving the reliability of an existing capability.**" Its Outstanding band requires "detailed discussion on trade-off studies between system complexity and reliability."
+
+### The highest-leverage structural move: the optional appendix
+
+The house rubric includes an **optional "Test Plan and Results" appendix that sits outside the page limit**, with this note: "**excellence seen in this section can be eligible for a special judges' award.**" Its specified contents are Scope, Schedule, Resources and Tools, Environment, Risk Management, Results — and the instruction that "any design modifications or changes in competition strategy as a result of testing should be discussed."
+
+**Every Top-TDR winner uses it; the mid-band reports do not.** One competent RoboBoat report maps the testing hierarchy correctly but presents no measured values, no pass/fail log and no appendix — and reads as Strong rather than Outstanding. **The gap between it and the winning report is almost entirely that appendix.**
+
+**Confirm whether the SUAS 10-page limit excludes appendices.** If it does, this is the single biggest structural opportunity in the deliverable.
+
+### Formatting is binary
+
+The Formatting criterion has only two bands — Strong, worth all its points, or Requirements Not Met, worth zero. **There is no partial credit for nearly-compliant formatting.** RoboSub's stated format is 8.5 × 11, margins at least 0.8 in, Times New Roman 12 pt, a header on every page with team name and page number, PDF, with two-column IEEE style optional.
+
+Two organiser tips sit inline in the handbook: "It is recommended that papers be peer-reviewed prior to submission," and a link to a university writing-centre guide on abstracts.
+
+### A 2026 change across RoboNation that tells us where this is going
+
+RoboSub and RobotX 2026 both **added a mandatory website content item** that did not exist in 2025:
+
+"**Test event summaries showing time in the field (water time, air time, etc.), objectives, and results. This should include simulations and real-world testing.**"
+
+RobotX also renamed its website criterion from "Vehicle Design Documentation" to **"Vehicle Design and Testing."** RoboBoat, whose handbook published earlier, does not have it. **This is a RoboNation-wide direction, and it is the clearest available signal of where a SUAS website should put its effort.** A public, dated test log with objectives, hours and results scores in two deliverables at once.
+
+---
+
+## 7. What the winning reports actually do
+
+Five patterns, each tied to a rubric line, from reports the organisers themselves name as exemplars.
+
+**Predicted versus measured, with the delta explained, is the most consistently rewarded move in every rubric found.** AIAA DBF's Performance Results criterion says it twice — once for subsystems, once for the whole aircraft. NASA mandates it at CDR and FRR. Formula SAE asks "were discrepancies between predicted and tested results documented and acted upon?" **SAE Aero Design monetises it**: a Payload Prediction Bonus of `max(10 − (FS − PS)², 0)` pays up to 10 points purely for how closely the measured flight score matches the prediction published months earlier.
+
+The best execution found reports **predicted / measured ± uncertainty / sample count / percent delta**, then states the model correction that followed — "it was found that the propulsion model was overpredicting the efficiency… therefore a knockdown factor was applied."
+
+**Record the test conditions or the comparison is worthless.** One winning team: "We also log the conditions during every in-water test run. This allows for thorough review and **ensures the reproducibility of observed behaviors.**" Another re-simulated a flight "matching takeoff weight, propeller, starting battery voltage, cruise throttle setting, and headwind" so the comparison was apples to apples.
+
+**Publish the failures with cause and corrective action.** A winning dated test log, graded Pass / Partial Pass / Fail, includes rows like "Fail — torpedo CO₂ canister exploded, redesign required" and "Pass — 20% force discrepancy found, software updates required", under a stated policy: "**We also wanted transparency by sharing all test outcomes regardless of success or failure.**" It also lists *future* tests with dates and TBD results, which is exactly what the appendix's Schedule bullet asks for.
+
+**Convert test results into competition strategy.** The strongest move found anywhere: a published **confidence table, 0 to 100, per capability** — hydrophone 99, station-keeping 90, perception 65, UAV flight 20, **their own racquetball launcher 5** — sourced from "prior competition results with existing tools and on simulation and on-water test results for new tools," reviewed for consensus by hardware, software and advisors. Those confidences then feed an expected-value equation that ranks task attempt order, and the vehicle can disable a capability whose confidence collapses. **Publishing a 5 out of 100 next to your own mechanism is a credibility move, not a weakness** — and it directly answers the Competition Strategy band about complexity-versus-reliability trade-offs.
+
+**A five-heading template for every test**, from the cleanest report found: **Methodology / Predicted Result / Actual Result / Success Determination / Discussion and Lessons Learned.** It forces a predicted-versus-measured comparison and an explicit verdict on every single test. **Adopt this verbatim as the template for our test reports**, since those reports then serve the TDR, the appendix and the website at once.
+
+### Three pieces of craft guidance worth obeying
+
+From SAE Aero Design's published Written Report Guidelines, which is the most transferable document in the sweep:
+
+- "**The secret to successful writing is simple: organize the report around the scoring rubric, and building an outline that parallels the applicable grading criteria.**" DBF enforces this mechanically: "content that is out of sequence will be treated as missing and scored accordingly."
+- "**Build each page around at least one figure. Create the figures first.** Make the figures data-rich, but legible — 9-point font is a minimum size." Note the escape hatch: "the rules do not constrain type font or spacing on figures." On a 10-page IEEE report, a dense table costs a fraction of the equivalent prose.
+- **A banned vocabulary.** "**Do not use adjectives to quantify a topic, use data.** Expressions that should not be used: large amount, a few, several, low/high level of, significant increase, many, some, excellent agreement, extensive range. **State a value or range of values, an order of magnitude, or a percentage.**" And: "**it's not a sound engineering decision if it is not supported by data.**"
+- "Have the Red Team members read the document **as judges, supplying them with a scoring sheet and a copy of the rules.**"
+
+And one calibration warning, from DBF: "**all reports are assessed relative to each other so that simply addressing each of the sections below may not be sufficient for full credit.**" **Complete is not full marks. The ceiling is set by the field.**
+
+---
+
+## 8. Outstanding
 
 Research was stopped partway to conserve session budget. Still needed:
 
-- **The published TDR and website rubrics in full** — every criterion, weight and score-band descriptor. The 2026 handbook is thin here; **the 2019 to 2022 rulebook PDFs carry far more detailed rubrics** and are already downloaded (see [rules watch](rules-watch.md) for the path). Also: what the remaining 25% of the TDR rubric is, beyond Competition, Design and Testing Strategy at 25% each.
-- **IEEE format mechanics** — how the 10 pages are counted, whether references, figures and appendices are included, and the handbook's exact wording on figures and citations.
+- **Confirm the recovered rubric against SUAS's own handbook wording**, and in particular **whether the SUAS 10-page limit excludes appendices.** If it does, build the Test Plan and Results appendix. This is the highest-value remaining question in the deliverable.
+- **The 2019 to 2022 SUAS rulebook PDFs**, which carry far more detailed rubrics than the current handbook and are already downloaded (path in [rules watch](rules-watch.md)).
+- **IEEE format mechanics** — how the 10 pages are counted and the handbook's exact wording on figures and citations.
 - **Per-team numeric website and TDR scores.** `suas-competition.org/2026/rankings` and `/2025/results` both return 404, so the spread is unquantified — it would tell us how much is actually winnable.
 - **Transferable rubric evidence** from AIAA Design/Build/Fly, NASA Student Launch, and RoboNation's own RoboSub and RoboBoat journal-paper scoring, which publishes many team papers and a public rubric.
 - **The documentation deliverable's own churn.** The 2021 rules scored a Technical Design Paper at 20% with sub-weights Requirements and Acceptance Criteria 10%, System Design 50%, Alternatives Considered 20%, Testing and Evaluation Plan 10%, Safety Risks and Mitigations 10%, plus a separate Flight Readiness Review at 20%. **The 2023 cycle then eliminated the paper entirely and merged it into a video.** It has since returned as the TDR. Worth tracking how stable the current form is.
