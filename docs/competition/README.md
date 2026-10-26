@@ -13,6 +13,8 @@ Nine documents, about 2,500 lines. Read them in this order depending on what you
 | **[suas-2028.md](suas-2028.md)** | **The aircraft.** Why this competition, the configuration trade, the mass and time budgets, what the aircraft must do, and the budget. Start here if you want to know what we are building |
 | **[suas-program-plan.md](suas-program-plan.md)** | **The program.** Decisions on record, hard dates and fees, five phases from Oct 2026 to Sept 2028 with owners and gates, seven sub-team charters, four procurement waves each gated behind a design review, and the risk register |
 
+| **[capability-roadmap.md](capability-roadmap.md)** | **The sequencing.** The five permanent capabilities on a phase timeline to 2028, with the three that need flight hours front-loaded. Read this to know what to do first |
+
 ## Strategy and rules
 
 | Document | What it is |
@@ -34,6 +36,7 @@ Nine documents, about 2,500 lines. Read them in this order depending on what you
 | **[subsystems/payload-delivery.md](subsystems/payload-delivery.md)** | Drop physics worked from first principles, the error budget, the release mechanism, and why slower descent loses the accuracy award |
 | **[subsystems/avionics-and-datalink.md](subsystems/avionics-and-datalink.md)** | Radio architecture and link budget, the 15-second comms-loss rule, co-site interference, and companion-computer integration |
 | **[subsystems/perception.md](subsystems/perception.md)** | Detection and mapping. Datasets, training strategy, and why the pose prior beats the pixel count |
+| **[subsystems/flight-autonomy.md](subsystems/flight-autonomy.md)** | Navigation. How a waypoint is actually detected, and why the autopilot's "Reached waypoint" is not evidence of scoring compliance |
 
 ---
 
@@ -61,7 +64,7 @@ Every document carries its own status line and its own "Outstanding" section. No
 
 **Partial, with the remaining work listed in each:** rules watch (the verbatim changelog corpus and the 2027 risk table) · perception (camera trade, Jetson throughput, geolocation error budget, mosaicking) · documentation strategy (confirming whether the 10-page limit excludes appendices).
 
-**Not started:** the ArduPilot QuadPlane parameter set and flight modes — Q_ASSIST, transition parameters, waypoint-reached logic, TECS. That is the largest single gap.
+**Largest remaining gap:** the ArduPilot QuadPlane transition parameter set, the VTOL takeoff and landing mission commands, TECS for a quadplane, and `NAVL1_*` tuning against our 45.7 m turn radius. Enumerated in [flight autonomy](subsystems/flight-autonomy.md) section 4, which also answers the waypoint-detection question in full.
 
 ### Conventions used throughout
 
