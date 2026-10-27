@@ -224,6 +224,18 @@ body.static .rise{animation:none}
   </div>
 </section>
 
+<section class="slide" data-shader="ink" data-note="This slide exists because every number in this deck has a source behind it, and some of the sources are unusual. First, the rules themselves. Twelve cycles of handbooks from 2014 to 2026, read for which requirements survive a rewrite and which get deleted. That is where the constants slide later comes from. Second, the scoresheet. RoboNation publishes per task results, and the 2026 sheet gives 61 team rounds with 27 teams scoring above zero, which is where every mean on the next few slides comes from. That is the difference between knowing what the rules are worth and knowing what teams actually score, and it is the single thing that changed our strategy. Third, primary sources rather than summaries. The waypoint behaviour on a later slide comes from reading verify_nav_wp in the ArduPlane source, not from documentation. The legal position comes from reading 49 USC 44809 and the handbook itself rather than assuming Part 107 the way most teams do. The written output is nine documents and about 2,500 lines in the team repository. Claims are sourced, where something could not be verified it says so rather than being stated as fact, and each subsystem document ends with a section arguing against its own recommendation.">
+  <div class="wrap">
+    <p class="eye rise">Evidence base</p>
+    <h1 class="rise">Where these numbers come from</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">Handbooks</div><div class="txt">Twelve cycles of rules, 2014 to 2026, read for what survives a rewrite.</div></div>
+      <div class="ln"><div class="lab">Scoresheet</div><div class="txt">The published 2026 results, per task, across 61 team rounds.</div></div>
+      <div class="ln"><div class="lab">Primary sources</div><div class="txt">The ArduPilot navigation source, and 49 USC &sect;44809 read in full.</div></div>
+    </div>
+  </div>
+</section>
+
 <section class="slide" data-shader="field" data-note="Where the points are. Six tasks, 1,250 points. Design Documentation is 250 and it is pure writing. Flight Endurance is the largest flight task at 250. Efficient Operators is 200 and it is scored on how few people touch the aircraft. Design for Rapid Response is 200 and it is scored on setup speed and toolless assembly. Search, Detect and Deliver is 200. Risk Mapping is 150. Colour here is the split that drives our whole strategy: orange is won at the desk or on the ground, blue requires the aircraft to actually fly well.">
   <div class="wrap">
     <p class="eye rise">The rubric</p>
@@ -425,14 +437,26 @@ body.static .rise{animation:none}
   </div>
 </section>
 
-<section class="slide" data-shader="craft" data-note="What we need now, before February 2027. People on four sub teams: flight software, vision, payload, safety. Access: the UT flight operations package submitted through EHS, which carries a two week lead time, plus a field we can fly from. And three concrete deliverables by February: simulation running the full competition mission unattended with every injected failure ending safely, the tier two drop rig built and 30 drops flown per candidate canopy so descent rate is measured rather than assumed, and an email to the Archangel dataset authors, which is 178,800 mannequin images at exactly our altitude band and the single highest value action in the perception plan. Two things only a person can close: that email, and asking Dr. Sirohi and Texas Aerial Robotics about the UT range history, for which no public source exists.">
+<section class="slide" data-shader="field" data-note="Phase 0 runs from now to February 2027, and everything in it is free or nearly so. None of it needs an aircraft, which is the point. Simulation: SITL running with a custom aero file and real SIM_FRM values, the competition mission and the fence and the failsafes written as an automated test case in continuous integration, and the waypoint closest approach check written as a log post processor. It exits when the full mission flies unattended and every injected failure ends safely. Hardware: the over centre sear latch in metal, cycled 500 times on the bench, and a tier two drop rig on a stairwell with a surveyed grid and an instrumented dummy, 30 drops per candidate canopy, so descent rate and the drag term are measured rather than assumed. Clearance: TRUST for everyone, two to four people through Part 107, the registration lane decided with EHS, and the UT flight operations package submitted, which carries two weeks of lead time. Alongside that, four sub teams form: flight software, vision, payload and safety. Phase 0 exits at a Conceptual Design Review in February 2027 that freezes the configuration and releases the second procurement wave.">
   <div class="wrap">
-    <p class="eye rise">Next</p>
-    <h1 class="rise">What we need before February</h1>
+    <p class="eye rise">Before February</p>
+    <h1 class="rise">What Phase 0 delivers</h1>
     <div class="lines rise">
-      <div class="ln"><div class="lab">People</div><div class="txt">Four sub teams: flight software, vision, payload, safety.</div></div>
-      <div class="ln"><div class="lab">Access</div><div class="txt">A UT flight operations package, which carries two weeks of lead time, and a field.</div></div>
-      <div class="ln"><div class="lab">Build</div><div class="txt">The full mission flying unattended in simulation, and the drop rig measured.</div></div>
+      <div class="ln"><div class="lab">Simulation</div><div class="txt">The full mission flying unattended, every injected failure ending safely.</div></div>
+      <div class="ln"><div class="lab">Hardware</div><div class="txt">The latch cycled 500 times, and 30 drops per candidate canopy on the rig.</div></div>
+      <div class="ln"><div class="lab">Clearance</div><div class="txt">TRUST for everyone, and the UT flight operations package submitted.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="craft" data-note="Last slide, and it is the one worth spending time on, because the research names its gaps rather than papering over them. The largest is the ArduPilot QuadPlane transition parameter set: Q_ASSIST_ANGLE, Q_ASSIST_ALT, Q_TRANSITION_MS, Q_TRANS_DECEL and the full Q_OPTIONS bitmask, the VTOL takeoff and landing mission commands and how they interact with the 150 foot floor, TECS tuning for a quadplane specifically, and NAVL1_PERIOD and NAVL1_DAMPING against our 45.7 metre turn radius. It is enumerated in the flight autonomy document and it is cheap to close, because the sources are known. Second, image to ground geolocation error in metres. Perception flags it as an open term and payload delivery currently assumes 2 metres, so the delivery error budget is resting on a number nobody has measured. One instrumented flight in Phase 2 closes it. Third, a question only the organisers can answer: whether the judges measure waypoint accuracy from our telemetry or from their own tracking, and what they accept as evidence. It changes how we instrument the aircraft and it is worth asking in writing. Two more that only a person can close. The Archangel dataset is 178,800 mannequin images at our exact altitude band in stand, squat and prone poses, with no public download URL, and one email to the authors is the highest value action in the whole perception plan. And there is a story about a UT range collapse for which no public source exists. If it is real it is institutional memory we hold and the record does not, and it is worth asking faculty who were here then, and Texas Aerial Robotics.">
+  <div class="wrap">
+    <p class="eye rise">Open questions</p>
+    <h1 class="rise">What we have not answered yet</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">Transition</div><div class="txt">The QuadPlane transition parameter set. The largest gap in the program.</div></div>
+      <div class="ln"><div class="lab">Geolocation</div><div class="txt">Image to ground error in metres. The delivery budget assumes 2 m.</div></div>
+      <div class="ln"><div class="lab">Scoring</div><div class="txt">Whether judges measure waypoint accuracy from our log or their own tracking.</div></div>
     </div>
   </div>
 </section>

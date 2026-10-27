@@ -12,7 +12,7 @@ Nine documents, about 2,500 lines. Read them in this order depending on what you
 | --- | --- |
 | **[suas-2028.md](suas-2028.md)** | **The aircraft.** Why this competition, the configuration trade, the mass and time budgets, what the aircraft must do, and the budget. Start here if you want to know what we are building |
 | **[suas-program-plan.md](suas-program-plan.md)** | **The program.** Decisions on record, hard dates and fees, five phases from Oct 2026 to Sept 2028 with owners and gates, seven sub-team charters, four procurement waves each gated behind a design review, and the risk register |
-| **[presentation/suas-2028-deck.html](presentation/suas-2028-deck.html)** | **The pitch.** A 22 slide deck for presenting the program to a room. Open it in a browser: arrows move, `N` opens the presenter notes, `F` is full screen |
+| **[presentation/suas-2028-deck.html](presentation/suas-2028-deck.html)** | **The pitch.** A 24 slide deck for presenting the program to a room. Open it in a browser: arrows move, `N` opens the presenter notes, `F` is full screen |
 
 | **[capability-roadmap.md](capability-roadmap.md)** | **The sequencing.** The five permanent capabilities on a phase timeline to 2028, with the three that need flight hours front-loaded. Read this to know what to do first |
 
