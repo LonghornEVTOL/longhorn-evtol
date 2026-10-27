@@ -386,6 +386,15 @@ body.static .rise{animation:none}
   </div>
 </section>
 
+<section class="slide" data-shader="grid" data-note="Here is the risk, said plainly. 400 of the points this plan leans on sit on the two newest scored tasks in the handbook, and Design for Rapid Response has existed for exactly two cycles. It is the most likely thing in the book to be re-tuned, re-weighted or removed in 2027. This chart is why that does not sink us. Across the twelve cycles that can be read, five capabilities were scored in every single one: autonomous waypoint navigation, aerial detection and geolocation, payload air delivery, documentation, and the safety and airworthiness inspection. Those five are twelve for twelve. Everything else moved. Obstacle avoidance was worth 20 percent of the mission from 2017 to 2020, then 10 percent, then it was deleted in 2023 and never came back, and the interoperability server went with it. Worth knowing: every obstacle that ever existed was virtual, served over a cable, so a lidar or radar suite would have scored zero even in the years obstacles were worth 20 percent. Mapping was scored in 2021 and 2022, deleted in 2023, and returned in 2026 as Risk Mapping worth 150 points, which proves dead tasks come back. Operator count scoring only arrived in 2024 and the formula has changed every year since. So the hedge is not a different aircraft, it is a work order. We front load the five permanent capabilities, because every hour spent on navigation, detection, delivery, documentation and compliance still counts whatever the 2027 handbook does. One thing in our favour: RoboNation has announced a two year competition cycle starting in 2027 and says core competition courses will remain largely consistent across both years. If that holds for SUAS, the 2027 handbook is effectively our 2028 design basis. Treat that as likely but unconfirmed, because the 2026 handbook was amended five times, the last one in the week of the event.">
+  <div class="wrap">
+    <p class="eye rise">What is constant</p>
+    <h1 class="rise">Five requirements have survived every rewrite</h1>
+    <div class="chart rise" data-chart="constant"></div>
+    <p class="src rise">Twelve cycles that can be read, 2014 to 2026</p>
+  </div>
+</section>
+
 <section class="slide" data-shader="aurora" data-note="The timeline. Six phases and the dates are gates, not the work. Phase 0 to February 2027 is everything that is free and needs no aircraft: simulation, the drop rig, the detection baseline, TRUST and Part 107, the UT flight operations package. It exits at a Conceptual Design Review that freezes the configuration. Phase 1 to June 2027 is trainer flying, gates G0 through G9 on a trainer quadplane, and the first autonomous lap. Phase 2 over summer 2027 is integration, all three capabilities on one airframe and a full mission end to end under 45 minutes including setup. Phase 3 starts with attending the 2027 event as observers on 1 to 4 October, then the competition aircraft repeats the ladder. Phase 4 is proving, with a dress rehearsal in May 2028 and registration around 1 April. Qualification videos go in early, because flight order follows the order videos are accepted and an earlier slot means calmer air. Phase 5 is submit and compete.">
   <div class="wrap">
     <p class="eye rise">Timeline</p>
@@ -748,7 +757,8 @@ body.static .rise{animation:none}
 
   function hbars(host, cfg){
     var rows = cfg.rows, max = cfg.max, span = W - LBL - PAD;
-    var H = rows.length * ROW + 6;
+    var R = cfg.row || ROW;
+    var H = rows.length * R + 6;
 
     if(cfg.legend){
       var lg = document.createElement('div');
@@ -783,7 +793,7 @@ body.static .rise{animation:none}
       stroke:'var(--line)', 'stroke-width':'1', fill:'none' }));
 
     rows.forEach(function(r, i){
-      var y = i * ROW + (ROW - BH) / 2;
+      var y = i * R + (R - BH) / 2;
       var w = Math.max(2, r.v / max * span);
       var fill = r.hatch ? 'url(#hatch)' : (r.color || 'var(--s1)');
 
@@ -920,6 +930,29 @@ body.static .rise{animation:none}
           { k:'Landing and handover',   v:4.0,  d:'4.0' },
           { k:'Reserve',                v:4.8,  d:'4.8', color:'var(--s2)',
             note:'unused margin' }
+        ]
+      });
+    },
+    constant: function(h){
+      hbars(h, {
+        label:'Cycles in which each capability was scored, out of the twelve that can be read',
+        max:12, row:38,
+        legend:[ { name:'Scored in every cycle', color:'var(--s1)' },
+                 { name:'Dropped, revived or new', color:'var(--s2)' } ],
+        rows:[
+          { k:'Waypoint navigation',  v:12, d:'12' },
+          { k:'Detection and geolocation', v:12, d:'12' },
+          { k:'Payload air delivery', v:12, d:'12' },
+          { k:'Documentation',        v:12, d:'12' },
+          { k:'Safety inspection',    v:12, d:'12' },
+          { k:'Obstacle avoidance',   v:8,  d:'8',  color:'var(--s2)',
+            note:'retired after 2022' },
+          { k:'Interop server',       v:8,  d:'8',  color:'var(--s2)',
+            note:'retired after 2022' },
+          { k:'Mapping',              v:4,  d:'4',  color:'var(--s2)',
+            note:'deleted 2023, back in 2026' },
+          { k:'Rapid response',       v:2,  d:'2',  color:'var(--s2)',
+            note:'where 200 of our points sit' }
         ]
       });
     },
