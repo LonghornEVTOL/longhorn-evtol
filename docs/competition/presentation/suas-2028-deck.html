@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Standalone copy of the SUAS 2028 program deck. Open it in any browser.
+     Keys: arrows or space to move, N for presenter notes, F for full screen. -->
+<title>SUAS 2028 Program</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<!--
+  Layout concept. Nothing is in a box. A procedural stage (WebGL, one fragment
+  program per slide) carries the atmosphere; type carries the argument.
+  Separation comes from hairline registration rules, the way an instrument
+  panel is divided, never from cards. One idea per slide. The detail lives in
+  the presenter drawer, keyed to N.
+-->
+
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#100C0A;
+  --fg-1:#F5EDE6;
+  --fg-2:#BFB3A9;
+  --fg-3:#8A7D73;
+  --line:rgba(245,237,230,.155);
+  --line-s:rgba(245,237,230,.075);
+  --accent:#E06A14;
+  --s1:#E06A14;
+  --s2:#5A90E8;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--fg-1);
+  font-family:var(--sans);font-synthesis-weight:none;
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+}
+#stage{position:fixed;inset:0;z-index:0;display:block;width:100%;height:100%;
+  transition:opacity .2s linear}
+#veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(135% 100% at 50% 46%, rgba(16,12,10,.44) 0%, rgba(16,12,10,.66) 52%, rgba(16,12,10,.94) 100%),
+    linear-gradient(180deg, rgba(16,12,10,.84) 0%, rgba(16,12,10,.28) 20%, rgba(16,12,10,.28) 76%, rgba(16,12,10,.88) 100%);
+}
+
+#deck{position:fixed;inset:0;z-index:2}
+.slide{position:absolute;inset:0;display:grid;align-content:center;
+  opacity:0;pointer-events:none;transition:opacity .34s ease}
+.slide.on{opacity:1;pointer-events:auto}
+.wrap{
+  width:100%;max-width:1180px;margin:0 auto;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:clamp(84px,13vh,132px);
+  display:flex;flex-direction:column;gap:clamp(1.4rem,3.4vh,2.6rem);
+  min-width:0;
+}
+
+.eye{font-family:var(--mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.eye span{color:var(--fg-3)}
+h1{margin:0;font-size:clamp(2rem,5.4vw,4rem);line-height:1.02;
+  font-weight:600;font-stretch:117%;letter-spacing:-.018em;
+  max-width:19ch;text-wrap:balance;color:var(--fg-1)}
+h1.hero{font-size:clamp(2.6rem,7.6vw,5.4rem);max-width:15ch}
+.sub{margin:0;font-size:clamp(.98rem,1.5vw,1.14rem);font-weight:380;
+  color:var(--fg-2);max-width:48ch;line-height:1.5}
+.fx{font-family:var(--mono);font-size:clamp(.92rem,1.5vw,1.1rem);
+  color:var(--accent);letter-spacing:.01em}
+.src{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--fg-3);margin:0}
+
+.figs{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line)}
+.fig{flex:1 1 180px;min-width:0;padding:clamp(.9rem,2vh,1.3rem) 1.6rem 0 0}
+.fig+.fig{border-left:1px solid var(--line);padding-left:1.6rem}
+.fig .v{font-family:var(--mono);font-size:clamp(1.5rem,3.4vw,2.5rem);
+  font-weight:500;line-height:1;color:var(--fg-1);white-space:nowrap}
+.fig .v em{font-style:normal;color:var(--accent)}
+.fig .k{margin-top:.5rem;font-size:.86rem;font-weight:380;color:var(--fg-3);
+  line-height:1.4;max-width:26ch}
+
+.lines{display:flex;flex-direction:column}
+.ln{display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr);
+  gap:clamp(1rem,3vw,2.4rem);align-items:start;
+  border-top:1px solid var(--line);padding:clamp(.85rem,2vh,1.25rem) 0}
+.ln:last-child{border-bottom:1px solid var(--line)}
+.lab{font-family:var(--mono);font-size:.76rem;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+  padding-top:.28em;overflow-wrap:anywhere}
+.lab.n{color:var(--fg-3);text-transform:none;letter-spacing:.02em}
+.txt{font-size:clamp(1rem,1.9vw,1.3rem);font-weight:380;line-height:1.42;
+  color:var(--fg-2);max-width:46ch;min-width:0}
+.txt b{font-weight:600;color:var(--fg-1)}
+.txt .fx{font-size:1.02em;display:block;margin-bottom:.2rem}
+.lines .txt.dim{color:var(--fg-3)}
+
+table{width:100%;border-collapse:collapse;font-size:clamp(.88rem,1.5vw,1.02rem)}
+thead th{font-family:var(--mono);font-size:.7rem;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);
+  text-align:left;border-bottom:1px solid var(--line)}
+th,td{padding:clamp(.6rem,1.4vh,.9rem) 1rem clamp(.6rem,1.4vh,.9rem) 0;
+  vertical-align:top}
+tbody td{border-bottom:1px solid var(--line-s);color:var(--fg-2);font-weight:380}
+tbody tr:last-child td{border-bottom:1px solid var(--line)}
+td.m{font-family:var(--mono);color:var(--accent);white-space:nowrap}
+td.s{color:var(--fg-1);font-weight:500}
+
+.chart{width:100%;min-width:0}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.legend{display:flex;flex-wrap:wrap;gap:1.4rem;margin-bottom:.9rem}
+.lg{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);
+  font-size:.72rem;letter-spacing:.05em;color:var(--fg-3)}
+.lg i{width:14px;height:10px;display:block;flex:0 0 auto}
+.lg i.tick{width:3px;height:14px}
+.total{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;
+  color:var(--fg-3);margin:0;text-transform:uppercase}
+.total b{color:var(--fg-1);font-weight:500}
+
+.mark,.count,.rail,.keys{position:fixed;z-index:4;font-family:var(--mono)}
+.mark{top:max(18px, env(safe-area-inset-top, 0px));
+  left:max(20px, env(safe-area-inset-left, 0px));
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3)}
+.mark b{color:var(--fg-1);font-weight:500}
+.count{top:max(18px, env(safe-area-inset-top, 0px));
+  right:max(20px, env(safe-area-inset-right, 0px));
+  font-size:.7rem;letter-spacing:.1em;color:var(--fg-3)}
+.count b{color:var(--accent);font-weight:500}
+.rail{bottom:max(22px, env(safe-area-inset-bottom, 0px));
+  left:max(20px, env(safe-area-inset-left, 0px));
+  right:max(20px, env(safe-area-inset-right, 0px));
+  display:flex;gap:4px;align-items:flex-end;height:14px}
+.rail button{flex:1 1 0;min-width:0;height:14px;padding:0;border:0;
+  background:transparent;cursor:pointer;display:flex;align-items:flex-end}
+.rail button::after{content:"";display:block;width:100%;height:1px;
+  background:var(--line);transition:height .2s ease,background .2s ease}
+.rail button:hover::after{height:4px;background:var(--fg-3)}
+.rail button[aria-current="true"]::after{height:4px;background:var(--accent)}
+.keys{bottom:max(44px, env(safe-area-inset-bottom, 0px));
+  right:max(20px, env(safe-area-inset-right, 0px));
+  display:flex;gap:1.1rem;font-size:.66rem;letter-spacing:.1em;color:var(--fg-3)}
+.keys button{background:none;border:0;color:var(--fg-3);cursor:pointer;
+  font:inherit;letter-spacing:inherit;padding:0}
+.keys button:hover{color:var(--accent)}
+.keys kbd{font:inherit;color:var(--fg-1)}
+
+#notes{position:fixed;z-index:6;right:0;top:0;bottom:0;
+  width:min(440px,92vw);background:#0B0806;border-left:1px solid var(--line);
+  padding:clamp(1.6rem,4vh,2.4rem);
+  padding-right:max(clamp(1.6rem,4vh,2.4rem), env(safe-area-inset-right, 0px));
+  padding-top:max(clamp(1.6rem,4vh,2.4rem), env(safe-area-inset-top, 0px));
+  overflow-y:auto;transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+#notes.open{transform:translateX(0)}
+#notes h2{margin:0 0 1.2rem;font-family:var(--mono);font-size:.7rem;
+  font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+#notes .nb p{margin:0 0 1rem;font-size:.92rem;line-height:1.6;
+  font-weight:380;color:var(--fg-2)}
+#notes .nb p:first-child{color:var(--fg-1)}
+
+.slide.on .rise{animation:rise .55s cubic-bezier(.2,.8,.2,1) both}
+.slide.on .rise:nth-child(2){animation-delay:.05s}
+.slide.on .rise:nth-child(3){animation-delay:.1s}
+.slide.on .rise:nth-child(4){animation-delay:.15s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+body.static .rise{animation:none}
+@media (prefers-reduced-motion: reduce){
+  .rise{animation:none}
+  .slide{transition:none}
+  #notes{transition:none}
+}
+@media (max-width:640px){
+  .ln{grid-template-columns:1fr;gap:.35rem}
+  .lab{padding-top:0}
+  .fig+.fig{border-left:0;border-top:1px solid var(--line-s);padding-left:0}
+  .keys{display:none}
+}
+</style>
+</head>
+<body>
+
+
+<canvas id="stage"></canvas>
+<div id="veil"></div>
+
+<div class="mark"><b>Longhorn eVTOL</b> &nbsp;/&nbsp; UT Austin</div>
+<div class="count"><b id="cNow">01</b> / <span id="cAll">21</span></div>
+
+<div id="deck">
+
+<section class="slide" data-shader="craft" data-note="Opening. We are Longhorn eVTOL and we are entering RoboNation SUAS in 2028. SUAS is an international collegiate competition for autonomous unmanned aircraft, held at the Skyway Range in Tulsa, Oklahoma. The 2028 event is our target. We attend the 2027 event as observers first. Everything in this deck is drawn from the published 2026 handbook and the published 2026 scoresheet, and every point value gets re-verified when the 2028 rules publish.">
+  <div class="wrap">
+    <p class="eye rise">Longhorn eVTOL <span>/ The University of Texas at Austin</span></p>
+    <h1 class="hero rise">RoboNation SUAS 2028</h1>
+    <p class="sub rise">Skyway Range, Tulsa. Competing September 2028, observing the 2027 event first.</p>
+  </div>
+</section>
+
+<section class="slide" data-shader="grid" data-note="What the competition is. One aircraft, one 45 minute window, and the clock starts before setup. Inside that window the aircraft has to fly autonomous laps through a waypoint course, run an aerial mapping task, search for and detect ground targets, and make two air deliveries. Scoring is 1,250 points split across six tasks. The handbook is 52 pages and the rubric is published in advance, which is the single most important fact about this competition: the target does not move while you build.">
+  <div class="wrap">
+    <p class="eye rise">The competition</p>
+    <h1 class="rise">One aircraft, 45 minutes, 1,250 points</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">Window</div><div class="txt">45 minutes, and the clock includes setup.</div></div>
+      <div class="ln"><div class="lab">Tasks</div><div class="txt">Autonomous laps, aerial mapping, search and detect, two air deliveries.</div></div>
+      <div class="ln"><div class="lab">Rubric</div><div class="txt">Published in advance, so the target does not move while we build.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="aurora" data-note="Why we chose this competition. The first reason is the one that matters most to us: no other UT Austin organization currently enters SUAS. Texas Aerial Robotics exists and other teams exist, but this competition is open ground on campus. Being first means we define what a UT entry looks like rather than inheriting someone else's program. Second, five requirements have been scored in every single cycle from 2014 to 2026, twelve for twelve. That means the work is never wasted even if the newer tasks get rewritten. Third, the two year cycle gives us a free reconnaissance year: we go to the 2027 event, watch the inspection table, time the setups, watch the crashes, and talk to teams before we ever compete.">
+  <div class="wrap">
+    <p class="eye rise">Why we chose it</p>
+    <h1 class="rise">No other UT Austin team enters SUAS</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">Open ground</div><div class="txt">We would be the first UT entry, so we define what it looks like.</div></div>
+      <div class="ln"><div class="lab">Stable target</div><div class="txt">Five requirements have been scored in every cycle since 2014.</div></div>
+      <div class="ln"><div class="lab">Free year</div><div class="txt">We watch the 2027 event before we compete in 2028.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="field" data-note="Where the points are. Six tasks, 1,250 points. Design Documentation is 250 and it is pure writing. Flight Endurance is the largest flight task at 250. Efficient Operators is 200 and it is scored on how few people touch the aircraft. Design for Rapid Response is 200 and it is scored on setup speed and toolless assembly. Search, Detect and Deliver is 200. Risk Mapping is 150. Colour here is the split that drives our whole strategy: orange is won at the desk or on the ground, blue requires the aircraft to actually fly well.">
+  <div class="wrap">
+    <p class="eye rise">The rubric</p>
+    <h1 class="rise">Six tasks, 1,250 points</h1>
+    <div class="chart rise" data-chart="points"></div>
+    <p class="src rise">2026 SUAS handbook scoresheet</p>
+  </div>
+</section>
+
+<section class="slide" data-shader="grid" data-note="The split. Add up Design Documentation at 250, Efficient Operators at 200 and Design for Rapid Response at 200 and you get 650 points that do not require a successful flight. Documentation is written. Operator count is a crew decision. Rapid response is a mechanical design decision about how the aircraft comes out of the case. The remaining 600 points need the aircraft to fly, and fly well. Stated the way the research document states it: 400 of the 1,000 mission points need no successful flight at all, and documentation is another 250 on top.">
+  <div class="wrap">
+    <p class="eye rise">The split</p>
+    <h1 class="rise">650 points need no successful flight</h1>
+    <div class="figs rise">
+      <div class="fig"><div class="v"><em>650</em></div><div class="k">Won at the desk and on the ground: documentation, crew size, setup speed</div></div>
+      <div class="fig"><div class="v">600</div><div class="k">Requires flying, and flying well</div></div>
+      <div class="fig"><div class="v">1,250</div><div class="k">Total available</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="field" data-note="This is the slide that changed our strategy. These are the 2026 means among teams that scored above zero, out of 61 team rounds. Efficient Operators averaged 177.8 of 200 and all 27 scoring teams took it. Design for Rapid Response averaged 116.8 of 200 and 26 of 27 took it. Then it falls off a cliff. Search and Deliver averaged 39.3 of 200 and only 8 of 27 teams put anything on the board. Flight Endurance averaged 38.6 of 250. Risk Mapping averaged 35.0 of 150 with 10 of 27 scoring. The modal team flew one lap, which is worth two points. So the field is already banking the ground points and almost nobody is banking the flying points.">
+  <div class="wrap">
+    <p class="eye rise">2026 results</p>
+    <h1 class="rise">What the field actually scored</h1>
+    <div class="chart rise" data-chart="scored"></div>
+    <p class="src rise">Means among the 27 teams scoring above zero, of 61 team rounds</p>
+  </div>
+</section>
+
+<section class="slide" data-shader="field" data-note="Flight Endurance is quadratic, which is why nobody scores it. The formula is 200 times laps over 10, squared. One lap is worth two points. Five laps is 50. Eight laps is 128. Ten laps is the full 200. The quadratic means the early laps are nearly worthless and the last two laps are worth more than the first seven combined. The modal 2026 team flew one lap. Chasing ten laps means a bigger battery, more mass, a worse weight score and far more exposure to a crash. Our read is that laps three through five are the honest target.">
+  <div class="wrap">
+    <p class="eye rise">Flight endurance</p>
+    <h1 class="rise">The lap score is quadratic</h1>
+    <p class="fx rise">200 &times; (laps / 10)&sup2;</p>
+    <div class="chart rise" data-chart="laps"></div>
+  </div>
+</section>
+
+<section class="slide" data-shader="ink" data-note="Reliability. There were 21 crashes in 55 flights in the published 2026 data. The penalty is 50 percent of your demonstration points per crash, and it is uncapped. 15 of 61 rounds were penalised and 13 of those lost at least half their score. The worst case in the data: one team banked 225 points, 125 from Rapid Response and 100 from Operator score, then crashed once and finished with zero. That is the whole argument for a ten gate test ladder instead of a clever aircraft.">
+  <div class="wrap">
+    <p class="eye rise">Reliability</p>
+    <h1 class="rise">A crash halves everything, with no cap</h1>
+    <div class="figs rise">
+      <div class="fig"><div class="v"><em>21</em> / 55</div><div class="k">Crashes per flight in the published 2026 data</div></div>
+      <div class="fig"><div class="v">15 / 61</div><div class="k">Rounds penalised, 13 of them by half or more</div></div>
+      <div class="fig"><div class="v">225 &rarr; 0</div><div class="k">One team's banked points after a single crash</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="warp" data-note="So here is the strategy, and it follows from the evidence rather than from taste. Bank the 650 points that do not need a good flight, then fly a profile that finishes intact. Documentation is 250 points written across two years as a byproduct of testing, not drafted in July. Crew and setup is 400 points, which comes from a two person crew and a toolless assembly we have actually timed. Flight is three to five clean laps, two deliveries, and an intact landing. A team that sets up fast, passes inspection, flies four clean laps and lands beats most of the 2026 field.">
+  <div class="wrap">
+    <p class="eye rise">Strategy</p>
+    <h1 class="rise">Bank the ground points, fly a profile that finishes</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">250 pts</div><div class="txt">Documentation written across two years as a byproduct of testing.</div></div>
+      <div class="ln"><div class="lab">400 pts</div><div class="txt">A two person crew and a toolless setup we have timed ourselves.</div></div>
+      <div class="ln"><div class="lab">Flight</div><div class="txt">Three to five clean laps, two deliveries, land intact.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="craft" data-note="The aircraft. A quadplane: four lift rotors on booms for vertical takeoff and landing, plus a wing and a pusher for efficient cruise. We chose it over a pure multirotor because the lap task rewards cruise efficiency and the 150 foot altitude floor plus the 45.7 metre turn radius are fixed wing geometry. Target mass is 6,800 grams, which is 15.0 pounds. Weight scores as 50 times one minus weight minus 35 over 20, so full weight marks need us under 15 pounds and we are sitting right on that line. Cruise is 22 to 25 metres per second.">
+  <div class="wrap">
+    <p class="eye rise">The aircraft</p>
+    <h1 class="rise">Quadplane: four lift rotors, one wing</h1>
+    <div class="figs rise">
+      <div class="fig"><div class="v"><em>6,800</em> g</div><div class="k">Target all-up mass, airframe to payload</div></div>
+      <div class="fig"><div class="v">15.0 lb</div><div class="k">Full weight marks require under 15 lb of a 35 lb limit</div></div>
+      <div class="fig"><div class="v">22&ndash;25 m/s</div><div class="k">Cruise, set by the 45.7 m turn radius</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="grid" data-note="The mass budget, in grams. Battery 1,900. Airframe 1,600. Lift propulsion 800. Payload and release mechanism 800. Avionics, cruise propulsion and margin 1,700. Total 6,800 grams, or 15.0 pounds. Energy is the hard constraint behind this: every pack has to stay under 100 watt hours to take the full 75 point battery score, we have about 300 watt hours usable, and the mission profile spends 211 of them.">
+  <div class="wrap">
+    <p class="eye rise">Mass budget</p>
+    <h1 class="rise">6,800 grams, allocated</h1>
+    <div class="chart rise" data-chart="mass"></div>
+    <p class="total rise">Total <b>6,800 g</b> &nbsp;/&nbsp; 15.0 lb</p>
+  </div>
+</section>
+
+<section class="slide" data-shader="grid" data-note="The mission clock. 45 minutes total, and setup is inside it. Our budget: 6.0 minutes setup, 1.5 for takeoff and transition, 18.7 for eight laps, 4.0 for the mapping run, 6.0 for two deliveries, 4.0 for landing and deliverable handover. That is 40.2 minutes, leaving 4.8 minutes of reserve. Worth saying out loud: the AUVSI era handbook gave a separate 15 minute setup window and the current one does not, which is exactly why Design for Rapid Response is worth 200 points now.">
+  <div class="wrap">
+    <p class="eye rise">Mission clock</p>
+    <h1 class="rise">40.2 minutes of a 45 minute window</h1>
+    <div class="chart rise" data-chart="clock"></div>
+  </div>
+</section>
+
+<section class="slide" data-shader="field" data-note="Navigation. This is the dependency, not one of three parallel workstreams. The rules require a complete autonomous lap before any delivery is attempted, and a delivery attempted before a lap scores zero. Mapping and search both happen inside an autonomous mission. So navigation gates both of the other flight capabilities. The useful corollary is that delivery and detection can be developed off the competition aircraft: the drop mechanism characterises on a stairwell and a hovering multirotor, and detection trains on datasets and a mannequin in a field. Neither needs the quadplane to exist, which is what lets us front load all three.">
+  <div class="wrap">
+    <p class="eye rise">Navigation</p>
+    <h1 class="rise">Navigation gates everything else</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">Order</div><div class="txt">A delivery attempted before a complete lap scores zero.</div></div>
+      <div class="ln"><div class="lab">Inside</div><div class="txt">Mapping and search both happen inside an autonomous mission.</div></div>
+      <div class="ln"><div class="lab">Corollary</div><div class="txt">Delivery and detection can be built off the competition aircraft.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="grid" data-note="The trap we found by reading the ArduPilot source. Plane verify_nav_wp marks a waypoint complete on either of two conditions. By distance, using an acceptance distance from turn_distance of WP_RADIUS and the next turn angle, which means the acceptance distance grows with the turn angle and the aircraft legitimately cuts the corner. Or by crossing a perpendicular finish line through the waypoint, which fires regardless of how far away the aircraft was. So a waypoint the autopilot cheerfully reports as passed may have been missed by 60 metres. The rules want waypoints hit within 100 feet, 30.5 metres, in order, and the safety inspection requires the ground station to display a waypoint threshold under 50 feet, so WP_RADIUS has to be under 15.24 metres. Set WP_MAX_RADIUS as a hard guard. And verify by post processing the log for closest approach, not by counting console messages. One more thing: do not shrink WP_RADIUS to fly tight geometry, because a too small radius causes overshoot. The fixes that work are lead in and lead out waypoints and NAVL1 tuning.">
+  <div class="wrap">
+    <p class="eye rise">Verification</p>
+    <h1 class="rise">Reached waypoint is not proof of a score</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">turn_distance()</div><div class="txt">Acceptance distance grows with turn angle, so the aircraft cuts the corner.</div></div>
+      <div class="ln"><div class="lab">WP_RADIUS</div><div class="txt">Under 15.24 m, with WP_MAX_RADIUS as a hard guard.</div></div>
+      <div class="ln"><div class="lab">Evidence</div><div class="txt">Closest approach under 30.5 m, measured from the log.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="ink" data-note="Detection. The task is finding a mannequin and a pop up tent from aerial imagery, autonomously, with coordinates good enough to deliver within 50 feet. The thing most likely to bite us is pose, not resolution. COCO is 84.5 percent standing people and the handbook puts the mannequin in any orientation, including face down. So the first thing we build is not the model, it is the test: a face down mannequin half under a bush at 200 feet. What is settled: a small model at high resolution rather than a large model at 640, copy paste augmentation onto our own aerial backgrounds with a scale matched pixel size distribution, no Poisson harmonisation because it scored 7.5 AP below doing nothing, and no simulator because synthetic only aerial detection is around 10 mAP.">
+  <div class="wrap">
+    <p class="eye rise">Detection</p>
+    <h1 class="rise">Train for the pose, not the pixel count</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">Problem</div><div class="txt">COCO is 84.5% standing people. The handbook allows any orientation.</div></div>
+      <div class="ln"><div class="lab">Approach</div><div class="txt">Small model at high resolution, trained on our own aerial backgrounds.</div></div>
+      <div class="ln"><div class="lab">First test</div><div class="txt">A face down mannequin half under a bush, at 200 ft.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="ink" data-note="Delivery, and this is the counterintuitive result. Wind drift scales as release altitude over descent rate, so a slower canopy drifts further. Running the numbers against the 50 foot scoring radius: a 5 metre per second canopy lands inside the radius 18.7 percent of the time, which is worse than an illegal freefall at 46.8 percent, while a 12 metre per second canopy scores 85.0 percent. Freefall is hatched on this chart because the rules require a retardant, so it is not available to us. The practical conclusions: size the cruciform canopy for 12 metres per second, buy a 150 dollar ground anemometer rather than RTK, and use two independent servo tripped over centre sear latches because one unintentional departure costs 100 points, as much as a perfect delivery. The open risk is the judge, not the physics, so we ask the organisers in writing what qualifies as a retardant and bring an 8 metre per second canopy as the defensive option.">
+  <div class="wrap">
+    <p class="eye rise">Delivery</p>
+    <h1 class="rise">A faster canopy scores better</h1>
+    <p class="fx rise">drift = V<sub>wind</sub> &times; h / v<sub>d</sub></p>
+    <div class="chart rise" data-chart="drop"></div>
+    <p class="src rise">Modelled probability of landing inside the 50 ft radius</p>
+  </div>
+</section>
+
+<section class="slide" data-shader="aurora" data-note="The legal basis, and we checked this carefully rather than assuming. The competition is not run under Part 107. The handbook requires TRUST and never says Part 107 once in 52 pages, because it presumes the educational exception in 49 USC section 44809. Under that pathway autonomy is expressly permitted, and a visual observer alone can discharge see and avoid. That matters twice over: it is the legal architecture for flying an autonomous lap, and it is also the two person crew that scores full marks on Efficient Operators. The legal minimum crew and the maximum scoring crew are the same two people. We still take TRUST for everyone and put two to four people through Part 107, and the UT flight operations package needs two weeks of lead time.">
+  <div class="wrap">
+    <p class="eye rise">Legal basis</p>
+    <h1 class="rise">We fly under 49 USC &sect;44809, not Part 107</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">Handbook</div><div class="txt">Requires TRUST and never says Part 107 in 52 pages.</div></div>
+      <div class="ln"><div class="lab">Autonomy</div><div class="txt">Expressly permitted, and a visual observer alone can discharge see and avoid.</div></div>
+      <div class="ln"><div class="lab">Result</div><div class="txt">The legal crew and the full marks crew are the same two people.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="field" data-note="How we avoid being one of the 21 crashes. Ten gates, sequential, and no gate is entered until the previous one's exit criteria are met and signed. G0 through G6 are bench, thrust stand, simulation on hardware, a one degree of freedom rig, tethered hover, then free hover with the tune. G7 is fixed wing flight and G8 is transition at altitude, taken in increments with hands off level flight required at each one. G9 is the first autonomous lap, and its exit criterion is numeric: measured closest approach to every waypoint, from the log, under 30.5 metres. The competition aircraft repeats the entire ladder from G0. Nothing carries over except the software, the parameters and the knowledge.">
+  <div class="wrap">
+    <p class="eye rise">Test discipline</p>
+    <h1 class="rise">Ten gates, each with a numeric exit criterion</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">G0&ndash;G6</div><div class="txt">Bench, thrust stand, sim on hardware, 1-DOF rig, tethered hover, free hover.</div></div>
+      <div class="ln"><div class="lab">G7&ndash;G8</div><div class="txt">Fixed wing flight, then transition at altitude in increments.</div></div>
+      <div class="ln"><div class="lab">G9</div><div class="txt">First autonomous lap. Closest approach under 30.5 m, from the log.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="aurora" data-note="The timeline. Six phases and the dates are gates, not the work. Phase 0 to February 2027 is everything that is free and needs no aircraft: simulation, the drop rig, the detection baseline, TRUST and Part 107, the UT flight operations package. It exits at a Conceptual Design Review that freezes the configuration. Phase 1 to June 2027 is trainer flying, gates G0 through G9 on a trainer quadplane, and the first autonomous lap. Phase 2 over summer 2027 is integration, all three capabilities on one airframe and a full mission end to end under 45 minutes including setup. Phase 3 starts with attending the 2027 event as observers on 1 to 4 October, then the competition aircraft repeats the ladder. Phase 4 is proving, with a dress rehearsal in May 2028 and registration around 1 April. Qualification videos go in early, because flight order follows the order videos are accepted and an earlier slot means calmer air. Phase 5 is submit and compete.">
+  <div class="wrap">
+    <p class="eye rise">Timeline</p>
+    <h1 class="rise">Six phases to September 2028</h1>
+    <table class="rise">
+      <thead><tr><th>Phase</th><th>Window</th><th>Gate</th></tr></thead>
+      <tbody>
+        <tr><td class="s">0 &middot; Foundations</td><td class="m">to Feb 2027</td><td>Conceptual Design Review</td></tr>
+        <tr><td class="s">1 &middot; Trainer flying</td><td class="m">Feb&ndash;Jun 2027</td><td>First autonomous lap</td></tr>
+        <tr><td class="s">2 &middot; Integration</td><td class="m">Jun&ndash;Sep 2027</td><td>Full mission under 45 min</td></tr>
+        <tr><td class="s">3 &middot; Competition aircraft</td><td class="m">Sep 2027&ndash;Feb 2028</td><td>Observe 2027, then repeat G0</td></tr>
+        <tr><td class="s">4 &middot; Proving</td><td class="m">Feb&ndash;Jun 2028</td><td>Dress rehearsal on the clock</td></tr>
+        <tr><td class="s">5 &middot; Compete</td><td class="m">Jun&ndash;Sep 2028</td><td>Submit and fly</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="slide" data-shader="grid" data-note="Budget. 18 to 23 thousand dollars across the two year program. It is released in four procurement waves, and each wave is gated behind a design review so we are never buying ahead of a decision. Two airframes: a trainer that absorbs the learning, then the competition aircraft. The flight controller is bought, not built, because there is no innovation category and a custom one scores zero.">
+  <div class="wrap">
+    <p class="eye rise">Budget</p>
+    <h1 class="rise">18 to 23 thousand dollars, in four gated waves</h1>
+    <div class="figs rise">
+      <div class="fig"><div class="v"><em>$18&ndash;23k</em></div><div class="k">Two year program total</div></div>
+      <div class="fig"><div class="v">4 waves</div><div class="k">Each released only behind a design review</div></div>
+      <div class="fig"><div class="v">2 airframes</div><div class="k">A trainer absorbs the learning, then the competition aircraft</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-shader="craft" data-note="What we need now, before February 2027. People on four sub teams: flight software, vision, payload, safety. Access: the UT flight operations package submitted through EHS, which carries a two week lead time, plus a field we can fly from. And three concrete deliverables by February: simulation running the full competition mission unattended with every injected failure ending safely, the tier two drop rig built and 30 drops flown per candidate canopy so descent rate is measured rather than assumed, and an email to the Archangel dataset authors, which is 178,800 mannequin images at exactly our altitude band and the single highest value action in the perception plan. Two things only a person can close: that email, and asking Dr. Sirohi and Texas Aerial Robotics about the UT range history, for which no public source exists.">
+  <div class="wrap">
+    <p class="eye rise">Next</p>
+    <h1 class="rise">What we need before February</h1>
+    <div class="lines rise">
+      <div class="ln"><div class="lab">People</div><div class="txt">Four sub teams: flight software, vision, payload, safety.</div></div>
+      <div class="ln"><div class="lab">Access</div><div class="txt">A UT flight operations package, which carries two weeks of lead time, and a field.</div></div>
+      <div class="ln"><div class="lab">Build</div><div class="txt">The full mission flying unattended in simulation, and the drop rig measured.</div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<nav class="rail" id="rail" aria-label="Slides"></nav>
+<div class="keys">
+  <span><kbd>&larr;</kbd> <kbd>&rarr;</kbd> move</span>
+  <button type="button" id="bNotes"><kbd>N</kbd> notes</button>
+  <button type="button" id="bFull"><kbd>F</kbd> full screen</button>
+</div>
+
+<aside id="notes" aria-label="Presenter notes" hidden>
+  <h2 id="nTitle">Presenter notes</h2>
+  <div class="nb" id="nBody"></div>
+</aside>
+
+<script>
+(function(){
+  'use strict';
+
+  /* =====================================================================
+     1. Procedural stage. One WebGL context, one fragment program per
+        slide, swapped with a short opacity dip so nothing pops.
+     ===================================================================== */
+
+  var cv = document.getElementById('stage');
+  var gl = null, progs = {}, cur = null, quad = null, scale = 1, t0 = 0;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var SCALE = { craft:0.62, field:0.70, ink:0.80, aurora:0.85, warp:0.90, grid:0.85 };
+
+  var VS = 'attribute vec2 a; void main(){ gl_Position = vec4(a,0.0,1.0); }';
+
+  var PRE = [
+    'precision highp float;',
+    'uniform vec2 u_res; uniform float u_time;',
+    'const vec3 ACCENT = vec3(0.878,0.416,0.078);',
+    'const vec3 DEEP   = vec3(0.420,0.173,0.047);',
+    'const vec3 COOL   = vec3(0.353,0.565,0.910);',
+    'const vec3 BG     = vec3(0.063,0.047,0.039);',
+    'float hash11(float p){ p=fract(p*0.1031); p*=p+33.33; p*=p+p; return fract(p); }',
+    'float hash21(vec2 p){ vec3 q=fract(vec3(p.xyx)*0.1031); q+=dot(q,q.yzx+33.33); return fract((q.x+q.y)*q.z); }',
+    'float vnoise(vec2 p){ vec2 i=floor(p),f=fract(p); f=f*f*(3.0-2.0*f);',
+    '  float a=hash21(i),b=hash21(i+vec2(1.0,0.0)),c=hash21(i+vec2(0.0,1.0)),d=hash21(i+vec2(1.0,1.0));',
+    '  return mix(mix(a,b,f.x),mix(c,d,f.x),f.y); }',
+    'float fbm(vec2 p){ float s=0.0,a=0.5; for(int i=0;i<5;i++){ s+=a*vnoise(p); p*=2.02; a*=0.5; } return s; }',
+    'vec2 uvc(){ return (gl_FragCoord.xy - 0.5*u_res)/u_res.y; }',
+    'float vig(vec2 p){ return smoothstep(1.28,0.15,length(p)); }'
+  ].join('\n');
+
+  var FS = {};
+
+  /* --- topographic perspective grid ------------------------------------ */
+  FS.grid = [
+    'void main(){',
+    '  vec2 p = uvc();',
+    '  vec3 col = BG;',
+    '  float hy = 0.22;',
+    '  if(p.y < hy){',
+    '    float z = 1.0/(hy - p.y + 0.02);',
+    '    float x = p.x*z;',
+    '    vec2 g = vec2(x, z + u_time*0.55);',
+    '    vec2 f = abs(fract(g)-0.5);',
+    '    float w = min(0.014*z, 0.065);',
+    '    float line = max(smoothstep(w,0.0,f.x), smoothstep(w,0.0,f.y));',
+    '    float fade = exp(-z*0.135);',
+    '    col += line*fade*mix(DEEP, ACCENT, 0.30)*0.56;',
+    '  } else {',
+    '    float n = fbm(vec2(p.x*2.2, p.y*2.2 - u_time*0.05));',
+    '    float band = abs(fract(n*6.0)-0.5);',
+    '    col += smoothstep(0.055,0.0,band)*0.055*mix(DEEP,ACCENT,0.5);',
+    '  }',
+    '  col *= vig(p);',
+    '  gl_FragColor = vec4(col,1.0);',
+    '}'
+  ].join('\n');
+
+  /* --- starfield warp -------------------------------------------------- */
+  FS.warp = [
+    'void main(){',
+    '  vec2 p = uvc();',
+    '  vec3 col = BG;',
+    '  float a = atan(p.y,p.x);',
+    '  float r = length(p);',
+    '  float lr = log(r + 0.08);',
+    '  for(int i=0;i<3;i++){',
+    '    float fi = float(i);',
+    '    vec2 lp = vec2(a/6.2831 + fi*0.37, lr);',
+    '    vec2 g = lp*vec2(150.0, 9.0) + vec2(fi*11.3, u_time*(0.40 + fi*0.17));',
+    '    vec2 ic = floor(g); vec2 f = fract(g)-0.5;',
+    '    float h = hash21(ic);',
+    '    float on = step(0.935, h);',
+    '    float d = length(f*vec2(1.0,0.30));',
+    '    float s = smoothstep(0.40,0.0,d);',
+    '    col += on*s*mix(ACCENT, vec3(0.95,0.92,0.88), hash21(ic+7.0))*0.55*smoothstep(0.03,0.5,r);',
+    '  }',
+    '  col *= vig(p);',
+    '  gl_FragColor = vec4(col,1.0);',
+    '}'
+  ].join('\n');
+
+  /* --- flow field ------------------------------------------------------ */
+  FS.field = [
+    'void main(){',
+    '  vec2 p = uvc();',
+    '  vec3 col = BG;',
+    '  vec2 q = p*1.6;',
+    '  float acc = 0.0;',
+    '  for(int i=0;i<14;i++){',
+    '    float n = fbm(q*1.3 + vec2(0.0, u_time*0.03));',
+    '    float ang = n*6.2831;',
+    '    q += vec2(cos(ang), sin(ang))*0.022;',
+    '    acc += 0.5 + 0.5*sin(float(i)*0.6 + n*9.0 - u_time*0.6);',
+    '  }',
+    '  acc /= 14.0;',
+    '  col += smoothstep(0.52,0.92,acc)*mix(DEEP, ACCENT, 0.45)*0.30;',
+    '  col += smoothstep(0.78,1.0,acc)*COOL*0.05;',
+    '  col *= vig(p);',
+    '  gl_FragColor = vec4(col,1.0);',
+    '}'
+  ].join('\n');
+
+  /* --- aurora ---------------------------------------------------------- */
+  FS.aurora = [
+    'void main(){',
+    '  vec2 p = uvc();',
+    '  vec3 col = BG;',
+    '  for(int i=0;i<4;i++){',
+    '    float fi = float(i);',
+    '    float y = 0.18*sin(p.x*1.6 + u_time*0.22 + fi*1.9)',
+    '            + 0.10*fbm(vec2(p.x*1.4 + fi*3.0, u_time*0.08)) - 0.22 + fi*0.14;',
+    '    float d = p.y - y;',
+    '    float g = exp(-d*d*(9.0 + fi*4.0));',
+    '    col += g*mix(DEEP, mix(ACCENT, COOL, fi*0.22), 0.55)*0.26;',
+    '  }',
+    '  col += fbm(p*3.0 + u_time*0.02)*0.015*ACCENT;',
+    '  col *= vig(p);',
+    '  gl_FragColor = vec4(col,1.0);',
+    '}'
+  ].join('\n');
+
+  /* --- ink in water ---------------------------------------------------- */
+  FS.ink = [
+    'void main(){',
+    '  vec2 p = uvc();',
+    '  vec3 col = BG;',
+    '  vec2 w = p + vec2(fbm(p*2.0 + u_time*0.05), fbm(p*2.0 + 4.7 - u_time*0.04))*0.35;',
+    '  float d = fbm(w*2.4);',
+    '  float plume = smoothstep(0.46,0.72,d)*smoothstep(1.15,0.25,length(p*vec2(0.8,1.2)));',
+    '  col = mix(col, mix(DEEP, ACCENT, 0.22), plume*0.50);',
+    '  float edge = max(smoothstep(0.44,0.47,d) - smoothstep(0.50,0.56,d), 0.0);',
+    '  col += edge*ACCENT*0.20;',
+    '  col *= vig(p);',
+    '  gl_FragColor = vec4(col,1.0);',
+    '}'
+  ].join('\n');
+
+  /* --- raymarched quadplane, cel shaded -------------------------------- */
+  FS.craft = [
+    'float sdBox(vec3 p, vec3 b){ vec3 q=abs(p)-b; return length(max(q,0.0))+min(max(q.x,max(q.y,q.z)),0.0); }',
+    'float sdCap(vec3 p, vec3 a, vec3 b, float r){ vec3 pa=p-a, ba=b-a;',
+    '  float h=clamp(dot(pa,ba)/dot(ba,ba),0.0,1.0); return length(pa-ba*h)-r; }',
+    'vec2 mn(vec2 a, vec2 b){ return a.x<b.x?a:b; }',
+    'mat2 rot(float a){ float c=cos(a),s=sin(a); return mat2(c,-s,s,c); }',
+    'vec2 map(vec3 p){',
+    '  vec2 res = vec2(1e5, 0.0);',
+    '  res = mn(res, vec2(sdCap(p, vec3(-0.62,0.0,0.0), vec3(0.70,0.0,0.0), 0.082), 1.0));',
+    '  res = mn(res, vec2(sdBox(p - vec3(0.02,0.02,0.0), vec3(0.155,0.011,0.92)), 2.0));',
+    '  res = mn(res, vec2(sdBox(p - vec3(-0.60,0.02,0.0), vec3(0.085,0.010,0.30)), 2.0));',
+    '  res = mn(res, vec2(sdBox(p - vec3(-0.62,0.15,0.0), vec3(0.085,0.145,0.010)), 2.0));',
+    '  vec3 b = p; b.z = abs(b.z) - 0.50;',
+    '  res = mn(res, vec2(sdCap(b, vec3(-0.46,0.0,0.0), vec3(0.50,0.0,0.0), 0.029), 2.0));',
+    '  float rs = u_time*7.0;',
+    '  vec3 r1 = b - vec3(0.48,0.045,0.0); r1.xz = rot(rs)*r1.xz;',
+    '  res = mn(res, vec2(min(sdBox(r1, vec3(0.235,0.004,0.020)), sdBox(r1, vec3(0.020,0.004,0.235))), 3.0));',
+    '  vec3 r2 = b - vec3(-0.44,0.045,0.0); r2.xz = rot(-rs*1.07)*r2.xz;',
+    '  res = mn(res, vec2(min(sdBox(r2, vec3(0.235,0.004,0.020)), sdBox(r2, vec3(0.020,0.004,0.235))), 3.0));',
+    '  return res;',
+    '}',
+    'vec3 nrm(vec3 p){ vec2 e = vec2(0.0016,0.0);',
+    '  return normalize(vec3(map(p+e.xyy).x-map(p-e.xyy).x,',
+    '                        map(p+e.yxy).x-map(p-e.yxy).x,',
+    '                        map(p+e.yyx).x-map(p-e.yyx).x)); }',
+    'void main(){',
+    '  vec2 uv = uvc();',
+    '  float t = u_time*0.15;',
+    '  vec3 ro = vec3(3.45*sin(t), 1.15 + 0.26*sin(t*0.7), 3.45*cos(t));',
+    '  vec3 ta = vec3(0.0,0.02,0.0);',
+    '  vec3 fw = normalize(ta-ro);',
+    '  vec3 rt = normalize(cross(vec3(0.0,1.0,0.0), fw));',
+    '  vec3 up = cross(fw, rt);',
+    '  vec3 rd = normalize(fw*1.55 + rt*uv.x + up*uv.y);',
+    '  float d = 0.0; vec2 h = vec2(-1.0);',
+    '  for(int i=0;i<96;i++){',
+    '    vec2 r = map(ro + rd*d);',
+    '    if(r.x < 0.0013){ h = vec2(d, r.y); break; }',
+    '    d += r.x*0.85;',
+    '    if(d > 8.0) break;',
+    '  }',
+    '  vec3 col = BG + exp(-abs(uv.y+0.14)*7.0)*DEEP*0.10;',
+    '  if(h.y > 0.0){',
+    '    vec3 pos = ro + rd*h.x;',
+    '    vec3 n = nrm(pos);',
+    '    vec3 ld = normalize(vec3(0.55,0.80,0.35));',
+    '    float ndl = clamp(dot(n,ld),0.0,1.0);',
+    '    float cel = mix(ndl, floor(ndl*3.0+0.5)/3.0, 0.82);',
+    '    vec3 base = h.y < 1.5 ? vec3(0.52,0.505,0.49)',
+    '              : (h.y < 2.5 ? vec3(0.28,0.272,0.265) : vec3(0.19,0.186,0.186));',
+    '    col = base*(0.14 + 0.86*cel);',
+    '    float rim = pow(1.0 - clamp(dot(n,-rd),0.0,1.0), 2.4);',
+    '    col += rim*ACCENT*0.62;',
+    '    col = mix(col, BG, smoothstep(2.6, 8.0, h.x));',
+    '  }',
+    '  col *= vig(uv*0.9);',
+    '  gl_FragColor = vec4(col,1.0);',
+    '}'
+  ].join('\n');
+
+  function sh(type, src){
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)) return null;
+    return s;
+  }
+
+  function build(name){
+    if(progs[name] !== undefined) return progs[name];
+    var v = sh(gl.VERTEX_SHADER, VS);
+    var f = sh(gl.FRAGMENT_SHADER, PRE + '\n' + FS[name]);
+    if(!v || !f){ progs[name] = null; return null; }
+    var p = gl.createProgram();
+    gl.attachShader(p, v); gl.attachShader(p, f); gl.linkProgram(p);
+    if(!gl.getProgramParameter(p, gl.LINK_STATUS)){ progs[name] = null; return null; }
+    var loc = gl.getAttribLocation(p, 'a');
+    progs[name] = { p:p, res:gl.getUniformLocation(p,'u_res'),
+                    time:gl.getUniformLocation(p,'u_time'), loc:loc };
+    return progs[name];
+  }
+
+  function initGL(){
+    try{
+      gl = cv.getContext('webgl', { antialias:false, alpha:false,
+                                    powerPreference:'high-performance' })
+        || cv.getContext('experimental-webgl');
+    }catch(e){ gl = null; }
+    if(!gl) return false;
+    quad = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, quad);
+    gl.bufferData(gl.ARRAY_BUFFER,
+      new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    t0 = performance.now();
+    return true;
+  }
+
+  function size(){
+    if(!gl) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.6) * scale;
+    var w = Math.max(1, Math.round(innerWidth * dpr));
+    var h = Math.max(1, Math.round(innerHeight * dpr));
+    if(cv.width !== w || cv.height !== h){ cv.width = w; cv.height = h; }
+    gl.viewport(0,0,w,h);
+  }
+
+  var want = null, fadeDir = 0;
+  function setShader(name){
+    if(!gl || name === cur) return;
+    if(reduce){ cur = name; scale = SCALE[name] || 0.8; size(); return; }
+    want = name; fadeDir = -1;
+    cv.style.opacity = '0';
+  }
+
+  cv.addEventListener('transitionend', function(){
+    if(fadeDir === -1 && want){
+      cur = want; want = null;
+      scale = SCALE[cur] || 0.8; size();
+      fadeDir = 1; cv.style.opacity = '1';
+    } else { fadeDir = 0; }
+  });
+
+  function frame(now){
+    if(gl && cur){
+      var pr = build(cur);
+      if(pr){
+        gl.useProgram(pr.p);
+        gl.bindBuffer(gl.ARRAY_BUFFER, quad);
+        gl.enableVertexAttribArray(pr.loc);
+        gl.vertexAttribPointer(pr.loc, 2, gl.FLOAT, false, 0, 0);
+        gl.uniform2f(pr.res, cv.width, cv.height);
+        gl.uniform1f(pr.time, (now - t0) / 1000);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* =====================================================================
+     2. Charts. One horizontal-bar engine plus one line chart. No boxes:
+        a single vertical hairline is the axis, values are direct labels.
+     ===================================================================== */
+
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, at){
+    var e = document.createElementNS(NS, tag);
+    for(var k in at) e.setAttribute(k, at[k]);
+    return e;
+  }
+  function txt(x, y, s, at){
+    var t = el('text', at || {});
+    t.setAttribute('x', x); t.setAttribute('y', y);
+    t.textContent = s; return t;
+  }
+  /* horizontal bar with the data-end rounded, anchored to the baseline */
+  function barD(x, y, w, h, r){
+    r = Math.max(0, Math.min(r, w, h/2));
+    return 'M' + x + ' ' + y + 'h' + (w - r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + r +
+           'v' + (h - 2*r) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + r + 'H' + x + 'z';
+  }
+
+  var W = 1000, LBL = 250, PAD = 86, BH = 17, ROW = 44;
+
+  function hbars(host, cfg){
+    var rows = cfg.rows, max = cfg.max, span = W - LBL - PAD;
+    var H = rows.length * ROW + 6;
+
+    if(cfg.legend){
+      var lg = document.createElement('div');
+      lg.className = 'legend';
+      cfg.legend.forEach(function(s){
+        var d = document.createElement('div'); d.className = 'lg';
+        var i = document.createElement('i');
+        if(s.tick){ i.className = 'tick'; i.style.background = s.color; }
+        else if(s.hatch){ i.style.background =
+          'repeating-linear-gradient(135deg,' + s.color + ' 0 2px,transparent 2px 5px)';
+          i.style.outline = '1px solid ' + s.color; }
+        else i.style.background = s.color;
+        d.appendChild(i);
+        d.appendChild(document.createTextNode(s.name));
+        lg.appendChild(d);
+      });
+      host.appendChild(lg);
+    }
+
+    var svg = el('svg', { viewBox:'0 0 ' + W + ' ' + H,
+      role:'img', 'aria-label':cfg.label || '' });
+
+    var def = el('defs');
+    var pat = el('pattern', { id:'hatch', width:'6', height:'6',
+      patternUnits:'userSpaceOnUse', patternTransform:'rotate(135)' });
+    pat.appendChild(el('rect', { width:'6', height:'6', fill:'none' }));
+    pat.appendChild(el('rect', { width:'2', height:'6', fill:'var(--s1)',
+      opacity:'0.75' }));
+    def.appendChild(pat); svg.appendChild(def);
+
+    svg.appendChild(el('path', { d:'M' + LBL + ' 0V' + H,
+      stroke:'var(--line)', 'stroke-width':'1', fill:'none' }));
+
+    rows.forEach(function(r, i){
+      var y = i * ROW + (ROW - BH) / 2;
+      var w = Math.max(2, r.v / max * span);
+      var fill = r.hatch ? 'url(#hatch)' : (r.color || 'var(--s1)');
+
+      svg.appendChild(txt(LBL - 14, y + BH/2 + 5, r.k, {
+        'text-anchor':'end', fill:'var(--fg-3)', 'font-size':'15' }));
+
+      var p = el('path', { d:barD(LBL, y, w, BH, 4), fill:fill });
+      if(r.hatch) p.setAttribute('stroke', 'var(--s1)'),
+                  p.setAttribute('stroke-width', '1'),
+                  p.setAttribute('stroke-opacity', '0.8');
+      svg.appendChild(p);
+
+      if(r.mark !== undefined){
+        var mx = LBL + r.mark / max * span;
+        svg.appendChild(el('rect', { x:mx - 1.5, y:y - 5, width:3,
+          height:BH + 10, fill:'var(--fg-3)', opacity:'0.65' }));
+      }
+
+      var vt = txt(LBL + w + 12, y + BH/2 + 5, r.d, {
+        fill:'var(--fg-1)', 'font-size':'15', 'font-weight':'500' });
+      svg.appendChild(vt);
+
+      if(r.note){
+        svg.appendChild(txt(W, y + BH/2 + 5, r.note, {
+          'text-anchor':'end', fill:'var(--fg-3)', 'font-size':'13' }));
+      }
+    });
+
+    host.appendChild(svg);
+  }
+
+  function lineChart(host, cfg){
+    var H = 320, L = 70, R = 40, T = 24, B = 54;
+    var svg = el('svg', { viewBox:'0 0 ' + W + ' ' + H, role:'img',
+      'aria-label':cfg.label });
+    var sx = function(x){ return L + x / cfg.xmax * (W - L - R); };
+    var sy = function(y){ return H - B - y / cfg.ymax * (H - T - B); };
+
+    svg.appendChild(el('path', { d:'M' + L + ' ' + (H-B) + 'H' + (W-R),
+      stroke:'var(--line)', 'stroke-width':'1', fill:'none' }));
+
+    [50,100,150,200].forEach(function(g){
+      svg.appendChild(el('path', { d:'M' + L + ' ' + sy(g) + 'H' + (W-R),
+        stroke:'var(--line-s)', 'stroke-width':'1', fill:'none' }));
+      svg.appendChild(txt(L - 14, sy(g) + 5, g, { 'text-anchor':'end',
+        fill:'var(--fg-3)', 'font-size':'13' }));
+    });
+
+    var d = '';
+    for(var x = 0; x <= cfg.xmax; x += 0.25){
+      d += (d ? 'L' : 'M') + sx(x).toFixed(1) + ' ' + sy(cfg.f(x)).toFixed(1);
+    }
+    svg.appendChild(el('path', { d:d, stroke:'var(--s1)', 'stroke-width':'2',
+      fill:'none', 'stroke-linecap':'round' }));
+
+    cfg.marks.forEach(function(m){
+      svg.appendChild(el('circle', { cx:sx(m.x), cy:sy(m.y), r:'5.5',
+        fill:'var(--s1)', stroke:'#191412', 'stroke-width':'2' }));
+      svg.appendChild(txt(sx(m.x), sy(m.y) - 16, m.d, {
+        'text-anchor':'middle', fill:'var(--fg-1)', 'font-size':'15',
+        'font-weight':'500' }));
+      svg.appendChild(txt(sx(m.x), H - B + 26, m.k, {
+        'text-anchor':'middle', fill:'var(--fg-3)', 'font-size':'13' }));
+    });
+
+    host.appendChild(svg);
+  }
+
+  var CHARTS = {
+    points: function(h){
+      hbars(h, {
+        label:'Points available by task, split by whether the task needs a successful flight',
+        max:250,
+        legend:[ { name:'Won at the desk or on the ground', color:'var(--s1)' },
+                 { name:'Requires flying', color:'var(--s2)' } ],
+        rows:[
+          { k:'Design documentation',  v:250, d:'250', color:'var(--s1)' },
+          { k:'Flight endurance',      v:250, d:'250', color:'var(--s2)' },
+          { k:'Efficient operators',   v:200, d:'200', color:'var(--s1)' },
+          { k:'Design for rapid response', v:200, d:'200', color:'var(--s1)' },
+          { k:'Search, detect, deliver',   v:200, d:'200', color:'var(--s2)' },
+          { k:'Risk mapping',          v:150, d:'150', color:'var(--s2)' }
+        ]
+      });
+    },
+    scored: function(h){
+      hbars(h, {
+        label:'2026 mean score among scoring teams, against the points available',
+        max:250,
+        legend:[ { name:'Mean among scoring teams', color:'var(--s1)' },
+                 { name:'Points available', color:'var(--fg-3)', tick:true } ],
+        rows:[
+          { k:'Efficient operators', v:177.8, d:'177.8', mark:200, note:'27 of 27 scored' },
+          { k:'Rapid response',      v:116.8, d:'116.8', mark:200, note:'26 of 27' },
+          { k:'Search and deliver',  v:39.3,  d:'39.3',  mark:200, note:'8 of 27' },
+          { k:'Flight endurance',    v:38.6,  d:'38.6',  mark:250, note:'21 of 27' },
+          { k:'Risk mapping',        v:35.0,  d:'35.0',  mark:150, note:'10 of 27' }
+        ]
+      });
+    },
+    laps: function(h){
+      lineChart(h, {
+        label:'Endurance points against laps flown',
+        xmax:10, ymax:200,
+        f:function(x){ return 200 * Math.pow(x/10, 2); },
+        marks:[ { x:1, y:2, d:'2', k:'1 lap' },
+                { x:5, y:50, d:'50', k:'5 laps' },
+                { x:8, y:128, d:'128', k:'8 laps' },
+                { x:10, y:200, d:'200', k:'10 laps' } ]
+      });
+    },
+    mass: function(h){
+      hbars(h, { label:'Mass budget in grams', max:1900,
+        rows:[
+          { k:'Battery',              v:1900, d:'1,900 g' },
+          { k:'Airframe',             v:1600, d:'1,600 g' },
+          { k:'Lift propulsion',      v:800,  d:'800 g' },
+          { k:'Payload and release',  v:800,  d:'800 g' },
+          { k:'Avionics, cruise, margin', v:1700, d:'1,700 g' }
+        ]
+      });
+    },
+    clock: function(h){
+      hbars(h, { label:'Mission time budget in minutes against a 45 minute window',
+        max:20,
+        legend:[ { name:'Mission time', color:'var(--s1)' },
+                 { name:'Reserve', color:'var(--s2)' } ],
+        rows:[
+          { k:'Setup',                  v:6.0,  d:'6.0' },
+          { k:'Takeoff and transition', v:1.5,  d:'1.5' },
+          { k:'Eight laps',             v:18.7, d:'18.7' },
+          { k:'Mapping run',            v:4.0,  d:'4.0' },
+          { k:'Two deliveries',         v:6.0,  d:'6.0' },
+          { k:'Landing and handover',   v:4.0,  d:'4.0' },
+          { k:'Reserve',                v:4.8,  d:'4.8', color:'var(--s2)',
+            note:'unused margin' }
+        ]
+      });
+    },
+    drop: function(h){
+      hbars(h, {
+        label:'Probability of landing inside the 50 foot radius by descent rate',
+        max:100,
+        legend:[ { name:'Legal under the retardant rule', color:'var(--s1)' },
+                 { name:'Freefall, not legal', color:'var(--s1)', hatch:true } ],
+        rows:[
+          { k:'5 m/s canopy',  v:18.7, d:'18.7%' },
+          { k:'Freefall',      v:46.8, d:'46.8%', hatch:true, note:'not legal' },
+          { k:'12 m/s canopy', v:85.0, d:'85.0%' }
+        ]
+      });
+    }
+  };
+
+  /* =====================================================================
+     3. Deck mechanics.
+     ===================================================================== */
+
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var n = slides.length, at = 0;
+  var rail = document.getElementById('rail');
+  var cNow = document.getElementById('cNow');
+  var notes = document.getElementById('notes');
+  var nBody = document.getElementById('nBody');
+  var nTitle = document.getElementById('nTitle');
+
+  document.getElementById('cAll').textContent = String(n).padStart(2, '0');
+
+  slides.forEach(function(s, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Slide ' + (i+1));
+    b.addEventListener('click', function(){ go(i); });
+    rail.appendChild(b);
+    var host = s.querySelector('[data-chart]');
+    if(host && CHARTS[host.dataset.chart]) CHARTS[host.dataset.chart](host);
+  });
+  var ticks = [].slice.call(rail.children);
+
+  function fillNotes(i){
+    var s = slides[i];
+    var head = s.querySelector('h1');
+    nTitle.textContent = head ? head.textContent : ('Slide ' + (i+1));
+    nBody.textContent = '';
+    var raw = (s.dataset.note || '').trim();
+    if(!raw){ return; }
+    var sents = raw.split(/\.\s+(?=[A-Z0-9"])/).map(function(x){ return x.trim(); })
+                   .filter(Boolean);
+    for(var k = 0; k < sents.length; k += 3){
+      var p = document.createElement('p');
+      p.textContent = sents.slice(k, k + 3).map(function(x){
+        return /[.!?]$/.test(x) ? x : x + '.';
+      }).join(' ');
+      nBody.appendChild(p);
+    }
+  }
+
+  function go(i){
+    i = Math.max(0, Math.min(n - 1, i));
+    if(i === at && slides[i].classList.contains('on')) return;
+    slides[at].classList.remove('on');
+    at = i;
+    document.body.classList.remove('static');
+    slides[at].classList.add('on');
+    ticks.forEach(function(t, k){
+      if(k === at) t.setAttribute('aria-current', 'true');
+      else t.removeAttribute('aria-current');
+    });
+    cNow.textContent = String(at + 1).padStart(2, '0');
+    setShader(slides[at].dataset.shader);
+    fillNotes(at);
+  }
+
+  function toggleNotes(){
+    var open = notes.classList.toggle('open');
+    notes.hidden = !open;
+  }
+
+  addEventListener('keydown', function(e){
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key;
+    if(k === 'ArrowRight' || k === 'ArrowDown' || k === ' ' || k === 'PageDown'){
+      e.preventDefault(); go(at + 1);
+    } else if(k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp'){
+      e.preventDefault(); go(at - 1);
+    } else if(k === 'Home'){ e.preventDefault(); go(0); }
+    else if(k === 'End'){ e.preventDefault(); go(n - 1); }
+    else if(k === 'n' || k === 'N'){ e.preventDefault(); toggleNotes(); }
+    else if(k === 'f' || k === 'F'){
+      e.preventDefault();
+      if(document.fullscreenElement) document.exitFullscreen();
+      else if(document.documentElement.requestFullscreen)
+        document.documentElement.requestFullscreen().catch(function(){});
+    } else if(k === 'Escape' && notes.classList.contains('open')){ toggleNotes(); }
+  });
+
+  document.getElementById('bNotes').addEventListener('click', toggleNotes);
+  document.getElementById('bFull').addEventListener('click', function(){
+    if(document.fullscreenElement) document.exitFullscreen();
+    else if(document.documentElement.requestFullscreen)
+      document.documentElement.requestFullscreen().catch(function(){});
+  });
+
+  var tx = 0, ty = 0;
+  addEventListener('touchstart', function(e){
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+  }, { passive:true });
+  addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - tx;
+    var dy = e.changedTouches[0].clientY - ty;
+    if(Math.abs(dx) > 56 && Math.abs(dx) > Math.abs(dy) * 1.6) go(at + (dx < 0 ? 1 : -1));
+  }, { passive:true });
+
+  addEventListener('resize', size);
+
+  /* ---- first paint: complete and at rest, no entry animation ---- */
+  document.body.classList.add('static');
+  if(initGL()){ cur = slides[0].dataset.shader; scale = SCALE[cur] || 0.8;
+    size(); requestAnimationFrame(frame); }
+
+  var hash = (location.hash || '').replace('#', '');
+  var start = /^s\d{1,2}$/.test(hash) ? parseInt(hash.slice(1), 10) - 1 : 0;
+  at = 0;
+  slides[0].classList.add('on');
+  ticks[0].setAttribute('aria-current', 'true');
+  fillNotes(0);
+  if(start > 0 && start < n) go(start);
+})();
+</script>
+
+</body>
+</html>
