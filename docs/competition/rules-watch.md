@@ -1,5 +1,7 @@
 # Rules watch
 
+**The 2026 handbook has now been read in full** and lives in [handbook 2026](handbook-2026.md). This document keeps the cross-cycle history and the strategic reading; the handbook digest is the authority on what the 2026 rules say.
+
 **Status:** Partial, v1. The scoring-evidence section is complete and is the most strategically important finding in the program so far. The full year-by-year delta table, the PERMANENT/RECURRING/VOLATILE classification and the 2027 risk table are outstanding — see section 5.
 
 **Purpose.** The 2027 handbook is unpublished. This document records which requirements have survived every rewrite, so the club designs to those now and absorbs the churn later.
@@ -21,6 +23,8 @@ From RoboNation's published per-task scoresheet, best round per team, 27 teams s
 **Operators and Design for Rapid Response together are 400 of the 1000 mission points, and neither requires a successful flight.** Rapid Response is scored at the safety inspection table; Operators only requires fielding exactly two people. **Every single scoring team took full or near-full operator points.**
 
 Against that, the flying tasks were mostly unscored. **Only one team in the entire event flew all ten laps.** Only two maxed delivery. **The modal team flew one lap — and since endurance pays 200 × (laps/10)², one lap is worth two points.** Fewer than a third of scoring teams put anything on the board for delivery or mapping.
+
+**And the reason there are 61 team-rounds for 27 teams: every team gets up to two flights and the better one counts.** The 2026 handbook promises two mission demonstrations where time allows, in the same flight order, and scores the better. That changes the risk calculus for a crash, because a first-round crash costs a round rather than the season, and the handbook separately permits bringing a backup instance of the locked design to competition. It also means **up to 50 teams are invited on site at all**, ordered by qualified Proof of Flight Readiness submission, so that video is the hardest date in the season.
 
 **Penalties decided the ranking.** 15 of 61 team-rounds incurred a penalty and **13 of those were at least 50%**. Because penalties are unbounded percentages of demonstration points, a single crash subtracts 500 and zeroes the demonstration. The first row of the sheet is exactly that: a team with 125 Rapid Response points and 100 Operator points banked, one crash, **final score zero.** 21 crashes across about 51 flights.
 
@@ -76,8 +80,17 @@ Survival across the twelve cycles that can be read:
 | Interoperability server | 8 of 12 | **Retired after 2022** |
 | Operator-count scoring | 2024 onwards, formula changed each year | Volatile |
 | Design for Transport / Rapid Response | **2 cycles only** | **Most volatile scored task, and the one our airframe is shaped around** |
+| Moving object task | **0 of 12, but titled and empty in 2026** | **Watch this.** See below |
 
 **Build to the five permanent ones now.** Those are [flight autonomy](#5-outstanding), [perception](subsystems/perception.md), [payload delivery](subsystems/payload-delivery.md), documentation, and the compliance gate in [FAA compliance](faa-compliance.md).
+
+---
+
+### The one forward signal the organisers left in the open
+
+The 2026 handbook carries an **Appendix D: Moving Object Task** whose entire content is the word "TBD". Nothing was scored against it in 2026.
+
+An empty titled appendix is the organisers showing their hand. A moving-object task would be the first requirement in twelve cycles to demand tracking rather than searching, and it is the only plausible addition that would turn perception from a detection problem into a latency problem. Every other task in the handbook's history has been static. **If it appears in the 2027 handbook it is the one change that would justify revisiting the perception and compute architecture**, and until then it justifies nothing. Note the historical lesson that cuts the other way too: obstacles were always virtual, so the task that looked like it demanded sensors never did.
 
 ---
 

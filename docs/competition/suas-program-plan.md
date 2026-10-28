@@ -25,6 +25,8 @@ How Longhorn eVTOL gets from today to a scored run at the RoboNation SUAS compet
 
 The 2027 handbook is not published yet ("Coming Soon"), so the dates below are the published 2026 pattern plus the one confirmed 2027 date. Re-baseline when the 2028 handbook appears.
 
+**Two facts from the 2026 handbook that make the readiness video the hardest date in the season:** up to **50 teams are invited on site at all**, ordered by qualified Proof of Flight Readiness submission, with later submissions waitlisted at the organisers' discretion; and every invited team gets **up to two mission demonstrations, with the better one counting**. A backup instance of the locked design may be brought to competition and flown, one per attempt, which makes the spare airframe a scoring strategy rather than insurance. See [handbook 2026 §8](handbook-2026.md#8-two-things-that-change-the-strategy).
+
 | Item | 2026 actual | 2027 | 2028 (assumed pattern) |
 | --- | --- | --- | --- |
 | Registration window | 01 Dec 2025 – 01 Apr 2026 | not published | ~Dec 2027 – Apr 2028 |
@@ -209,7 +211,7 @@ Owns the airframe, the mechanisms, and the mass budget.
 
 Projects: 4-piece wing with toolless joiners (L) · fuselage and payload bay (M) · booms, motor mounts, folding-prop integration (M) · **payload release mechanism and drogue (M)** · transport case and 3-minute assembly (M) · CG and mass properties tracking (S) · heat-soak testing of servos and adhesives (S)
 
-Hard requirements: ≤15 lb all-up, carry-on packing tier, toolless in 3 minutes, fasteners secured with safety wire or Loctite or nylon nuts, nothing may fall off in flight.
+Hard requirements: ≤15 lb all-up, toolless in 3 minutes with up to 4 people, fasteners secured with safety wire or Loctite or nylon nuts, nothing may fall off in flight, batteries removable without deconstructing the airframe. Packing tier: the 4-piece wing reaches **Carry-On, worth 25**; the 50-point **Personal Item** tier needs every piece inside 18 × 14 × 8 in. That 25-point gap is a live trade.
 
 ### Electrical and Power
 

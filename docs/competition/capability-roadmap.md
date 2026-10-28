@@ -20,7 +20,7 @@
 
 **Three structural facts drive the ordering:**
 
-**Navigation gates everything.** The rules require a complete autonomous lap *before* any delivery is attempted, and deliveries attempted before a lap score zero. Mapping and search both happen inside an autonomous mission. **So navigation is not one of three parallel workstreams — it is the dependency for the other two.**
+**Navigation gates everything, and it gates it harder than it first looks.** The rules require a complete autonomous lap *before* any delivery is attempted, and deliveries attempted before a lap score zero. Worse, **every lap a team intends to fly must be flown before it enters the Search Boundary, and entering locks the lap count** ([handbook 2026 §3](handbook-2026.md#3-order-of-tasking-which-is-stricter-than-we-assumed)). Mapping and search then happen inside the same autonomous mission, in either order, but with the endurance score already fixed. **So navigation is not one of three parallel workstreams — it is the dependency for the other two, and the lap count is a single irreversible commit made in the air.**
 
 **Delivery and detection can be developed off the competition aircraft.** The drop mechanism and its physics characterise on a stairwell and a hovering multirotor; detection trains on datasets and a mannequin in a field. **Neither needs the quadplane to exist.** That is what makes it possible to front-load all three at once.
 
@@ -66,7 +66,7 @@ Three capabilities meet on one airframe for the first time.
 
 - **Detection onto the trainer**, geolocating real targets in flight. **Measure image-to-ground error in metres** — [perception](subsystems/perception.md) flags this as the open term that [payload delivery](subsystems/payload-delivery.md) currently assumes at 2 m.
 - **Delivery onto the trainer**, with the release-point solver closing on a real target. **30 full-system drops**, because 9 of 10 tells you nothing (the 95% interval on 9/10 is 60% to 98%).
-- **Mapping** attempted for the first time, against a runtime budget inside the clock.
+- **Mapping** attempted for the first time, against a runtime budget inside the clock. The area is only about 10 acres, roughly 150 m by 260 m, and it is the same boundary the targets sit in, so one flight plan may serve mapping and search together.
 - **A full mission end to end on the trainer**: autonomous lap, mapping run, detection, two deliveries, landing, under 45 minutes **including setup**.
 
 ### Phase 3 — Competition aircraft · Sep 2027 to Feb 2028

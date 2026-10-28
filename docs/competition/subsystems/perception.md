@@ -6,6 +6,8 @@
 
 Two scored jobs: **Risk Mapping, 150 points** — a stitched aerial map handed to judges on a USB drive before the mission clock stops, late scores zero. And **Search, Detect and Deliver, 200 points** — autonomously find a mannequin and a tent and compute their coordinates so the aircraft can deliver within 50 ft.
 
+**The search area is small, and it is shared.** The handbook defines one Search Boundary per runway of about **10 acres, roughly 150 m by 260 m**, and it is the area of interest for **both** Risk Mapping and Search, Detect and Deliver ([handbook 2026 §2](../handbook-2026.md#search-boundaries-and-the-answer-to-a-question-we-had-open)). One flight plan can serve both tasks. Two operational details that change the test plan: **judges stand inside the boundary** to score drops and the ground may be marked to show the 50 ft radius, and **targets may be temporarily occluded while judges clear debris and score another team's drops**. So occlusion is not only natural cover, it is people and vehicles moving through frame.
+
 **Both were scored by fewer than a third of the 2026 field** (8 of 27 for delivery, 10 of 27 for mapping — see [rules watch](../rules-watch.md)). That is where the differentiation is.
 
 ---

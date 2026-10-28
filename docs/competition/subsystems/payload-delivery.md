@@ -6,6 +6,14 @@
 
 Air delivery has been a scored SUAS task in **every cycle from 2014 to 2026** — see [rules watch](../rules-watch.md). It is one of the four capabilities worth building before the handbook publishes.
 
+**Three requirements read directly from the 2026 handbook that constrain the mechanism** ([handbook 2026 §5.5](../handbook-2026.md#55-search-detect-and-deliver)):
+
+1. **The 2 lb payload limit covers everything that separates from the aircraft**, the delivery object included. With a 255 g bottle that leaves about 650 g for canopy, carrier and release hardware, which is not tight.
+2. **A judge must be able to free the object from our payload by hand, with no tools and no instructions, or the drop does not count.** That is a usability requirement on the carrier, not just a mechanical one: it has to be obvious to someone who has never seen it.
+3. **If several payloads are released at once, only the best-scoring one counts.** There is no value in dropping both objects at one target.
+
+Also: an attempted delivery is any payload released in flight, successful or not; and the delivery failsafe is explicitly named by the handbook as safety-critical functionality that must run on onsite systems with no internet or cloud dependency.
+
 ---
 
 ## 1. The scoring arithmetic, which reframes the problem

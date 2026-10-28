@@ -202,7 +202,7 @@ Three independent reasons not to build the program around BVLOS:
 
 1. No final rule, and no transition provision for existing §107.31 waivers or §44807 exemptions.
 2. **§89.115(a)(2)(ii)** means a broadcast module can never support a BVLOS operation, so BVLOS would also require standard Remote ID, which a student-built airframe cannot obtain.
-3. **We do not need it.** The competition flight boundary is about 1,134 m by 1,124 m with a maximum diagonal of 1,400 m. Laps are flown inside that box. That is a VLOS problem.
+3. **We do not need it.** The competition flight boundary is about 1,134 m by 1,124 m with a maximum diagonal of 1,400 m — confirmed against the eleven-point polygon the handbook publishes, see [handbook 2026 §2](handbook-2026.md#flight-boundary). Laps are flown inside that box, under a hard 150 to 400 ft AGL band. That is a VLOS problem.
 
 FAA publishes its issued-waiver list and a qualitative trend analysis but no approval rate, and its only stated processing target is 90 days.
 

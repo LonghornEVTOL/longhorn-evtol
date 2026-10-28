@@ -100,6 +100,8 @@ The TDR then draws on the same corpus rather than being written from scratch in 
 
 ## 6. The rubric, recovered from RoboNation's other competitions
 
+**Confirmed in full against the SUAS handbook, see [handbook 2026](handbook-2026.md). The reconstruction below was correct, and is kept because it explains how the rubric was recovered before the handbook was read directly.**
+
 **RoboNation runs one house rubric across RoboSub, RoboBoat and RobotX — identical section list, identical weights, identical score-band wording. Only the page limit differs: RoboSub and RoboBoat 6 pages, RobotX 10.** SUAS is a RoboNation program, and the RoboSub handbook even hyperlinks the SUAS competition site.
 
 **So the RobotX 10-page variant is the closest published analogue to the SUAS 150-point, 10-page TDR, and it almost certainly reflects the language SUAS judges are handed.** That recovers a rubric we had assumed unpublished.
@@ -137,13 +139,15 @@ Verbatim descriptors, which are the thing to write against:
 
 Competition Strategy's prompt is worth quoting too, because it frames the whole report around a trade we face directly: "teams have a limited number of working hours to prepare for the competition; this time could be spent adding additional capabilities **or testing and improving the reliability of an existing capability.**" Its Outstanding band requires "detailed discussion on trade-off studies between system complexity and reliability."
 
-### The highest-leverage structural move: the optional appendix
+### The optional appendix, and the answer to the page-limit question
 
-The house rubric includes an **optional "Test Plan and Results" appendix that sits outside the page limit**, with this note: "**excellence seen in this section can be eligible for a special judges' award.**" Its specified contents are Scope, Schedule, Resources and Tools, Environment, Risk Management, Results — and the instruction that "any design modifications or changes in competition strategy as a result of testing should be discussed."
+**Resolved against the handbook itself, and the answer is the unfavourable one: the SUAS 10-page limit *includes* References and Appendices.** See [handbook 2026 §7](handbook-2026.md#7-design-documentation-with-the-open-question-closed). So the appendix is not free structural space in SUAS, unlike the house-rubric reading below. It is still worth writing, because of the award note, but every page it takes comes off the five scored sections.
+
+The house rubric includes an **optional "Test Plan and Results" appendix**, with this note: "**excellence seen in this section can be eligible for a special judges' award.**" Its specified contents are Scope, Schedule, Resources and Tools, Environment, Risk Management, Results — and the instruction that "any design modifications or changes in competition strategy as a result of testing should be discussed."
 
 **Every Top-TDR winner uses it; the mid-band reports do not.** One competent RoboBoat report maps the testing hierarchy correctly but presents no measured values, no pass/fail log and no appendix — and reads as Strong rather than Outstanding. **The gap between it and the winning report is almost entirely that appendix.**
 
-**Confirm whether the SUAS 10-page limit excludes appendices.** If it does, this is the single biggest structural opportunity in the deliverable.
+~~Confirm whether the SUAS 10-page limit excludes appendices.~~ **Confirmed: it does not.** The limit is 10 pages including references and appendices, so plan the appendix as a page budget decision rather than a free extra.
 
 ### Formatting is binary
 
@@ -157,7 +161,7 @@ RoboSub and RobotX 2026 both **added a mandatory website content item** that did
 
 "**Test event summaries showing time in the field (water time, air time, etc.), objectives, and results. This should include simulations and real-world testing.**"
 
-RobotX also renamed its website criterion from "Vehicle Design Documentation" to **"Vehicle Design and Testing."** RoboBoat, whose handbook published earlier, does not have it. **This is a RoboNation-wide direction, and it is the clearest available signal of where a SUAS website should put its effort.** A public, dated test log with objectives, hours and results scores in two deliverables at once.
+RobotX also renamed its website criterion from "Vehicle Design Documentation" to **"Vehicle Design and Testing."** RoboBoat, whose handbook published earlier, does not have it. **This is a RoboNation-wide direction, and it is the clearest available signal of where a SUAS website should put its effort.** SUAS 2026 does **not** carry that item, and its website criterion keeps the older name Vehicle Design Documentation, so treat this as a prediction for the 2027 SUAS handbook rather than a current requirement. Note though that the SUAS 2026 Outstanding band already reads "vehicle development **and testing** process is thoroughly documented", and that site search and W3C accessibility are named requirements in the handbook rather than inferences. A public, dated test log with objectives, hours and results scores in two deliverables at once.
 
 ---
 
@@ -194,7 +198,7 @@ And one calibration warning, from DBF: "**all reports are assessed relative to e
 
 Research was stopped partway to conserve session budget. Still needed:
 
-- **Confirm the recovered rubric against SUAS's own handbook wording**, and in particular **whether the SUAS 10-page limit excludes appendices.** If it does, build the Test Plan and Results appendix. This is the highest-value remaining question in the deliverable.
+- ~~Confirm the recovered rubric against SUAS's own handbook wording~~ **Done.** The reconstruction was exactly right: Formatting 5, Abstract 10, Competition Strategy 25, Design Strategy 25, Testing Strategy 25, Acknowledgements 5, References 5, and the band wording matches verbatim. The page limit **includes** appendices. Two instructions we did not have: Design Strategy's Outstanding band turns on the word *creative* and demands calculation steps plus visual aids, and it explicitly says not to include specifications of components not of original design. See [handbook 2026](handbook-2026.md).
 - **The 2019 to 2022 SUAS rulebook PDFs**, which carry far more detailed rubrics than the current handbook and are already downloaded (path in [rules watch](rules-watch.md)).
 - **IEEE format mechanics** — how the 10 pages are counted and the handbook's exact wording on figures and citations.
 - **Per-team numeric website and TDR scores.** `suas-competition.org/2026/rankings` and `/2025/results` both return 404, so the spread is unquantified — it would tell us how much is actually winnable.

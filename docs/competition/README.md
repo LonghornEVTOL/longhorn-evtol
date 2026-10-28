@@ -2,7 +2,7 @@
 
 Target: **RoboNation SUAS, 2028 cycle**, Skyway Range, Tulsa. We attend the 1–4 October 2027 event as observers.
 
-Nine documents, about 2,500 lines. Read them in this order depending on what you need.
+Ten documents, about 2,900 lines. Read them in this order depending on what you need.
 
 ---
 
@@ -20,6 +20,7 @@ Nine documents, about 2,500 lines. Read them in this order depending on what you
 
 | Document | What it is |
 | --- | --- |
+| **[handbook-2026.md](handbook-2026.md)** | **What the rules actually say.** The published 2026 handbook read in full, all 35 pages: every formula, the flight boundary and search boundary coordinates, the order-of-tasking rule, the complete penalty list, the TDR and website rubrics verbatim. **This is the authority.** It corrected thirteen claims in the rest of the research, listed at the end |
 | **[rules-watch.md](rules-watch.md)** | **Where the points actually are.** The 2026 per-task scoresheet, which shows 400 of 1000 mission points need no successful flight and that the modal team flew one lap. Also which requirements have survived every rewrite since 2014, the obstacle-avoidance history, and what the two-year cycle means for 2028 |
 | **[documentation-strategy.md](documentation-strategy.md)** | **250 points winnable before the aircraft flies.** The TDR rubric recovered from RoboNation's other competitions, a survey of eighteen competitor websites, and the three open goals nobody is defending |
 
