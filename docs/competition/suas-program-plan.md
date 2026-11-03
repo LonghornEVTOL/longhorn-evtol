@@ -10,12 +10,14 @@ How Longhorn eVTOL gets from today to a scored run at the RoboNation SUAS compet
 
 | Decision | Call | Why |
 | --- | --- | --- |
+| Sequence | **Trainer, then A³M 2027, then SUAS 2028** | Learn on a cheap trainer, take a first competition at Texas A&M in April 2027, then enter SUAS. See [A³M 2027](a3m-2027.md) |
+| First competition | **A³M at Texas A&M, 15 to 19 April 2027** | Drivable, no fee, eVTOL UAS with a fly-off, an investor pitch and a design report. Letter of Intent due 1 January 2027 |
 | Competition | **RoboNation SUAS** | Annual, stable task skeleton, drivable venue, no other UT org entering it |
 | Entry year | **2028**, attend 2027 as observers | A 2027 entry needs a qualified autonomous aircraft by ~July 2027, before we have money or a flying airframe |
 | Aircraft | **Lift-plus-cruise quadplane, ~15 lb** | See the [design doc](suas-2028.md). Endurance scoring is quadratic; both Embry-Riddle and UC Berkeley moved from multirotor to fixed-wing VTOL for 2026 |
 | Flight controller | **Buy commercial (Pixhawk / Cube class)** | Section 3 |
 | 1/3-scale coaxial X8 | **Dormant** | Not needed for SUAS; $8–12k that belongs in the competition aircraft. Its pack architecture, power boards, avionics choices and safety requirements carry over |
-| Part 103 piloted vehicle | **Long-term goal, not a current build** | Keeps the club distinct from Texas Aerial Robotics and is why our advisor is a coaxial-rotor researcher |
+| Part 103 piloted vehicle | **Dropped. The club is unmanned only** | The constitution (2 Nov 2026) forbids flight with a person aboard; only an amendment can change that |
 | Operators | **Two, by design** | 200 points: `200 × min(1, (4−O)/2)` |
 | Autopilot firmware | **ArduPilot (ArduPlane QuadPlane)** | Section 4 |
 
