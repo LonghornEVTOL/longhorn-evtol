@@ -1,16 +1,30 @@
-# Longhorn eVTOL
+# Texas eVTOL
 
-A student organization at The University of Texas at Austin that designs, builds, and tests an electric vertical takeoff and landing (eVTOL) aircraft.
+A student organization at The University of Texas at Austin that designs, builds, and flies **unmanned** electric vertical takeoff and landing (eVTOL) aircraft, and takes them to intercollegiate competitions. Formerly Longhorn eVTOL.
 
-Our goal is a **single-occupant, seated multirotor** ("the Vehicle") capable of safe, low-altitude piloted flight.
-
-**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app) · **[Teams and projects](docs/teams.md)** · **[SUAS 2028](docs/competition/suas-2028.md)** · **[1/3-scale design](docs/vehicle/subscale-demonstrator.md)** · **[Safety requirements](docs/safety/vehicle-safety-requirements.md)**
+**Website:** [longhorn-evtol.vercel.app](https://longhorn-evtol.vercel.app) · **[Teams and projects](docs/teams.md)** · **[A³M 2027](docs/competition/a3m-2027.md)** · **[SUAS 2028](docs/competition/suas-2028.md)** · **[Program plan](docs/competition/suas-program-plan.md)** · **[Safety requirements](docs/safety/vehicle-safety-requirements.md)**
 
 ---
 
-## Current phase: 1/3-scale demonstrator
+## The plan
 
-We are building an unmanned, 1/3-scale copy of the full-scale vehicle that mirrors its architecture, so software, safety systems, and test procedures are proven before anything full size flies. **Full design: [`docs/vehicle/subscale-demonstrator.md`](docs/vehicle/subscale-demonstrator.md).**
+| Step | What | When |
+| --- | --- | --- |
+| 1 | **Trainer aircraft.** A small foam 4+1 quadplane with factory VTOL, where we learn transition, tuning, and autonomous missions on an airframe that is cheap to crash | Spring 2027 |
+| 2 | **[A³M](docs/competition/a3m-2027.md) at Texas A&M.** Aggie Advanced Aerial Mobility: design, build, and fly an eVTOL UAS, then pitch it to investors | 15 to 19 April 2027 |
+| 3 | **[RoboNation SUAS](docs/competition/suas-2028.md).** An autonomous lift-plus-cruise quadplane of about 15 lb. We attend the 2027 event as observers and enter in 2028 | Observe October 2027, compete 2028 |
+
+Every aircraft is unmanned, and the club's constitution forbids flight with a person aboard. We fly under the FAA small-UAS rules ([FAA compliance](docs/competition/faa-compliance.md)) at approved off-campus sites, and every powered test passes the stage gates in [test and verification](docs/competition/test-and-verification.md).
+
+---
+
+## Archived: piloted vehicle and 1/3-scale demonstrator
+
+The club started out aiming at a single-occupant piloted multirotor under 14 CFR Part 103, with an unmanned 1/3-scale demonstrator as its first step. **We have stepped away from the manned vehicle, and the 1/3-scale demonstrator is dormant.** The designs below are kept as a record because their pack architecture, power boards, avionics choices, and safety requirements carry over to the competition aircraft. None of it is a current build.
+
+### 1/3-scale demonstrator (dormant)
+
+An unmanned, 1/3-scale copy of the full-scale vehicle that mirrors its architecture. **Full design: [`docs/vehicle/subscale-demonstrator.md`](docs/vehicle/subscale-demonstrator.md).**
 
 | | 1/3-scale demonstrator |
 | --- | --- |
@@ -29,9 +43,9 @@ First club power board, the per-pack switch: [`docs/hardware/pack-switch-board.m
 
 ---
 
-## Mission and approach
+### Original phase plan (archived)
 
-Development is phased. Each phase is gated on a formal design and safety review, and nothing advances until the review passes.
+Development was phased. Each phase is gated on a formal design and safety review, and nothing advances until the review passes.
 
 | Phase | Test article | Gate to advance |
 | --- | --- | --- |
@@ -39,9 +53,9 @@ Development is phased. Each phase is gated on a formal design and safety review,
 | 2 | Full-scale unmanned and tethered test article | Design and safety review, documented run time |
 | 3 | Piloted vehicle | All conditions precedent met (see below) |
 
-### Regulatory basis
+### Original regulatory basis (archived)
 
-Piloted flight is intended to fall under **14 CFR Part 103 (Ultralight Vehicles)**:
+Piloted flight was intended to fall under **14 CFR Part 103 (Ultralight Vehicles)**:
 
 - Single occupant
 - Under **254 lb** empty weight
@@ -55,7 +69,7 @@ We will not fly on campus. Testing happens at an off-campus site, and the pilote
 
 ---
 
-## Vehicle baseline
+## Archived: full-scale piloted vehicle baseline
 
 Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (vehicle, batteries, and pilot). Frozen at the Preliminary Design Review. Parts, sources, both propulsion options, the custom ESC design, and cost: [`docs/vehicle/baseline.md`](docs/vehicle/baseline.md). Alternative layouts we could pivot to (flat octocopter, coaxial X12, flat hexacopter), sized on the same assumptions: [`docs/vehicle/configuration-trade-study.md`](docs/vehicle/configuration-trade-study.md).
 
@@ -94,7 +108,7 @@ Sized for a **160 lb pilot** with total thrust at **twice the gross weight** (ve
 
 ---
 
-## Mechanical, materials, and manufacturing
+## Archived: full-scale mechanical, materials, and manufacturing
 
 The preliminary structure uses a **welded 4130 steel center cage, carbon-fiber folding arms, coaxial motor mounts, and landing skids**. Material selections, dimensions, and structural mass estimates remain provisional until supported by analysis and representative testing. The rules, load cases, and fabrication gates below are expanded in **[`docs/vehicle/mechanical-manufacturing-plan.md`](docs/vehicle/mechanical-manufacturing-plan.md)**.
 
@@ -191,11 +205,11 @@ Resolve and record the following before the relevant design is released for fabr
 
 ## Safety
 
-Putting a person on a multirotor deserves more scrutiny than a normal project, so safety is designed in. Full list: [`docs/safety/vehicle-safety-requirements.md`](docs/safety/vehicle-safety-requirements.md).
+Safety is designed in from the first test. Full list: [`docs/safety/vehicle-safety-requirements.md`](docs/safety/vehicle-safety-requirements.md). Flight-test gates: [`docs/competition/test-and-verification.md`](docs/competition/test-and-verification.md).
 
-- **Phased development.** Subscale unmanned, then full-scale unmanned and tethered, then piloted, each gated on a design review and hazard analysis.
-- **Custom hardware earns its way in.** Custom PCBs and programmable logic in a flight-critical path need a design review, current-limited bring-up, and qualification at or above expected operating conditions. Nothing custom flies piloted until it has documented run time on the unmanned article.
-- **Conditions before piloted flight.** Verified margins, demonstrated motor-out response, a tested E-stop and recovery parachute, completed unmanned tethered and free-flight campaigns, and a confirmed FAA basis.
+- **Unmanned only.** No flight with a person aboard, tethered or free. Only a constitutional amendment can change this.
+- **Stage gates.** Simulation and bench work, then restrained and tethered tests, then free flight, each gated on a design review, a hazard analysis, and a Test Readiness Review signed by the Chief Safety Officer.
+- **Custom hardware earns its way in.** Custom PCBs and programmable logic in a flight-critical path need a design review, current-limited bring-up, and qualification at or above expected operating conditions.
 - **Flight-critical compute architecture.**
   - Stabilization runs on a dedicated real-time controller, never on a device running a general-purpose OS.
   - The safety monitor lives on physically separate hardware with its own power and reset domain.
@@ -210,9 +224,9 @@ Putting a person on a multirotor deserves more scrutiny than a normal project, s
 
 | Team | Sub-teams |
 | --- | --- |
-| [Mechanical Design](docs/teams.md#mechanical-design) | Airframe and Chassis · Seating, Ergonomics, and Cockpit · Propulsion and Duct · Landing Gear and Suspension |
+| [Mechanical Design](docs/teams.md#mechanical-design) | Airframe and Chassis · Propulsion and Duct · Landing Gear and Suspension |
 | [Electrical and Power](docs/teams.md#electrical-and-power) | Power Distribution and Wiring Harness · ESC and Motor Integration · Avionics and Power Architecture · Safety Interlocks and E-Stop · Custom PCB and Hardware Design |
-| [Software and Avionics](docs/teams.md#software-and-avionics) | Flight Control · Sensor Fusion and Telemetry · Cockpit Interface and Ground Station · Fault Management and Failsafes · Hardware Acceleration and FPGA |
+| [Software and Avionics](docs/teams.md#software-and-avionics) | Flight Control · Sensor Fusion and Telemetry · Ground Station · Fault Management and Failsafes · Hardware Acceleration and FPGA |
 | [Manufacturing and Operations](docs/teams.md#manufacturing-and-operations) | Welding and Metal Fabrication · Composites and Layup · Machining and CNC · Assembly and Quality Control |
 | [Flight Test and Range Operations](docs/teams.md#flight-test-and-range-operations) | Test Planning · Range and Logistics · Data and Instrumentation |
 | [Systems Engineering and Integration](docs/teams.md#systems-engineering-and-integration) | Requirements and Interfaces · Configuration Management |
